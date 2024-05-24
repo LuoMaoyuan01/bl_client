@@ -12,8 +12,8 @@ function App() {
 
   useEffect(() => {
     axios.get("http://localhost:5000/scrape/70").then((response) => {
+      // Set data object to contain HTML obtained from the url
       setData(response.data);
-      console.log(data);
     })
   }, []);
   return (
