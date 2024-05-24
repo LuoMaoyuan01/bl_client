@@ -4,19 +4,22 @@ import './App.css';
 // Import required libraries & functions
 import React, { Component, useEffect, useState } from 'react';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'; // Install components, router, route
-import axios from axios
-
-// Utilizing react hooks
-const [data, setData] = useState();
+import axios from 'axios';
 
 function App() {
+  // Utilizing react hooks
+  const [data, setData] = useState();
+
   useEffect(() => {
-    axios.get("http://localhost:5000/main/70").then((response) => {
-      setData(response);
+    axios.get("http://localhost:5000/scrape/70").then((response) => {
+      setData(response.data);
+      console.log(data);
     })
-  }, [])
+  }, []);
   return (
-    <div>{data}</div>
+    <div>
+      {data ? JSON.stringify(data) : 'Loading...'}
+    </div>
   );  
 }
 
