@@ -9,7 +9,6 @@ const MapComponent = () => {
     const initMap = async () => {
       try {
         const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-        // const apiKey = 'AIzaSyB5yzIMiOUagFda-20MnNBruQAGgdsVPfc';
         console.log(apiKey);
         const googleMaps = await loadGoogleMapsApi(apiKey, ['places']);
 
@@ -38,7 +37,7 @@ const MapComponent = () => {
     initMap();
   }, []);
 
-  return <div ref={mapRef} style={{ height: '100%', width: '100%' }} />;
+  return <div ref={mapRef} style={{ height: '935px', width: '100%' }} />;
 };
 
 export default MapComponent;
