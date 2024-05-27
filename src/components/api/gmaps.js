@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
-import loadGoogleMapsApi from '../../utils/loadGoogleMapsAPI'; // Default import
+import loadGoogleMapsApi from '../../utils/loadGoogleMapsApi'; // Ensure the import path is correct
 
 const MapComponent = () => {
   const mapRef = useRef(null);
-  const [map, setMap] = useState(null); 
+  const [map, setMap] = useState(null);
 
   useEffect(() => {
     const initMap = async () => {
       try {
-        const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+        const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+        // const apiKey = 'AIzaSyB5yzIMiOUagFda-20MnNBruQAGgdsVPfc';
         console.log(apiKey);
         const googleMaps = await loadGoogleMapsApi(apiKey, ['places']);
 

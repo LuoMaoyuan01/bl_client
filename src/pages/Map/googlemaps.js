@@ -44,11 +44,11 @@ function Maps() {
     //   </ul>
     // </div>
     // --------------------------------------------------------------
-    <div>
-        <h1>My Google Maps App</h1>
-        <MapComponent />
-    </div>
-    )
+        <div>
+            <h1>My Google Maps App</h1>
+            <MapComponent />
+        </div>
+    );
 }
 
 export default Maps;
