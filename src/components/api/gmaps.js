@@ -38,7 +38,7 @@ const MapComponent = () => {
     initMap();
   }, []);
 
-  return <div ref={mapRef} style={{ height: '500px', width: '100%' }} />;
+  return <div ref={mapRef} style={{ height: '100%', width: '100%' }} />;
 };
 
 export default MapComponent;
