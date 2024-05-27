@@ -4,7 +4,8 @@ import './googlemaps.css';
 // Import required library and functions
 import React, {useState, useEffect} from 'react';
 import {useParams} from "react-router-dom";
-import axios from 'axios';
+import axios from 'axios';  
+import MapComponent from '../../components/api/gmaps';
 
 function Maps() {
 
@@ -29,17 +30,23 @@ function Maps() {
 
 
     return(
+    // ----------------------- FOR TESTING ------------------------
+    // <div>
+    //   <h1>Bus Stops for Bus Number: {busNumber}</h1>
+    //   <ul>
+    //     {busStops.map((stop, index) => (
+    //       <li key={index}>
+    //         <p>Road Name: {stop['Road Name']}</p>
+    //         <p>Bus Stop Number: {stop['Bus Stop Number']}</p>
+    //         <p>Bus Stop Name: {stop['Bus Stop Name']}</p>
+    //       </li>
+    //     ))}
+    //   </ul>
+    // </div>
+    // --------------------------------------------------------------
     <div>
-      <h1>Bus Stops for Bus Number: {busNumber}</h1>
-      <ul>
-        {busStops.map((stop, index) => (
-          <li key={index}>
-            <p>Road Name: {stop['Road Name']}</p>
-            <p>Bus Stop Number: {stop['Bus Stop Number']}</p>
-            <p>Bus Stop Name: {stop['Bus Stop Name']}</p>
-          </li>
-        ))}
-      </ul>
+        <h1>My Google Maps App</h1>
+        <MapComponent />
     </div>
     )
 }
