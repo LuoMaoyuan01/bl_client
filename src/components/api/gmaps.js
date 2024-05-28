@@ -1,7 +1,9 @@
+// Import required library and functions
 import React, { useEffect, useRef, useState } from 'react';
 import loadGoogleMapsApi from '../../utils/loadGoogleMapsApi'; // Ensure the import path is correct
+import GMapsGeoCoding from '../../utils/geoCoding';
 
-const MapComponent = () => {
+const MapComponent = ({ busStops }) => {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
 
@@ -25,15 +27,18 @@ const MapComponent = () => {
 
           setMap(mapInstance);
 
-          // const { AdvancedMarkerElement } = google.maps.marker;
-          // console.log('AdvancedMarkerElement:', AdvancedMarkerElement);
-
           // Example: Adding a marker
-          new googleMaps.marker.AdvancedMarkerElement({
-            map: mapInstance,
-            position: { lat: 1.3521, lng: 103.8198 },
-            title: 'Center Of Map',
-          });
+          // new googleMaps.marker.AdvancedMarkerElement({
+          //   map: mapInstance,
+          //   position: { lat: 1.3521, lng: 103.8198 },
+          //   title: 'Center Of Map',
+          // });
+
+          // Geocoding function
+          const importedBusStops = busStops;
+          const updatedBusStops = await GMapsGeoCoding(importedBusStops);
+          console.log(updatedBusStops);
+          console.log("run");
         }
       } catch (error) {
         console.error('Error loading Google Maps:', error); 
@@ -41,7 +46,8 @@ const MapComponent = () => {
     };
 
     initMap();
-  }, []);
+  }, [busStops]);
+
 
   return <div ref={mapRef} style={{ height: '100vh', width: '100%' }} />;
 };

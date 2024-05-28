@@ -26,9 +26,6 @@ function Maps() {
         })
     }, [busNumber])
 
-    console.log(busStops);
-
-
     return(
     // ----------------------- FOR TESTING ------------------------
     // <div>
@@ -46,7 +43,7 @@ function Maps() {
     // --------------------------------------------------------------
         <div>
             <h1>My Google Maps App</h1>
-            <MapComponent />
+            <MapComponent busStops={busStops}/>
         </div>
     );
 }
