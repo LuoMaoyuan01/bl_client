@@ -10,7 +10,7 @@ import axios from 'axios';
 import HomePage from "./pages/Home/homepage.js";
 import Maps from "./pages/Map/googlemaps.js";
 
-
+  
 function App() {  
   // Utilizing react hooks
   const [data, setData] = useState();
@@ -18,7 +18,7 @@ function App() {
   // useEffect(() => {
   //   axios.get("http://localhost:5000/scrape/70").then((response) => {
   //     // Set data object to contain HTML obtained from the url
-  //     setData(response.data);
+  //     setData(response.data);  
   //     console.log(data);
   //   })
   // }, []);
@@ -29,7 +29,7 @@ function App() {
             <Route path="/">
               <Route path = "" exact element={<Navigate to="home" />} />
               <Route path = "home" exact element={<HomePage/>} />
-              <Route path = "googlemaps/:busNumber" exact element={<Maps/>} />
+              <Route path = "googlemaps/:busNumber/:direction" exact element={<Maps/>} />
             </Route>
           </Routes>
         </Router>

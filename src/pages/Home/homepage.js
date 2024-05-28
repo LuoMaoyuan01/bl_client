@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is import
 
 // Import required components
 import HomePageSearchBtn from "../../components/ui/buttons/homePageSearchBtn";
+import RadioBtn from "../../components/ui/radioBtn/homeRadioBtn";
 
 // Import required library and functions
 import { useNavigate } from 'react-router-dom';
@@ -20,6 +21,7 @@ function HomePage() {
     return(
         <div>
             <HomePageSearchBtn handleSubmit={handleSearchBtnSubmit}/>
+            <RadioBtn/>
         </div>
     )
 }

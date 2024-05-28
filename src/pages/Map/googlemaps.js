@@ -10,23 +10,23 @@ import MapComponent from '../../components/api/gmaps';
 function Maps() {
 
     const { busNumber } = useParams();
+    const { direction } = useParams();
 
-    console.log('Bus number: ', busNumber);
 
     const [busStops, setBusStops] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/scrape/${busNumber}`)
+        axios.get(`http://localhost:5000/scrape/${busNumber}/${direction}`)
         .then((response) => {
             const data = response.data
             setBusStops(data);
-            console.log(busStops);
         })
         .catch((error) => {
             console.log(error);
         })
     }, [busNumber])
 
+    console.log(busStops);
 
 
     return(
