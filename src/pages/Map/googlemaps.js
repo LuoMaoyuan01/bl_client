@@ -44,7 +44,7 @@ function Maps() {
     // --------------------------------------------------------------
         <div>
             <h1>My Google Maps App</h1>
-            <MapComponent busStops={busStops}/>
+            <MapComponent busNumber={busNumber} busStops={busStops}/>
         </div>
     );
 }

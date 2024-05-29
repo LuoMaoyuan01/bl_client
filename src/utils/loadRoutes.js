@@ -22,7 +22,7 @@ const LoadRoutes = async (apiKey, busStops) => {
     },
     // intermediates: [],
     travelMode: 'TRANSIT',
-    computeAlternativeRoutes: false,
+    computeAlternativeRoutes: true,
     transitPreferences: { 
         allowedTravelModes: ["BUS"],
         routingPreference: "LESS_WALKING"
@@ -57,13 +57,14 @@ const LoadRoutes = async (apiKey, busStops) => {
   const headers = {
     'Content-Type': 'application/json',
     'X-Goog-Api-Key': apiKey,
-    'X-Goog-FieldMask': 'routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline'
+    'X-Goog-FieldMask': 'routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline,routes.legs.steps.transitDetails'
   };
 
 
   // Call google routes API to obtain the corresponding routes information from the requestbody
   try {
     const response = await axios.post(BaseUrl, requestBody, { headers });
+    console.log(response.data);
     return response.data;
   } catch (error) {
     if (error.response) {
