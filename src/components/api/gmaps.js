@@ -2,6 +2,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import loadGoogleMapsApi from '../../utils/loadGoogleMapsApi'; // Ensure the import path is correct
 import GMapsGeoCoding from '../../utils/geoCoding';
+import LoadRoutes from '../../utils/loadRoutes';
+import DisplayRoute from '../../utils/displayRoute';
 
 const MapComponent = ({ busStops }) => {
   const mapRef = useRef(null);
@@ -11,11 +13,13 @@ const MapComponent = ({ busStops }) => {
     const initMap = async () => {
       try {
         const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-        const googleMaps = await loadGoogleMapsApi(apiKey, ['places', 'marker', 'routes']);
+        const googleMaps = await loadGoogleMapsApi(apiKey, ['places', ,'geometry', 'marker', 'routes']);
+        const importedBusStops = busStops;
         console.log('Google Maps API Loaded:', googleMaps);
+        console.log(busStops);  
 
         if (mapRef.current) { 
-          // First load auto focus on singapore map
+          // First load auto focus on singapore mapS
           const mapOptions = {
             center: { lat: 1.3521, lng: 103.8198 },
             zoom: 12.5,
@@ -35,10 +39,15 @@ const MapComponent = ({ busStops }) => {
           // });
 
           // Geocoding function (Disable if not needed since it costs quite abit to run)
-          // const importedBusStops = busStops;
+          
           // const updatedBusStops = await GMapsGeoCoding(importedBusStops);
           // console.log(updatedBusStops);
 
+          // Obtain route information for that bus number
+          const routes = await LoadRoutes(apiKey, importedBusStops);
+
+          // Display the route on google maps
+          DisplayRoute(routes, googleMaps, mapInstance);
 
         }
       } catch (error) {
