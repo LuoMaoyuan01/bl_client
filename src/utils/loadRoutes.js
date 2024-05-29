@@ -54,7 +54,6 @@ const LoadRoutes = async (apiKey, busStops) => {
 //   }
 // -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-
   const headers = {
     'Content-Type': 'application/json',
     'X-Goog-Api-Key': apiKey,

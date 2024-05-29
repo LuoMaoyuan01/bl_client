@@ -46,10 +46,10 @@ const MapComponent = ({ busStops }) => {
             const routes = await LoadRoutes(apiKey, busStops);
 
             // Display the route on google maps
-            DisplayRoute(routes, googleMaps, mapInstance);
+            await DisplayRoute(routes, googleMaps, mapInstance);
 
             // Display bus stop markers on google maps
-            DisplayMarkers(busStops, googleMaps, mapInstance);
+            await DisplayMarkers(busStops, googleMaps, mapInstance);
 
             // Ensures MAP, ROUTES & MARKERS loaded in tandem
             setTimeout(() => {setLoading(false);}, 300);
@@ -58,7 +58,7 @@ const MapComponent = ({ busStops }) => {
             console.error('mapRef.current is null');
             setLoading(false);
           }
-        }, 2000);
+        }, 500);
       } catch (error) {
         console.error('Error loading Google Maps:', error); 
       }

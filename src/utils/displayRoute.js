@@ -1,6 +1,6 @@
 // Import required libraries and functions
 
-export const DisplayRoute = (responseData, googleMaps, mapInstance) => {
+export const DisplayRoute = async (responseData, googleMaps, mapInstance) => {
     const routes = responseData.routes;
     if (routes && routes.length > 0) {
       const polyline = routes[0].polyline.encodedPolyline;
