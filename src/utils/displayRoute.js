@@ -2,7 +2,7 @@
 
 export const DisplayRoute = async (busNumber, responseData, googleMaps, mapInstance) => {
     const routes = responseData.routes;
-    console.log(routes.length);
+    console.log(routes);
 
     // Verify correct bus number, select correct route
     function getAllTransitLineNames(data, busNumber) {
@@ -18,7 +18,6 @@ export const DisplayRoute = async (busNumber, responseData, googleMaps, mapInsta
                   if (step.transitDetails && step.transitDetails.transitLine) {
                     const lineName = step.transitDetails.transitLine.name;
                     if (lineName === busNumber) {
-                      console.log(routeIndex);
                       return routeIndex;
                     }
                   }
@@ -28,13 +27,13 @@ export const DisplayRoute = async (busNumber, responseData, googleMaps, mapInsta
           }
         }
       }
-      return null; // If no matching routeIndex is found
     }
     
     // Example usage
     const routeNumber = getAllTransitLineNames(responseData, busNumber);
 
     if (routes && routes.length > 0) {
+      console.log(routeNumber);
       const polyline = routes[routeNumber].polyline.encodedPolyline;
       const path = googleMaps.geometry.encoding.decodePath(polyline);
   
