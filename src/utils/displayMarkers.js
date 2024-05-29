@@ -12,8 +12,8 @@ const DisplayMarkers = async (busStops, googleMaps, mapInstance) =>{
         // Create a new DOM image for each marker
         const busIcon = document.createElement("img"); // Update this path as needed
         busIcon.src = 'https://cdn-icons-png.flaticon.com/128/3066/3066259.png';
-        busIcon.style.width = '15px';
-        busIcon.style.height = '15px';
+        busIcon.style.width = '20px';
+        busIcon.style.height = '20px';
 
         const latitude = parseFloat(busStops[i]['lat']);
         const longitude = parseFloat(busStops[i]['lng']);
@@ -22,7 +22,7 @@ const DisplayMarkers = async (busStops, googleMaps, mapInstance) =>{
         new googleMaps.marker.AdvancedMarkerElement({
             map: mapInstance,
             position: { lat: latitude, lng: longitude },
-            title: 'Bus Stop',
+            title: (busStops[i]['Bus Stop Name'] + '\nBus Stop ' + busStops[i]['Bus Stop Number']).toUpperCase(),
             content: busIcon,
         });
     }
