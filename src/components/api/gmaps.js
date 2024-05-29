@@ -24,10 +24,10 @@ const MapComponent = ({ busStops }) => {
           if (mapRef.current) {
             console.log("test");
 
-            // First load auto focus on singapore maps
+            // First load auto focus on starting bus stop of the route
             const mapOptions = {
-              center: { lat: 1.3521, lng: 103.8198 },
-              zoom: 12.5,
+              center: { lat: parseFloat(busStops[0]['lat']), lng: parseFloat(busStops[0]['lng']) },
+              zoom: 15,
               mapId: process.env.REACT_APP_MAP_ID,
             };
 
@@ -58,7 +58,7 @@ const MapComponent = ({ busStops }) => {
             console.error('mapRef.current is null');
             setLoading(false);
           }
-        }, 500);
+        }, 1000);
       } catch (error) {
         console.error('Error loading Google Maps:', error); 
       }

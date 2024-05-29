@@ -9,9 +9,9 @@ export const DisplayRoute = async (responseData, googleMaps, mapInstance) => {
       const routePath = new googleMaps.Polyline({
         path: path,
         geodesic: true,
-        strokeColor: '#FF0000',
-        strokeOpacity: 1.0,
-        strokeWeight: 2
+        strokeColor: '#FF4433',
+        strokeOpacity: 0.8,
+        strokeWeight: 4
       });
   
       routePath.setMap(mapInstance);
