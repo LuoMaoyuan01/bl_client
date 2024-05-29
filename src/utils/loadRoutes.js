@@ -20,9 +20,14 @@ const LoadRoutes = async (apiKey, busStops) => {
         }
       }
     },
-    travelMode: 'DRIVE',
-    routingPreference: 'TRAFFIC_AWARE',
+    travelMode: 'TRANSIT',
+    routingPreference: '',
     computeAlternativeRoutes: false,
+    transitPreferences: { 
+        allowedTravelModes: ["BUS"],
+        routingPreference: "LESS_WALKING|FEWER_TRANSFERS"
+    },
+
     routeModifiers: {
       avoidTolls: false,
       avoidHighways: false,
