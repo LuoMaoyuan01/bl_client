@@ -34,11 +34,12 @@ const MapComponent = ({ busStops }) => {
           //   title: 'Center Of Map',
           // });
 
-          // Geocoding function
-          const importedBusStops = busStops;
-          const updatedBusStops = await GMapsGeoCoding(importedBusStops);
-          console.log(updatedBusStops);
-          console.log("run");
+          // Geocoding function (Disable if not needed since it costs quite abit to run)
+          // const importedBusStops = busStops;
+          // const updatedBusStops = await GMapsGeoCoding(importedBusStops);
+          // console.log(updatedBusStops);
+
+
         }
       } catch (error) {
         console.error('Error loading Google Maps:', error); 
@@ -49,7 +50,7 @@ const MapComponent = ({ busStops }) => {
   }, [busStops]);
 
 
-  return <div ref={mapRef} style={{ height: '100vh', width: '100%' }} />;
+  return <div ref={mapRef} style={{ height: '94vh', width: '100%' }} />;
 };
 
 export default MapComponent;

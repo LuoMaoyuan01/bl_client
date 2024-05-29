@@ -15,7 +15,6 @@ const GMapsGeoCoding = async (importedBusStops) =>{
         for(let i=0; i<importedBusStops.length; i++){
             const address = importedBusStops[i]['Bus Stop + Road'];
             const baseRequestUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
-            console.log(baseRequestUrl);
 
             // Loop through and obtain matching address data for each string address.
             const response = await axios.get(baseRequestUrl);
