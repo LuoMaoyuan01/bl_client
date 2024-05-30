@@ -1,6 +1,9 @@
 // Import styling files
 import './googlemaps.css';
 
+// Import required components
+import ReverseBtn from '../../components/ui/buttons/reverseBtn';
+
 // Import required library and functions
 import React, {useState, useEffect} from 'react';
 import {useParams} from "react-router-dom";
@@ -46,6 +49,7 @@ function Maps() {
     // --------------------------------------------------------------
         <div>
             <h1>My Google Maps App</h1>
+            <ReverseBtn/>
             <MapComponent busNumber={busNumber} busStops={busStops}/>
         </div>
     );
