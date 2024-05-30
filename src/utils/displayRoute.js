@@ -36,6 +36,7 @@ export const DisplayRoute = async (busNumber, responseData, responseData2, googl
           }
         }
       }
+      return null; // If no matching routeIndex is found
     }
     
     // Example usage

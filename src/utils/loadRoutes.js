@@ -1,7 +1,11 @@
+// Import required libraries and functions
 import axios from 'axios';
 
 const LoadRoutes = async (apiKey, busStops) => {
+
   const BaseUrl = "https://routes.googleapis.com/directions/v2:computeRoutes";
+
+  // Define variables
   let startLat = parseFloat(busStops[0]['lat']);
   let startLng = parseFloat(busStops[0]['lng']);
   let endLat = parseFloat(busStops[busStops.length-1]['lat']);
@@ -13,10 +17,12 @@ const LoadRoutes = async (apiKey, busStops) => {
     endLng = parseFloat(busStops[busStops.length-2]['lng']);
   }
 
-  console.log(busStops[0]['Bus Stop Name']);
-  console.log(busStops[busStops.length-1]['Bus Stop Name']);
+  // -------------------------------------- DEBUG LOGGING --------------------------------------------------
+  // console.log(busStops[0]['Bus Stop Name']);
+  // console.log(busStops[busStops.length-1]['Bus Stop Name']);
+  // -------------------------------------------------------------------------------------------------------
 
-
+  // Template request body to be sent as payload to API endpoint
   const requestBody = {
     origin: {
       location: {
