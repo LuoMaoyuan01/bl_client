@@ -1,4 +1,4 @@
-button {
+.button {
     font-size: 16px;
     position: relative;
     margin: auto;
@@ -7,18 +7,19 @@ button {
     background: #fff;
     transition: all 0.1s linear;
     box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.1);
+    border-radius: 100%;
     
    }
    
-   button:active {
-    transform: scale(0.95);
+   .button:active {
+    transform: scale(0.95); 
    }
    
-   button span {
+   .button span {   
     color: #464646;
    }
    
-   button .border {
+   .button .border {
     position: absolute;
     border: 0.15em solid #fff;
     transition: all 0.3s 0.08s linear;
@@ -29,10 +30,12 @@ button {
     transform: translate(-50%, -50%);
    }
    
-   button:hover .border {
+   .button:hover .border {
     display: block;
-    width: 9.9em;
-    height: 3.7em;
+    width: 9.6em;
+    height: 3.84em;
+    background-color: grey;
+    opacity: 10%;
    }
    
    .full-rounded {

@@ -8,7 +8,7 @@ import ReverseBtn from '../../components/ui/buttons/reverseBtn';
 import React, {useState, useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import axios from 'axios';  
-import MapComponent from '../../components/api/gmaps';
+import MapComponent from '../../components/api/googleMapsController';
 
 function Maps() {
 
@@ -50,7 +50,7 @@ function Maps() {
         <div>
             <h1>My Google Maps App</h1>
             <ReverseBtn/>
-            <MapComponent busNumber={busNumber} busStops={busStops}/>
+            <MapComponent busNumber={busNumber.toString()} busStops={busStops}/>
         </div>
     );
 }

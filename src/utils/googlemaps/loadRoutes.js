@@ -18,12 +18,12 @@ const LoadRoutes = async (apiKey, busStops) => {
   }
 
   // -------------------------------------- DEBUG LOGGING -------------------------------------------------- //
-  // console.log(busStops[0]['Bus Stop Name']);
-  // console.log(busStops[busStops.length-1]['Bus Stop Name']);
+  console.log(busStops[0]['Bus Stop Name']);
+  console.log(busStops[busStops.length-1]['Bus Stop Name']);
   // ------------------------------------------------------------------------------------------------------- //
 
   // Template request body to be sent as payload to API endpoint
-  const requestBody = {
+  let requestBody = {
     origin: {
       location: {
         latLng: {
@@ -42,17 +42,19 @@ const LoadRoutes = async (apiKey, busStops) => {
     },
     // intermediates: [],
     travelMode: 'TRANSIT',
+    // routingPreference: 'TRAFFIC_UNAWARE',
+    polylineQuality: 'HIGH_QUALITY',
     departureTime: "2024-05-30T05:00:00Z",
     computeAlternativeRoutes: true,
     transitPreferences: { 
         allowedTravelModes: ["BUS"],
-        routingPreference: "FEWER_TRANSFERS"
+        routingPreference: "LESS_WALKING"
     },
 
     routeModifiers: {
       avoidTolls: false,
       avoidHighways: false,
-      avoidFerries: false
+      avoidFerries: false,
     },
     languageCode: 'en-US',
     units: 'IMPERIAL'
@@ -85,7 +87,7 @@ const LoadRoutes = async (apiKey, busStops) => {
   // Call google routes API to obtain the corresponding routes information from the requestbody
   try {
     const response = await axios.post(BaseUrl, requestBody, { headers });
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     if (error.response) {

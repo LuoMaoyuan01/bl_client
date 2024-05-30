@@ -1,5 +1,5 @@
 // Import styling files
-import './homePageSearchBtn.css';
+import Styles from './homePageSearchBtn.module.css';
 
 // Import required library and functions
 import React, {useState, useEffect} from 'react';
@@ -18,9 +18,9 @@ function HomePageSearchBtn({handleSubmit}) {
 
 
     return (
-        <form className="searchBox" onSubmit={handleSubmitForm}> 
-            <input className="searchInput" type="text" name="" placeholder="Enter a bus number" value={inputValue} onChange={handleInputChange}/>
-            <button className="searchButton" type='submit' href="#">
+        <form className={Styles.searchBox} onSubmit={handleSubmitForm}> 
+            <input className={`${Styles.searchInput}`} type="text" name="" placeholder="Enter a bus number" value={inputValue} onChange={handleInputChange}/>
+            <button className={`${Styles.searchButton} ${Styles.button}`} type='submit' href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
                 <g clipPath="url(#clip0_2_17)">
                     <g filter="url(#filter0_d_2_17)">

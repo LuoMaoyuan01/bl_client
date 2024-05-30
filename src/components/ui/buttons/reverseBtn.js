@@ -7,7 +7,7 @@ const ReverseBtn = () => {
 
 
     return(
-        <button className={Styles['full-rounded']}>
+        <button className={`${Styles.button} ${Styles['full-rounded']}`}>
             <span>Hover me</span>
             <div className={`${Styles.border} ${Styles['full-rounded']}`}></div>
         </button>
