@@ -7,8 +7,15 @@
     background: #fff;
     transition: all 0.1s linear;
     box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.1);
-    border-radius: 100%;
-    
+    height: 5em;
+    width: 5em;
+   }
+
+   .button img{
+    position: relative;
+    margin: auto;
+    height: 4em;
+    width: 4em;
    }
    
    .button:active {
@@ -20,20 +27,20 @@
    }
    
    .button .border {
-    position: absolute;
+    position: relative;
     border: 0.15em solid #fff;
     transition: all 0.3s 0.08s linear;
     top: 50%;
     left: 50%;
-    width: 9em;
-    height: 3em;
+    width: 5em;
+    height: 5em;
     transform: translate(-50%, -50%);
    }
    
    .button:hover .border {
     display: block;
-    width: 9.6em;
-    height: 3.84em;
+    width: 5.3em;
+    height: 5.3em;
     background-color: grey;
     opacity: 10%;
    }
