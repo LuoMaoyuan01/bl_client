@@ -17,10 +17,10 @@ const LoadRoutes = async (apiKey, busStops) => {
     endLng = parseFloat(busStops[busStops.length-2]['lng']);
   }
 
-  // -------------------------------------- DEBUG LOGGING --------------------------------------------------
+  // -------------------------------------- DEBUG LOGGING -------------------------------------------------- //
   // console.log(busStops[0]['Bus Stop Name']);
   // console.log(busStops[busStops.length-1]['Bus Stop Name']);
-  // -------------------------------------------------------------------------------------------------------
+  // ------------------------------------------------------------------------------------------------------- //
 
   // Template request body to be sent as payload to API endpoint
   const requestBody = {
@@ -59,7 +59,7 @@ const LoadRoutes = async (apiKey, busStops) => {
   };
 
   
-// ------------------------------ NO NEED WAYPOINT AS TRANSIT_MODE DO NOT ACCEPT WAYPOINT PARAMETER IN REQUEST BODY-------------------------------------
+// ------------------------------ NO NEED WAYPOINT AS TRANSIT_MODE DO NOT ACCEPT WAYPOINT PARAMETER IN REQUEST BODY------------------------------------- //
 // Create an entry for each waypoint between start busstop and end busstop
 //   for(let i = 1; i < (busStops.length-1); i += 3){
 //     const intermediatesBody = 
@@ -73,7 +73,7 @@ const LoadRoutes = async (apiKey, busStops) => {
 //     }
 //     requestBody['intermediates'].push(intermediatesBody);
 //   }
-// -----------------------------------------------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------------------------------------------------- //
 
   const headers = {
     'Content-Type': 'application/json',

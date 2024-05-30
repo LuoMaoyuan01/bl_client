@@ -2,8 +2,12 @@
 
 export const DisplayRoute = async (busNumber, responseData, responseData2, googleMaps, mapInstance) => {
 
-  console.log(responseData);
-  console.log(responseData2);
+  // ------------------------- DEBUGGING LOGS ------------------------------ //
+  // console.log(responseData);
+  // console.log(responseData2);
+  // ----------------------------------------------------------------------- //
+
+
   // Plot 2 separate routes
   for(let i = 0; i < 2; i++){
     let data;
@@ -12,7 +16,7 @@ export const DisplayRoute = async (busNumber, responseData, responseData2, googl
     const routes = data.routes;
     console.log(routes.length); 
 
-    // Verify correct bus number, select correct route
+    // Verifies that entry bus number and route bus number are equivalent, returning that route's index
     function getAllTransitLineNames(data, busNumber) {
       if (data.routes && data.routes.length > 0) {
         for (let routeIndex = 0; routeIndex < data.routes.length; routeIndex++) {
@@ -26,7 +30,6 @@ export const DisplayRoute = async (busNumber, responseData, responseData2, googl
                   if (step.transitDetails && step.transitDetails.transitLine) {
                     const lineName = step.transitDetails.transitLine.name;
                     if (lineName === busNumber) {
-                      console.log(routeIndex);
                       return routeIndex;
                     }
                   }
@@ -39,13 +42,14 @@ export const DisplayRoute = async (busNumber, responseData, responseData2, googl
       return null; // If no matching routeIndex is found
     }
     
-    // Example usage
     const routeNumber = getAllTransitLineNames(data, busNumber);
 
+    // Obtain the polyline corresponding to that route number, and decodes it
     if (routes && routes.length > 0) {
       const polyline = routes[routeNumber].polyline.encodedPolyline;
       const path = googleMaps.geometry.encoding.decodePath(polyline);
-  
+      
+      // Plotting of route on google maps
       const routePath = new googleMaps.Polyline({
         path: path,
         geodesic: true,
