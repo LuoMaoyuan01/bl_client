@@ -17,7 +17,7 @@ const loadGoogleMapsApi = (apiKey, libraries = []) => {
       key: apiKey,
       loading: "async",
       callback: callbackName,
-      v: '3.56',
+      v: '3.57',
       libraries: libraries.join(','),
       region: 'sg',
       map_ids: process.env.REACT_APP_MAP_ID,

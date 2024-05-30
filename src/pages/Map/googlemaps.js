@@ -26,6 +26,8 @@ function Maps() {
         })
     }, [busNumber])
 
+    console.log(busStops);
+
 
     return(
     // ----------------------- FOR TESTING ------------------------

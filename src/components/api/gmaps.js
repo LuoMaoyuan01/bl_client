@@ -13,7 +13,7 @@ const MapComponent = ({ busStops, busNumber }) => {
 
   useEffect(() => {
     const initMap = async () => {
-      try {
+      try { 
         const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
         const googleMaps = await loadGoogleMapsApi(apiKey, ['places', 'geometry', 'marker', 'routes']);
         console.log('Google Maps API Loaded:', googleMaps);
@@ -42,10 +42,11 @@ const MapComponent = ({ busStops, busNumber }) => {
 
 
           // Obtain route information for that bus number
-          const routes = await LoadRoutes(apiKey, busStops);
+          const routes1 = await LoadRoutes(apiKey, busStops.slice(0, busStops.length/2 + 1));
+          const routes2 = await LoadRoutes(apiKey, busStops.slice(busStops.length/2, busStops.length));
 
           // Display the route on google maps
-          await DisplayRoute(busNumber ,routes, googleMaps, mapInstance);
+          await DisplayRoute(busNumber ,routes1 ,routes2, googleMaps, mapInstance);
 
           // Display bus stop markers on google maps
           await DisplayMarkers(busStops, googleMaps, mapInstance);

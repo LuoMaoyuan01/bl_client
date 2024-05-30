@@ -1,8 +1,16 @@
 // Import required libraries and functions
 
-export const DisplayRoute = async (busNumber, responseData, googleMaps, mapInstance) => {
-    const routes = responseData.routes;
-    console.log(routes.length);
+export const DisplayRoute = async (busNumber, responseData, responseData2, googleMaps, mapInstance) => {
+
+  console.log(responseData);
+  console.log(responseData2);
+  // Plot 2 separate routes
+  for(let i = 0; i < 2; i++){
+    let data;
+
+    i ? data = responseData2 : data = responseData
+    const routes = data.routes;
+    console.log(routes.length); 
 
     // Verify correct bus number, select correct route
     function getAllTransitLineNames(data, busNumber) {
@@ -32,7 +40,7 @@ export const DisplayRoute = async (busNumber, responseData, googleMaps, mapInsta
     }
     
     // Example usage
-    const routeNumber = getAllTransitLineNames(responseData, busNumber);
+    const routeNumber = getAllTransitLineNames(data, busNumber);
 
     if (routes && routes.length > 0) {
       const polyline = routes[routeNumber].polyline.encodedPolyline;
@@ -48,6 +56,7 @@ export const DisplayRoute = async (busNumber, responseData, googleMaps, mapInsta
   
       routePath.setMap(mapInstance);
     }
-  };
+  }
+};
   
-  export default DisplayRoute;
+export default DisplayRoute;

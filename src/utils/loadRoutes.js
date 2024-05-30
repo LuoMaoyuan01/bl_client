@@ -2,30 +2,45 @@ import axios from 'axios';
 
 const LoadRoutes = async (apiKey, busStops) => {
   const BaseUrl = "https://routes.googleapis.com/directions/v2:computeRoutes";
+  let startLat = parseFloat(busStops[0]['lat']);
+  let startLng = parseFloat(busStops[0]['lng']);
+  let endLat = parseFloat(busStops[busStops.length-1]['lat']);
+  let endLng = parseFloat(busStops[busStops.length-1]['lng']);
+
+  // Check if start and end is the same, will return empty array as gmaps assume your going from same start pt to same end pt
+  if(startLat == endLat && startLng == endLng){
+    endLat = parseFloat(busStops[busStops.length-2]['lat']);
+    endLng = parseFloat(busStops[busStops.length-2]['lng']);
+  }
+
+  console.log(busStops[0]['Bus Stop Name']);
+  console.log(busStops[busStops.length-1]['Bus Stop Name']);
+
 
   const requestBody = {
     origin: {
       location: {
         latLng: {
-          latitude: parseFloat(busStops[0]['lat']),
-          longitude: parseFloat(busStops[0]['lng'])
+          latitude: startLat,
+          longitude: startLng
         }
       }
     },
     destination: {
       location: {
         latLng: {
-          latitude: parseFloat(busStops[busStops.length-1]['lat']),
-          longitude: parseFloat(busStops[busStops.length-1]['lng'])
+          latitude: endLat,
+          longitude: endLng
         }
       }
     },
     // intermediates: [],
     travelMode: 'TRANSIT',
+    departureTime: "2024-05-30T05:00:00Z",
     computeAlternativeRoutes: true,
     transitPreferences: { 
         allowedTravelModes: ["BUS"],
-        routingPreference: "LESS_WALKING"
+        routingPreference: "FEWER_TRANSFERS"
     },
 
     routeModifiers: {
