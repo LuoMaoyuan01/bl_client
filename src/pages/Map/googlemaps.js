@@ -13,13 +13,13 @@ import MapComponent from '../../components/api/googleMapsController';
 function Maps() {
     const { busNumber } = useParams();
     const { direction } = useParams();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [busDirection, setBusDirection] = useState(direction || "1");
     const [busStops, setBusStops] = useState([]);
 
     // Reloads data every time busNumber or busDirection values change
     useEffect(() => {
-        axios.get(`http://localhost:5000/scrape/${busNumber}/${busDirection}`)
+        axios.get(`http://localhost:5000/scrape/${busNumber.toUpperCase()}/${busDirection}`)
         .then((response) => {
             const data = response.data;
             setBusStops(data);
@@ -35,7 +35,8 @@ function Maps() {
     const toggleBusDirection = () => {
         const newDirection = busDirection === "1" ? "2" : "1";
         setBusDirection(newDirection);
-        navigate(`/googlemaps/${busNumber}/${newDirection}`); // Adjust the path accordingly
+        // Might not need to adjust path to prevent congestion in the event of multiple filters
+        // navigate(`/googlemaps/${busNumber}/${newDirection}`); // Adjust the path accordingly
     };
 
     return(

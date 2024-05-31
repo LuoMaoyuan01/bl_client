@@ -1,9 +1,9 @@
 // Import required library and functions
 import React, { useEffect, useRef, useState } from 'react';
 import loadGoogleMapsApi from '../../utils/googlemaps/loadGoogleMapsApi';
-import LoadRoutes from '../../utils/googlemaps/loadRoutes';
-import DisplayRoute from '../../utils/googlemaps/displayRoute';
-import DisplayMarkers from '../../utils/googlemaps/displayMarkers';
+import RoutesLoader from './routesController';
+import DisplayRoute from '../../utils/googlemaps/routes/displayRoute';
+import DisplayMarkers from '../../utils/googlemaps/markers/displayMarkers';
 // import GMapsGeoCoding from '../../utils/geoCoding';
 
 
@@ -19,6 +19,7 @@ const MapComponent = ({ busStops, busNumber }) => {
 
         // Function that enables loading of googlemaps
         const googleMaps = await loadGoogleMapsApi(apiKey, ['places', 'geometry', 'marker', 'routes']);
+        console.log("Google Maps Loaded!");
 
         // ---------------------------------------- DEBUGGING LOGS ---------------------------------------------- //
         // console.log('Google Maps API Loaded:', googleMaps);
@@ -26,9 +27,8 @@ const MapComponent = ({ busStops, busNumber }) => {
         // ------------------------------------------------------------------------------------------------------ //
 
         if (mapRef.current) {
-          console.log("test");
 
-          // First load auto focus on starting bus stop of the route
+          // First loa  d auto focus on starting bus stop of the route
           const mapOptions = {
             center: { lat: parseFloat(busStops[0]['lat']), lng: parseFloat(busStops[0]['lng']) },
             zoom: 15,
@@ -44,21 +44,21 @@ const MapComponent = ({ busStops, busNumber }) => {
           // const updatedBusStops = await GMapsGeoCoding(busStops);
 // ------------------------------------------------------------------------------------------------------------------------------------------------- //
 
-
-          // Obtain splitted route information for that bus number
-          const routes1 = await LoadRoutes(apiKey, busStops.slice(0, busStops.length/5 + 1));
-          const routes2 = await LoadRoutes(apiKey, busStops.slice(busStops.length/5, (busStops.length*2)/5 + 1));
-          const routes3 = await LoadRoutes(apiKey, busStops.slice((busStops.length*2)/5, (busStops.length*3)/5 + 1));
-          const routes4 = await LoadRoutes(apiKey, busStops.slice((busStops.length*3)/5, (busStops.length*4)/5 + 1));
-          const routes5 = await LoadRoutes(apiKey, busStops.slice((busStops.length*4)/5, busStops.length));
-          const routes = [routes1, routes2, routes3, routes4, routes5];
+          // Obtain split up route information in a list
+          const routes = await RoutesLoader(apiKey, busStops, busNumber);
+          console.log("Routes Loaded!");
           console.log(routes);
 
           // Display bus stop markers on google maps
           await DisplayMarkers(busStops, googleMaps, mapInstance);
+          console.log("Markers Displayed!");
 
-          // Display the splitted routes on google maps
-          await DisplayRoute(busNumber ,routes, googleMaps, mapInstance);
+          // Display the splitted routes on google maps in increments
+          for(let i = 0; i < routes.length; i++){
+            console.log("Iteration: ", i);
+            await DisplayRoute(busNumber ,routes[i], googleMaps, mapInstance);
+          }
+          console.log("Routes Displayed!");
 
           // Ensures MAP, ROUTES & MARKERS loaded in tandem
           setTimeout(() => {setLoading(false);}, 300);
@@ -69,12 +69,13 @@ const MapComponent = ({ busStops, busNumber }) => {
           }
       } catch (error) {
         console.error('Error loading Google Maps:', error); 
+
       }
     };
 
     initMap();
 
-  }, [busStops]);
+  }, [busStops, busNumber]);
 
   if(loading){
     return <div>Loading...</div>; 

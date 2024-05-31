@@ -1,7 +1,8 @@
 // Import required libraries and functions
 import axios from 'axios';
+import verifyTransitLineExists from './verifyTransitLineExist';
 
-const LoadRoutes = async (apiKey, busStops) => {
+const LoadRoutes = async (apiKey, busStops, busNumber, routingPreference) => {
 
   const BaseUrl = "https://routes.googleapis.com/directions/v2:computeRoutes";
 
@@ -10,12 +11,6 @@ const LoadRoutes = async (apiKey, busStops) => {
   let startLng = parseFloat(busStops[0]['lng']);
   let endLat = parseFloat(busStops[busStops.length-1]['lat']);
   let endLng = parseFloat(busStops[busStops.length-1]['lng']);
-
-  // Check if start and end is the same, will return empty array as gmaps assume your going from same start pt to same end pt
-  if(startLat == endLat && startLng == endLng){
-    endLat = parseFloat(busStops[busStops.length-2]['lat']);
-    endLng = parseFloat(busStops[busStops.length-2]['lng']);
-  }
 
   // -------------------------------------- DEBUG LOGGING -------------------------------------------------- //
   console.log(busStops[0]['Bus Stop Name']);
@@ -48,7 +43,7 @@ const LoadRoutes = async (apiKey, busStops) => {
     computeAlternativeRoutes: true,
     transitPreferences: { 
         allowedTravelModes: ["BUS"],
-        routingPreference: "LESS_WALKING"
+        routingPreference: routingPreference 
     },
 
     routeModifiers: {
@@ -88,7 +83,25 @@ const LoadRoutes = async (apiKey, busStops) => {
   try {
     const response = await axios.post(BaseUrl, requestBody, { headers });
     // console.log(response.data);
-    return response.data;
+
+    // Verify if the routes returned contains the requested bus number
+    // If dont exists, try to load route with different transitPreference parameter and see if this route has the requested bus number
+    let exists = verifyTransitLineExists(response.data, busNumber);
+    console.log(exists);
+    if(!exists){
+      console.log("Checking alternate API call");
+      requestBody['transitPreferences']['routingPreference'] = 'LESS_WALKING';
+      await axios.post(BaseUrl, requestBody, { headers }).then((response) => {
+        exists = verifyTransitLineExists(response.data, busNumber);
+        console.log(exists);
+        if(exists){
+          console.log("Alternate Preference Loaded!");
+          return [response.data, exists];
+        }
+      })
+    }
+
+    return [response.data, exists];
   } catch (error) {
     if (error.response) {
         // Server responded with a status other than 200 range
