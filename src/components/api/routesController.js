@@ -1,5 +1,5 @@
 // Import required libraries and functions
-import LoadRoutes from '../../utils/googlemaps/routes/loadRoutes';
+import LoadRoutes from '../../utils/googlemaps/routes/loadBusRoutes';
 
 const RoutesLoader = async (apiKey, busStops, busNumber) => {
 

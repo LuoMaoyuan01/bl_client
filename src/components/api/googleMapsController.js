@@ -1,9 +1,9 @@
 // Import required library and functions
 import React, { useEffect, useRef, useState } from 'react';
-import loadGoogleMapsApi from '../../utils/googlemaps/loadGoogleMapsApi';
+import loadGoogleMapsApi from './loadGoogleMapsApi';
 import RoutesLoader from './routesController';
-import DisplayRoute from '../../utils/googlemaps/routes/displayRoute';
-import DisplayMarkers from '../../utils/googlemaps/markers/displayMarkers';
+import DisplayRoute from '../../utils/googlemaps/routes/displayBusRoute';
+import DisplayMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
 // import GMapsGeoCoding from '../../utils/geoCoding';
 
 
