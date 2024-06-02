@@ -47,17 +47,4 @@
 }
 
 /* Responsive adjustments using media queries */
-@media (max-width: 768px) {
-    .btn {
-        font-size: 8.5px; /* Smaller font size on tablets and below */
-        padding: 0.8em 2em; /* Smaller padding */
-    }
-}
 
-@media (max-width: 480px) {
-    .btn {
-        font-size: 8px; /* Even smaller font size on mobile phones */
-        padding: 0.75em 1.5em; /* Reduced padding for smaller screens */
-        border-radius: 4em; /* Slightly reduced border-radius for a less pill-like shape */
-    }
-}
