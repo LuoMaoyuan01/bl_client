@@ -4,7 +4,7 @@
 // Import required components
 
 // Import required styles
-import Styles from './mapsSidebar.css';
+import Styles from './mapsDrawer.module.css';
 
 const MapsDrawer = () => {
 
