@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 
 // Import required components
+import MapsCheckbox from '../checkbox/mapsCheckbox';
+import SubmitBtn from '../buttons/submitBtn';
 
 // Import required styles
 import Styles from './mapsDrawer.module.css';
@@ -29,12 +31,13 @@ const MapsDrawer = () => {
                     >
                         &#x2715; {/* Represents the X */}
                     </button>
-                    <h1 className="tw-text-lg tw-font-bold">Drawer Menu</h1>
-                    <ul>
-                        <li className={Styles.link}>Link 1</li>
-                        <li className={Styles.link}>Link 2</li>
-                        <li className={Styles.link}>Link 3</li>
+                    <h1 className="tw-text-lg tw-font-bold">Display Options</h1>
+                    <ul style = {{paddingBottom : '1.5vw'}}>
+                        <li className={Styles.entry}><MapsCheckbox/><p className={Styles.text}>Bus Stops</p></li>
+                        <li className={Styles.entry}>Link 2</li>
+                        <li className={Styles.entry}>Link 3</li>
                     </ul>
+                    <SubmitBtn/>
                 </div>
             </div>
         </div>

@@ -68,6 +68,8 @@
     padding: 1.25rem;
 }
 
-.link {
-    margin-top: 0.5rem; /* Tailwind mt-2 */
+.entry {
+    margin-top: 0.5vw; /* Tailwind mt-2 */
+    display: flex;
+    align-content: center;
 }

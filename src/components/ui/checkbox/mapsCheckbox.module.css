@@ -5,8 +5,10 @@
   .checkboxwrapper31 {
     position: relative;
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
+    margin-right: 0.7vw;
+    align-items: center;
   }
   
   .checkboxwrapper31 .background {
