@@ -8,19 +8,8 @@ import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom
 // Import required pages and components
 import HomePage from "./pages/Home/homepage.js";
 import Maps from "./pages/Map/googlemaps.js";
-
   
 function App() {  
-  // Utilizing react hooks
-  // const [data, setData] = useState();
-
-  // useEffect(() => {
-  //   axios.get("http://localhost:5000/scrape/70").then((response) => {
-  //     // Set data object to contain HTML obtained from the url
-  //     setData(response.data);  
-  //     console.log(data);
-  //   })
-  // }, []);
 
   // End point routing for client side
   return (
