@@ -4,7 +4,7 @@ import './homepage.css';
 
 // Import required components
 import HomePageSearchBtn from "../../components/ui/buttons/homePageSearchBtn";
-import RadioBtn from "../../components/ui/radioBtn/homeRadioBtn";
+import MapsRadioBtn from "../../components/ui/radioBtn/mapsRadioBtn";
 import MapsCheckbox from '../../components/ui/checkbox/mapsCheckbox';
 import MapsDrawer from '../../components/ui/drawer/mapsDrawer';
 
@@ -27,7 +27,7 @@ function HomePage() {
         <div>
             <MapsCheckbox/>
             <HomePageSearchBtn handleSubmit={handleSearchBtnSubmit}/>   
-            <RadioBtn radioInputValue={radioInputValue} setRadioInputValue={setRadioInputValue}/>
+            <MapsRadioBtn radioInputValue={radioInputValue} setRadioInputValue={setRadioInputValue}/>
         </div>
     )
 }

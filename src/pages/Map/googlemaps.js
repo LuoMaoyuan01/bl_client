@@ -11,15 +11,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';  
 
 function Maps() {
-    const [busDirection, setBusDirection] = useState("1");
+    const [busDirection, setBusDirection] = useState(1);
     const [busStops, setBusStops] = useState([]);
     const [busNumber, setBusNumber] = useState(0);
     const [checkBoxStatusValue, setCheckBoxStatusValue] = useState({});
     const [searchFormValue, setSearchFormValue] = useState('');
 
-    // use effect callback function runs only if the busStops checkbox is ticked and a valid bus number that is != 0 is entered
+    // use effect runs everytime busNumber or busDirection is changed
     useEffect(() => {
         console.log(busNumber);
+
+        // API call to server side runs only if the busStops checkbox is ticked and a valid bus number that is != 0 is entered
         if (busNumber && checkBoxStatusValue.busStopsCheckbox) {
             axios.get(`http://localhost:5000/scrape/${busNumber.toUpperCase()}/${busDirection}`)
             .then((response) => {
@@ -42,14 +44,17 @@ function Maps() {
     
     const handleReturnValues = (checkBoxStatus, searchFormValue) => {
         // Create local instances of the return values from maps drawer for easier usage
-        setSearchFormValue(searchFormValue.busNumberSearchValue);
+        setSearchFormValue(searchFormValue);
         setCheckBoxStatusValue(checkBoxStatus);
 
-        console.log(searchFormValue);
-        console.log(checkBoxStatus);
+        // -------------------------------------------- DEBUGGING LOGS ---------------------------------------- //
+        // console.log(searchFormValue);
+        // console.log(checkBoxStatus);
+        // ---------------------------------------------------------------------------------------------------- //
 
         // Utilize values in the returned array
         setBusNumber(searchFormValue.busNumberSearchValue);
+        setBusDirection(searchFormValue.busDirectionValue);
     }
 
     return(

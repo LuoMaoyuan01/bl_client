@@ -6,12 +6,14 @@ import { Tooltip } from 'react-tooltip'
 import MapsCheckbox from '../checkbox/mapsCheckbox';
 import SubmitBtn from '../buttons/submitBtn';
 import SearchForm from '../form/searchForm';
+import MapsRadioBtn from '../radioBtn/mapsRadioBtn';
 
 // Import required styles
 import Styles from './mapsDrawer.module.css';
 
 const MapsDrawer = ({ returnValues }) => {
     const [busNumberSearchValue, setBusNumberSearchValue] = useState('');
+    const [busDirectionValue, setBusDirectionValue] = useState('');
     const busStopsCheckboxRef = useRef(null);
     const busNumberSearchCheckboxRef = useRef(null);
 
@@ -27,6 +29,7 @@ const MapsDrawer = ({ returnValues }) => {
         // Appends the searchbox form values to an array
         const searchFormValue = {
             busNumberSearchValue: busNumberSearchValue,
+            busDirectionValue: busDirectionValue,
         };
 
         // Passes the different values needed in the parent component as a prop called returnValues
@@ -49,6 +52,9 @@ const MapsDrawer = ({ returnValues }) => {
                         </li>
                         <li className={Styles.entry}>
                             <SearchForm setBusNumberSearchValue={setBusNumberSearchValue} />
+                        </li>
+                        <li className={Styles.entry}>
+                            <MapsRadioBtn setBusDirectionValue={setBusDirectionValue} />
                         </li>
                     </ul>
 
