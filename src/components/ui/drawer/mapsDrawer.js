@@ -11,7 +11,6 @@ import SearchForm from '../form/searchForm';
 import Styles from './mapsDrawer.module.css';
 
 const MapsDrawer = ({ returnValues }) => {
-    const [isOpen, setIsOpen] = useState(false);
     const [busNumberSearchValue, setBusNumberSearchValue] = useState('');
     const busStopsCheckboxRef = useRef(null);
     const busNumberSearchCheckboxRef = useRef(null);
@@ -35,18 +34,9 @@ const MapsDrawer = ({ returnValues }) => {
 
     return (
         <div>
-            {/* button in Drawer component that opens the drawer */}
-            {/* React tooltip displays a message on UI on hovering on component */}
-            <button data-tip="Maps Display Options" className={Styles.toggleButton} onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Drawer" data-tooltip-id="MapsDrawerBtn-ToolTip" data-tooltip-content="Maps Display Options" data-tooltip-place='right'>
-                <div></div> {/* This div represents the middle line */}
-            </button>
-            <Tooltip id="MapsDrawerBtn-ToolTip" style={{zIndex: '3'}}/>
-
             {/* Start of content in Drawer component */}
-            <div className={`${Styles.drawer} ${isOpen ? Styles.drawerOpen : ''}`}>
+            <div className={`${Styles.drawer} ${Styles.drawerOpen}`}>
                 <div className={Styles.content}>
-                    {/* X button in Drawer component that closes the drawer */}
-                    <button className={Styles.closeButton} onClick={() => setIsOpen(false)}> &#x2715; {/* Represents the X */} </button>
 
                     {/* List of content in Drawer component */}
 

@@ -1,41 +1,4 @@
 /* MapsDrawer.module.css */
-
-.toggleButton {
-    width: 2.5rem;  /* 40px */
-    height: 2.5rem; /* 40px */
-    background-color: #E5E7EB; /* Tailwind gray-200 */
-    z-index: 3;
-    border-radius: 0.5rem; /* Tailwind rounded-lg */
-    border: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.25rem; /* Space between lines */
-    cursor: pointer;
-    border: black;
-    padding: 0.5rem;
-    position: absolute; /* Needed for absolute positioning of pseudo-elements */
-    top: 8.65vh;
-    left: 1vh;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Tailwind shadow-lg */
-}
-
-.toggleButton::before,
-.toggleButton::after,
-.toggleButton div {
-    content: "";
-    height: 2px; /* Line thickness */
-    width: 70%;
-    background-color: #1F2937; /* Tailwind gray-900 */
-    display: block;
-}
-
-.toggleButton:hover {
-    background-color: #D1D5DB; /* Tailwind gray-300 */
-    box-shadow: 0 10px 20px -3px rgba(0, 0, 0, 0.2), 0 6px 6px -2px rgba(0, 0, 0, 0.1); /* Darker shadow on hover */
-}
-
 .drawer {
     position: fixed;
     top: 0;
@@ -53,19 +16,6 @@
     transform: translateX(0); /* Show drawer */
 }
 
-.closeButton {
-    position: absolute;
-    top: 0.75rem; /* Tailwind top-3 */
-    right: 0.75rem; /* Tailwind right-3 */
-    background-color: transparent;
-    color: white;
-    padding: 0.25rem;
-    border-radius: 0.25rem;
-}
-
-.closeButton:hover {
-    background-color: #374151; /* Tailwind gray-700 */
-}
 
 .content {
     padding: 1.25rem;
