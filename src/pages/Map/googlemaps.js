@@ -14,12 +14,13 @@ function Maps() {
     const [busDirection, setBusDirection] = useState("1");
     const [busStops, setBusStops] = useState([]);
     const [busNumber, setBusNumber] = useState(0);
-    const [CheckBoxStatusValue, setCheckBoxStatusValue] = useState({});
+    const [checkBoxStatusValue, setCheckBoxStatusValue] = useState({});
     const [searchFormValue, setSearchFormValue] = useState('');
 
+    // use effect callback function runs only if the busStops checkbox is ticked and a valid bus number that is != 0 is entered
     useEffect(() => {
         console.log(busNumber);
-        if (busNumber) {
+        if (busNumber && checkBoxStatusValue.busStopsCheckbox) {
             axios.get(`http://localhost:5000/scrape/${busNumber.toUpperCase()}/${busDirection}`)
             .then((response) => {
                 const data = response.data;
@@ -33,10 +34,11 @@ function Maps() {
 
     console.log(busStops);
 
-    const toggleBusDirection = () => {
-        const newDirection = busDirection === "1" ? "2" : "1";
-        setBusDirection(newDirection);
-    };
+    // Used for the reverse button
+    // const toggleBusDirection = () => {
+    //     const newDirection = busDirection === "1" ? "2" : "1";
+    //     setBusDirection(newDirection);
+    // };
     
     const handleReturnValues = (checkBoxStatus, searchFormValue) => {
         // Create local instances of the return values from maps drawer for easier usage
@@ -54,7 +56,7 @@ function Maps() {
         <div className={Styles.mapContainer}>
             {/* <ReverseBtn toggleBusDirection={toggleBusDirection} /> */}
             <MapsDrawer returnValues={handleReturnValues} className={Styles.mapDrawer}/>
-            <MapComponent busNumber={busNumber} busStops={busStops} className={Styles.MapComponent}/>
+            <MapComponent busNumber={busNumber} busStops={busStops} checkBoxStatus={checkBoxStatusValue} className={Styles.MapComponent}/>
         </div>
     );  
 }

@@ -17,18 +17,19 @@ const MapsDrawer = ({ returnValues }) => {
 
     // Function to handle form submission
     const handleSubmit = () => {
-        // Appends the checkbox statuses to an object
+
+        // Appends the checkbox status boolean values to an array
         const checkBoxStatus = {
             busNumberSearchCheckbox: busNumberSearchCheckboxRef.current.checked,
             busStopsCheckbox: busStopsCheckboxRef.current.checked,
         };
 
-        // Appends the searchbox form values to an object
+        // Appends the searchbox form values to an array
         const searchFormValue = {
             busNumberSearchValue: busNumberSearchValue,
         };
 
-        // Returns the different values intended to be used in the parent component googlemaps.js
+        // Passes the different values needed in the parent component as a prop called returnValues
         returnValues(checkBoxStatus, searchFormValue);
     };
 

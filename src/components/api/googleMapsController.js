@@ -7,7 +7,7 @@ import DisplayMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
 // import GMapsGeoCoding from '../../utils/geoCoding';
 
 
-const MapComponent = ({ busStops, busNumber }) => {
+const MapComponent = ({ busStops, busNumber, checkBoxStatus }) => {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -22,14 +22,15 @@ const MapComponent = ({ busStops, busNumber }) => {
       initMap();
     };
 
+    // catches ResizeObserver error and throws it
     const handleGlobalError = (event) => {
       if (event.message.includes('ResizeObserver loop limit exceeded')) {
           event.preventDefault();
           console.warn('ResizeObserver loop limit exceeded error suppressed');
       }
-  };
+    };
 
-  window.addEventListener('error', handleGlobalError);
+    window.addEventListener('error', handleGlobalError);
 
     // First time running initMap, mapRef might return null, so function waitForMapRef needed to wait for mapRef to not be null before initMap runs again
     const initMap = async () => {
@@ -65,16 +66,12 @@ const MapComponent = ({ busStops, busNumber }) => {
           // const updatedBusStops = await GMapsGeoCoding(busStops);
 // ------------------------------------------------------------------------------------------------------------------------------------------------- //
 
-          // Run this if the bus number is not 0 which is the default value
-          if(parseInt(busNumber)){
+          // Run if valid bus number inputted && busNumberSearchCheckBox is checked
+          if(parseInt(busNumber) && checkBoxStatus.busNumberSearchCheckbox){
             // Obtain split up route information in a list
             const routes = await RoutesLoader(apiKey, busStops, busNumber);
             console.log("Routes Loaded!");
             console.log(routes);
-
-            // Display bus stop markers on google maps
-            await DisplayMarkers(busStops, googleMaps, mapInstance);
-            console.log("Markers Displayed!");
 
             // Display the splitted routes on google maps in increments
             for(let i = 0; i < routes.length; i++){
@@ -84,6 +81,14 @@ const MapComponent = ({ busStops, busNumber }) => {
             console.log("Routes Displayed!");
           }
 
+          // Runs if valid bus number inputted && busStopsCheckbox is checked
+          if(parseInt(busNumber) && checkBoxStatus.busStopsCheckbox){
+            // Display bus stop markers on google maps
+            await DisplayMarkers(busStops, googleMaps, mapInstance);
+            console.log("Markers Displayed!");
+          }
+        
+        // Catches error if mapRef is null
         }else {
           console.error('mapRef.current is null');  
           setLoading(false);
@@ -98,7 +103,7 @@ const MapComponent = ({ busStops, busNumber }) => {
     initMap();
     waitForMapRef();
 
-  }, [busStops, busNumber]);
+  }, [busStops, busNumber, checkBoxStatus]);
 
   if(loading){
     return <div>Loading...</div>; 
