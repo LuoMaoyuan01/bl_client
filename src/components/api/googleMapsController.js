@@ -100,7 +100,6 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus }) => {
       }
     };
 
-    initMap();
     waitForMapRef();
 
   }, [busStops, busNumber, checkBoxStatus]);

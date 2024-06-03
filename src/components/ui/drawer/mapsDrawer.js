@@ -1,6 +1,6 @@
 // Import required libraries and functions
-import React, { useState, useRef } from 'react';
-import { Tooltip } from 'react-tooltip'
+import React, { useState, useEffect, useRef } from 'react';
+// import { Tooltip } from 'react-tooltip'
 
 // Import required components
 import MapsCheckbox from '../checkbox/mapsCheckbox';
@@ -16,6 +16,26 @@ const MapsDrawer = ({ returnValues }) => {
     const [busDirectionValue, setBusDirectionValue] = useState('');
     const busStopsCheckboxRef = useRef(null);
     const busNumberSearchCheckboxRef = useRef(null);
+
+    // Function to handle key down event
+    const handleKeyDown = (event) => {
+
+        // Function to be run if ENTER KEY is pressed
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent default form submit behavior (Only submit when form validation is done and prevents page reload)
+            handleSubmit(); // Trigger form submit
+        }
+    };
+
+    // Runs on every render of the component
+    useEffect(() => {
+        // Global listener added for any keys that are pressed down
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            // Remove global listener to free up processing resources
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [busNumberSearchCheckboxRef.current.checked, busStopsCheckboxRef.current.checked, busDirectionValue, busNumberSearchValue]);
 
     // Function to handle form submission
     const handleSubmit = () => {
@@ -37,7 +57,7 @@ const MapsDrawer = ({ returnValues }) => {
     };
 
     return (
-        <div>
+        <div onKeyDown={handleKeyDown}>
             {/* Start of content in Drawer component */}
             <div className={`${Styles.drawer} ${Styles.drawerOpen}`}>
                 <div className={Styles.content}>
