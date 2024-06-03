@@ -7,7 +7,7 @@ import DisplayMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
 // import GMapsGeoCoding from '../../utils/geoCoding';
 
 
-const MapComponent = ({ busStops, busNumber, checkBoxStatus }) => {
+const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -99,10 +99,10 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus }) => {
 
       }
     };
-
+    initMap();
     waitForMapRef();
 
-  }, [busStops, busNumber, checkBoxStatus]);
+  }, [busStops, busNumber, checkBoxStatus, busDirection]);
 
   if(loading){
     return <div>Loading...</div>; 

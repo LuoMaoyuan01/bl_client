@@ -19,7 +19,7 @@ function Maps() {
 
     // use effect runs everytime busNumber or busDirection is changed
     useEffect(() => {
-        console.log(busNumber);
+        console.log(`Bus ${busNumber} going in direction ${busDirection}`);
 
         // API call to server side runs only if the busStops checkbox is ticked and a valid bus number that is != 0 is entered
         if (busNumber && checkBoxStatusValue.busStopsCheckbox) {
@@ -55,13 +55,14 @@ function Maps() {
         // Utilize values in the returned array
         setBusNumber(searchFormValue.busNumberSearchValue);
         setBusDirection(searchFormValue.busDirectionValue);
+        console.log(busDirection);
     }
 
     return(
         <div className={Styles.mapContainer}>
             {/* <ReverseBtn toggleBusDirection={toggleBusDirection} /> */}
             <MapsDrawer returnValues={handleReturnValues} className={Styles.mapDrawer}/>
-            <MapComponent busNumber={busNumber} busStops={busStops} checkBoxStatus={checkBoxStatusValue} className={Styles.MapComponent}/>
+            <MapComponent busNumber={busNumber} busStops={busStops} checkBoxStatus={checkBoxStatusValue} busDirection={busDirection} className={Styles.MapComponent}/>
         </div>
     );  
 }

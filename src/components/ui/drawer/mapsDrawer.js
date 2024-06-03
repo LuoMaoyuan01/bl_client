@@ -14,10 +14,10 @@ import Styles from './mapsDrawer.module.css';
 const MapsDrawer = ({ returnValues }) => {
     const [busNumberSearchValue, setBusNumberSearchValue] = useState('');
     const [busDirectionValue, setBusDirectionValue] = useState('');
+    const [toggleCheckbox, setToggleCheckbox] = useState(false);
     const busStopsCheckboxRef = useRef(null);
     const busNumberSearchCheckboxRef = useRef(null);
 
-    // Function to handle key down event
     const handleKeyDown = (event) => {
 
         // Function to be run if ENTER KEY is pressed
@@ -27,15 +27,24 @@ const MapsDrawer = ({ returnValues }) => {
         }
     };
 
-    // Runs on every render of the component
-    useEffect(() => {
+    // Toggles isCheckboxChecked value
+    const handleCheckboxChange = () => {
+        if(busStopsCheckboxRef.current.checked || busNumberSearchCheckboxRef.current.checked){
+            setToggleCheckbox(!toggleCheckbox);
+        }
+    }
+
+    // Runs whenever the items in the list in the parameter of useEffect has change
+    useEffect((handleKeyDown) => {
+        // Function to handle key down event
+        
         // Global listener added for any keys that are pressed down
         window.addEventListener('keydown', handleKeyDown);
         return () => {
             // Remove global listener to free up processing resources
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, [busNumberSearchCheckboxRef.current.checked, busStopsCheckboxRef.current.checked, busDirectionValue, busNumberSearchValue]);
+    }, [toggleCheckbox, busDirectionValue, busNumberSearchValue]);
 
     // Function to handle form submission
     const handleSubmit = () => {
@@ -74,7 +83,7 @@ const MapsDrawer = ({ returnValues }) => {
                             <SearchForm setBusNumberSearchValue={setBusNumberSearchValue} />
                         </li>
                         <li className={Styles.entry}>
-                            <MapsRadioBtn setBusDirectionValue={setBusDirectionValue} />
+                            <MapsRadioBtn setBusDirectionValue={setBusDirectionValue} busDirectionValue={busDirectionValue} />
                         </li>
                     </ul>
 
