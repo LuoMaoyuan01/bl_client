@@ -105,7 +105,7 @@ const MapComponent = ({ busStops, busNumber }) => {
   }
 
   // Returns the map component with its styling parameters
-  return <div ref={mapRef} style={{ height: '100vh', width: '100%', position: 'relative', zIndex: '1' }} />;
+  return <div ref={mapRef} style={{ height: '100vh', width: '85%', zIndex: '1' }} />;
 };
 
 export default MapComponent;

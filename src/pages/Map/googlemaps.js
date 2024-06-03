@@ -54,7 +54,7 @@ function Maps() {
         <div className={Styles.mapContainer}>
             {/* <ReverseBtn toggleBusDirection={toggleBusDirection} /> */}
             <MapsDrawer returnValues={handleReturnValues} className={Styles.mapDrawer}/>
-            <MapComponent busNumber={busNumber} busStops={busStops}/>
+            <MapComponent busNumber={busNumber} busStops={busStops} className={Styles.MapComponent}/>
         </div>
     );  
 }

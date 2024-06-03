@@ -40,7 +40,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 16rem; /* Tailwind w-64 */
+    width: 15%; /* Tailwind w-64 */
     height: 100%;
     z-index: 5;
     background-color: #1F2937; /* Tailwind gray-800 */

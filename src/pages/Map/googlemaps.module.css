@@ -1,7 +1,8 @@
 .mapContainer {
-    position: relative;
+    display: flex;
     height: 100vh;
     width: 100%;
+    justify-content: flex-end;
 }
 
 .mapDrawer {
@@ -14,6 +15,4 @@
 .mapComponent {
     height: 100%;
     width: 100%;
-    position: relative;
-    z-index: 1;
 }
