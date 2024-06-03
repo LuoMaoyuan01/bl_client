@@ -1,0 +1,19 @@
+.mapContainer {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+}
+
+.mapDrawer {
+  position: relative;
+  top: 10px;
+  left: 100px;
+  z-index: 100;
+}
+
+.mapComponent {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}

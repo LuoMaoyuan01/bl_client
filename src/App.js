@@ -9,7 +9,7 @@ import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom
 import HomePage from "./pages/Home/homepage.js";
 import Maps from "./pages/Map/googlemaps.js";
   
-function App() {  
+function App() {
 
   // End point routing for client side
   return (
@@ -17,9 +17,11 @@ function App() {
       <Router>
           <Routes>
             <Route path="/">
-              <Route path = "" exact element={<Navigate to="home" />} />
+              <Route path = "" exact element={<Navigate to="googlemaps/0/1" />} />
               <Route path = "home" exact element={<HomePage/>} />
-              <Route path = "googlemaps/:busNumber/:direction" exact element={<Maps/>} />
+              <Route path = "googlemaps/" exact element={<Maps/>}>
+                <Route path=':busNumber/:direction' exact element={<Maps/>}/>
+              </Route>
             </Route>
           </Routes>
         </Router>

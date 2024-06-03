@@ -6,7 +6,7 @@ import Styles from './searchForm.module.css';
 
 const SearchForm = ({setBusNumberSearchValue}) => {
 
-  const [busNumberInputValue, setBusNumberInputValue] = useState('1');
+  const [busNumberInputValue, setBusNumberInputValue] = useState('');
 
   const handleInputChange = (event) => {
     setBusNumberInputValue(event.target.value);

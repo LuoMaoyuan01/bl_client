@@ -1,5 +1,6 @@
 // Import required libraries and functions
 import React, { useState, useRef } from 'react';
+import { Tooltip } from 'react-tooltip'
 
 // Import required components
 import MapsCheckbox from '../checkbox/mapsCheckbox';
@@ -35,9 +36,11 @@ const MapsDrawer = ({ returnValues }) => {
     return (
         <div>
             {/* button in Drawer component that opens the drawer */}
-            <button className={Styles.toggleButton} onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Drawer">
+            {/* React tooltip displays a message on UI on hovering on component */}
+            <button data-tip="Maps Display Options" className={Styles.toggleButton} onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Drawer" data-tooltip-id="MapsDrawerBtn-ToolTip" data-tooltip-content="Maps Display Options" data-tooltip-place='right'>
                 <div></div> {/* This div represents the middle line */}
             </button>
+            <Tooltip id="MapsDrawerBtn-ToolTip" style={{zIndex: '3'}}/>
 
             {/* Start of content in Drawer component */}
             <div className={`${Styles.drawer} ${isOpen ? Styles.drawerOpen : ''}`}>
@@ -46,6 +49,8 @@ const MapsDrawer = ({ returnValues }) => {
                     <button className={Styles.closeButton} onClick={() => setIsOpen(false)}> &#x2715; {/* Represents the X */} </button>
 
                     {/* List of content in Drawer component */}
+
+                    {/* Search Options Content */}
                     <h1 className="tw-text-lg tw-font-bold tw-font-under" style={{ textDecoration: 'underline' }}>Search Options</h1>
                     <ul style={{ paddingBottom: '1.5vw' }}>
                         <li className={Styles.entry}>
@@ -55,13 +60,13 @@ const MapsDrawer = ({ returnValues }) => {
                             <SearchForm setBusNumberSearchValue={setBusNumberSearchValue} />
                         </li>
                     </ul>
+
+                    {/* Display Options Content */}
                     <h1 className="tw-text-lg tw-font-bold" style={{ textDecoration: 'underline' }}>Display Options</h1>
                     <ul style={{ paddingBottom: '1.5vw' }}>
                         <li className={Styles.entry}>
                             <MapsCheckbox label='busStopsCheckbox' ref={busStopsCheckboxRef} />Bus Stops
                         </li>
-                        <li className={Styles.entry}>Link 2</li>
-                        <li className={Styles.entry}>Link 3</li>
                     </ul>
 
                     {/* Submit button in Drawer component that sends the data to parent googlemaps */}

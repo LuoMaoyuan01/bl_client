@@ -7,6 +7,7 @@
     height: 10vw; /* 10% of the viewport height */
     max-width: 50px; /* Maximum width to maintain a reasonable size */
     max-height: 50px; /* Maximum height to maintain a reasonable size */
+    z-index: 3;
     background-color: #ffffff;
     border: 1px solid #e8e8e8;
     border-radius: 50%;
@@ -42,29 +43,4 @@
 
 .full-rounded {
     border-radius: 50%;
-}
-
-/* Media queries for smaller screens */
-@media (max-width: 768px) {
-    .button {
-        width: 15vw; /* Adjust size for smaller screens */
-        height: 15vw;
-    }
-
-    .button img {
-        width: 60%;
-        height: 60%;
-    }
-}
-
-@media (max-width: 480px) {
-    .button {
-        width: 20vw; /* Adjust size for very small screens */
-        height: 20vw;
-    }
-
-    .button img {
-        width: 70%;
-        height: 70%;
-    }
 }
