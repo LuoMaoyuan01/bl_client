@@ -3,10 +3,10 @@
 // Import required styles
 import Styles from './submitBtn.module.css';
 
-const SubmitBtn = () => {
+const SubmitBtn = ({handleSubmit}) => {
 
     return (
-        <button className={Styles.btn} type='submit'> Submit </button>
+        <button className={Styles.btn} type='submit' onClick={handleSubmit}> Submit </button>
     )
 }
 

@@ -2,14 +2,20 @@
 import Styles from './mapsCheckbox.module.css';
 
 // Import required libraries and functions
-import React, {useState, useEffect} from 'react';
+import React, { useState, forwardRef } from 'react';
 
-const MapsCheckbox = () => {
+// Utilize forwardRef to pass the reference from parent components
+const MapsCheckbox = forwardRef((props, ref) => {
     const [mapsCheckboxValue, setMapsCheckboxValue] = useState(false);
 
-    return(
+    return (
         <div className={Styles.checkboxwrapper31}>
-            <input checked={mapsCheckboxValue} type="checkbox" onChange={() => setMapsCheckboxValue(!mapsCheckboxValue)}/>
+            <input
+                checked={mapsCheckboxValue}
+                type="checkbox"
+                onChange={() => setMapsCheckboxValue(!mapsCheckboxValue)}
+                ref={ref} // Forwarding the ref to the input element
+            />
             <svg viewBox="0 0 35.6 35.6">
                 <circle className={Styles.background} cx="17.8" cy="17.8" r="17.8"></circle>
                 <circle className={Styles.stroke} cx="17.8" cy="17.8" r="14.37"></circle>
@@ -17,6 +23,6 @@ const MapsCheckbox = () => {
             </svg>
         </div>
     );
-}
+});
 
 export default MapsCheckbox;

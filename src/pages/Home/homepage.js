@@ -25,7 +25,6 @@ function HomePage() {
 
     return(
         <div>
-            <MapsDrawer/>
             <MapsCheckbox/>
             <HomePageSearchBtn handleSubmit={handleSearchBtnSubmit}/>   
             <RadioBtn radioInputValue={radioInputValue} setRadioInputValue={setRadioInputValue}/>

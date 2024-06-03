@@ -3,47 +3,55 @@ import './googlemaps.css';
 
 // Import required components
 import ReverseBtn from '../../components/ui/buttons/reverseBtn';
+import MapComponent from '../../components/api/googleMapsController';
+import MapsDrawer from '../../components/ui/drawer/mapsDrawer';
 
 // Import required library and functions
-import React, {useState, useEffect} from 'react';
-import {useParams, useNavigate} from "react-router-dom";
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';  
-import MapComponent from '../../components/api/googleMapsController';
 
 function Maps() {
-    const { busNumber } = useParams();
-    const { direction } = useParams();
-    // const navigate = useNavigate();
-    const [busDirection, setBusDirection] = useState(direction || "1");
+    const [busDirection, setBusDirection] = useState("1");
     const [busStops, setBusStops] = useState([]);
+    const [busNumber, setBusNumber] = useState('');
+    const [CheckBoxStatusValue, setCheckBoxStatusValue] = useState({});
+    const [searchFormValue, setSearchFormValue] = useState('');
 
-    // Reloads data every time busNumber or busDirection values change
     useEffect(() => {
-        axios.get(`http://localhost:5000/scrape/${busNumber.toUpperCase()}/${busDirection}`)
-        .then((response) => {
-            const data = response.data;
-            setBusStops(data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        if (busNumber) {
+            axios.get(`http://localhost:5000/scrape/${busNumber.toUpperCase()}/${busDirection}`)
+            .then((response) => {
+                const data = response.data;
+                setBusStops(data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
     }, [busNumber, busDirection]);
 
     console.log(busStops);
 
-    // Function that toggles the busDirection value between 1 & 2
     const toggleBusDirection = () => {
         const newDirection = busDirection === "1" ? "2" : "1";
         setBusDirection(newDirection);
-        // Might not need to adjust path to prevent congestion in the event of multiple filters
-        // navigate(`/googlemaps/${busNumber}/${newDirection}`); // Adjust the path accordingly
     };
+    
+    const handleReturnValues = (checkBoxStatus, searchFormValue) => {
+        // Create local instances of the return values from maps drawer for easier usage
+        setSearchFormValue(searchFormValue.busNumberSearchValue);
+        setCheckBoxStatusValue(checkBoxStatus);
+
+        // Utilize values in the returned array
+        setBusNumber(searchFormValue.busNumberSearchValue);
+    }
 
     return(
         <div>
             <h1>My Google Maps App</h1>
+            <MapsDrawer returnValues={handleReturnValues} />
             <ReverseBtn toggleBusDirection={toggleBusDirection} />
-            <MapComponent busNumber={busNumber.toString()} busStops={busStops} />
+            <MapComponent busNumber={searchFormValue} busStops={busStops} />
         </div>
     );
 }
