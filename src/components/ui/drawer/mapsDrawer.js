@@ -14,14 +14,20 @@ import Styles from './mapsDrawer.module.css';
 const MapsDrawer = ({ returnValues }) => {
     console.log('test');
     const [busNumberSearchValue, setBusNumberSearchValue] = useState('0');
-    const [busDirectionValue, setBusDirectionValue] = useState('1');
     const busStopsCheckboxRef = useRef(null);
     const busNumberSearchCheckboxRef = useRef(null);
-
+    const busDirectionSearchCheckboxRef = useRef(null);
+    
+    
     // Function to handle form submission
     const handleSubmit = useCallback(() => {
+        // Checkbox refs
         const busNumberSearchCheckboxChecked = busNumberSearchCheckboxRef.current ? busNumberSearchCheckboxRef.current.checked : false;
         const busStopsCheckboxChecked = busStopsCheckboxRef.current ? busStopsCheckboxRef.current.checked : false;
+
+        // SearchForm refs
+        const busDirectionValue = busDirectionSearchCheckboxRef.current.checkedStatus;
+        console.log(busDirectionValue);
 
         // Appends the checkbox status boolean values to an array
         const checkBoxStatus = {
@@ -33,22 +39,27 @@ const MapsDrawer = ({ returnValues }) => {
         // Appends the searchbox form values to an array
         const searchFormValue = {
             busNumberSearchValue: busNumberSearchValue.toString(),
-            busDirectionValue: busDirectionValue.toString(),
+            busDirectionValue: busDirectionValue,
         };
 
         // Passes the different values needed in the parent component as a prop called returnValues
         returnValues(checkBoxStatus, searchFormValue);
 
         return () => {
-
+            console.log('Maps Drawer handleSubmit Unmounted');
         }
-    }, [busNumberSearchValue, busDirectionValue, returnValues]);
+    }, [busNumberSearchValue, returnValues]);
 
     // Function to be called when a keydown event is triggered
     const handleKeyDown = useCallback((event) => {
         // Function to be run if ENTER KEY is pressed
         if (event.key === 'Enter') {
-            handleSubmit(); // Trigger form submit
+            try{
+                handleSubmit(); // Trigger form submit
+            }catch(error){
+                console.log(error);
+            }
+
         }
 
         return () => {
@@ -84,10 +95,10 @@ const MapsDrawer = ({ returnValues }) => {
                             <MapsCheckbox label='busNumberSearchCheckbox' ref={busNumberSearchCheckboxRef} />Search By Bus Number
                         </li>
                         <li className={Styles.entry}>
-                            <SearchForm setBusNumberSearchValue={setBusNumberSearchValue} busDirectionValue={busDirectionValue}/>
+                            <SearchForm setBusNumberSearchValue={setBusNumberSearchValue}/>
                         </li>
                         <li className={Styles.entry}>
-                            <MapsRadioBtn setBusDirectionValue={setBusDirectionValue} busDirectionValue={busDirectionValue}/>
+                            <MapsRadioBtn label='busDirectionSearchCheckbox' ref={busDirectionSearchCheckboxRef}/>
                         </li>
                     </ul>
 
