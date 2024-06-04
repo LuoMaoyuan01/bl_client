@@ -1,6 +1,6 @@
 
 // Import required library and functions
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import axios from 'axios';  
 
 // Import styling files
@@ -13,14 +13,16 @@ import MapsDrawer from '../../components/ui/drawer/mapsDrawer';
 const LazyMapComponent = lazy(() => import('../../components/api/googleMapsController'));
 
 function Maps() {
-    const [busDirection, setBusDirection] = useState("1");
     const [busStops, setBusStops] = useState([]);
-    const [busNumber, setBusNumber] = useState(0);
     const [checkBoxStatusValue, setCheckBoxStatusValue] = useState({});
-    const [searchFormValue, setSearchFormValue] = useState('');
+    const [searchFormValue, setSearchFormValue] = useState({});
 
     // use effect runs everytime busNumber or busDirection is changed
     useEffect(() => {
+        // Prevents busNumber & busDirection to be undefined
+        const busNumber = searchFormValue.busNumberSearchValue || '0';
+        const busDirection = searchFormValue.busDirectionValue || '0';
+
         console.log(`Bus ${busNumber} going in direction ${busDirection}`);
         console.log(checkBoxStatusValue.busStopsCheckbox);
         console.log(checkBoxStatusValue.busNumberSearchCheckbox);
@@ -40,7 +42,7 @@ function Maps() {
         return () => {
             console.log('Maps Unmounted!');
         }
-    }, [busNumber, busDirection, checkBoxStatusValue]);  
+    }, [searchFormValue, checkBoxStatusValue]);  
 
     console.log("googlemaps");
     console.log(busStops);
@@ -49,15 +51,6 @@ function Maps() {
         // Create local instances of the return values from maps drawer for easier usage
         setSearchFormValue(searchFormValue);
         setCheckBoxStatusValue(checkBoxStatus);
-
-        // -------------------------------------------- DEBUGGING LOGS ---------------------------------------- //
-        // console.log(searchFormValue);
-        // console.log(checkBoxStatus);
-        // ---------------------------------------------------------------------------------------------------- //
-
-        // Utilize values in the returned array
-        setBusNumber(searchFormValue.busNumberSearchValue);
-        setBusDirection(searchFormValue.busDirectionValue);
     }
 
     return(
@@ -65,7 +58,7 @@ function Maps() {
             {/* <ReverseBtn toggleBusDirection={toggleBusDirection} /> */}
             <MapsDrawer returnValues={handleReturnValues} className={Styles.mapDrawer}/>
             <Suspense fallback={<div>Loading...</div>}>
-                <LazyMapComponent busNumber={busNumber} busStops={busStops} checkBoxStatus={checkBoxStatusValue} busDirection={busDirection} className={Styles.MapComponent}/>
+                <LazyMapComponent busNumber={searchFormValue.busNumberSearchValue || '0'} busStops={busStops} checkBoxStatus={checkBoxStatusValue} busDirection={searchFormValue.busDirectionValue || '0'} className={Styles.MapComponent}/>
             </Suspense>
         </div>
     );  
