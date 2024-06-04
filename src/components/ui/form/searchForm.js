@@ -1,5 +1,5 @@
 // Import required libraries and functionalities
-import React, {useState, forwardRef} from 'react';
+import React, {forwardRef} from 'react';
 
 // Import required styles
 import Styles from './searchForm.module.css';

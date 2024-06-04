@@ -57,7 +57,7 @@ function Maps() {
 
         // Utilize values in the returned array
         setBusNumber(searchFormValue.busNumberSearchValue);
-        setBusDirection(searchFormValue.busDirectionValue.toString());
+        setBusDirection(searchFormValue.busDirectionValue);
     }
 
     return(

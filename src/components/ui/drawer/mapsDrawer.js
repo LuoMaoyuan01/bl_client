@@ -1,5 +1,5 @@
 // Import required libraries and functions
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 // import { Tooltip } from 'react-tooltip'
 
 // Import required components
@@ -22,13 +22,14 @@ const MapsDrawer = ({ returnValues }) => {
     
     // Function to handle form submission
     const handleSubmit = useCallback(() => {
+        // ? used to prevent undefined values from being submitted
         // Checkbox refs
         const busNumberSearchCheckboxChecked = busNumberSearchCheckboxRef.current ? busNumberSearchCheckboxRef.current.checked : false;
         const busStopsCheckboxChecked = busStopsCheckboxRef.current ? busStopsCheckboxRef.current.checked : false;
 
         // SearchForm refs
-        const busDirectionValue = busDirectionSearchCheckboxRef.current.checkedStatus;
-        const busNumberSearchValue = busNumberSearchValueRef.current.value;
+        const busDirectionValue = busDirectionSearchCheckboxRef.current.checkedStatus ? busDirectionSearchCheckboxRef.current.checkedStatus : '1';
+        const busNumberSearchValue = busNumberSearchValueRef.current.value ? busNumberSearchValueRef.current.value : '0';
 
         console.log(busNumberSearchValue);
 
@@ -41,7 +42,7 @@ const MapsDrawer = ({ returnValues }) => {
 
         // Appends the searchbox form values to an array
         const searchFormValue = {
-            busNumberSearchValue: busNumberSearchValue.toString()  || '0', 
+            busNumberSearchValue: busNumberSearchValue  || '0', 
             busDirectionValue: busDirectionValue,
         };
 
@@ -57,6 +58,7 @@ const MapsDrawer = ({ returnValues }) => {
     const handleKeyDown = useCallback((event) => {
         // Function to be run if ENTER KEY is pressed
         if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent default form submission
             try{
                 handleSubmit(); // Trigger form submit
             }catch(error){
@@ -65,9 +67,6 @@ const MapsDrawer = ({ returnValues }) => {
 
         }
 
-        return () => {
-
-        }
     }, [handleSubmit]);
 
 
