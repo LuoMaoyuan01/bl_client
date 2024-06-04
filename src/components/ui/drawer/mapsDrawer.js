@@ -12,6 +12,7 @@ import MapsRadioBtn from '../radioBtn/mapsRadioBtn';
 import Styles from './mapsDrawer.module.css';
 
 const MapsDrawer = ({ returnValues }) => {
+    console.log('test');
     const [busNumberSearchValue, setBusNumberSearchValue] = useState('0');
     const [busDirectionValue, setBusDirectionValue] = useState('1');
     const busStopsCheckboxRef = useRef(null);

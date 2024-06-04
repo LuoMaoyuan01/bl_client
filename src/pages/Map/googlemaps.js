@@ -1,14 +1,15 @@
+
+// Import required library and functions
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import axios from 'axios';  
+
 // Import styling files
 import Styles from './googlemaps.module.css';
 
 // Import required components
-// import ReverseBtn from '../../components/ui/buttons/reverseBtn';
-import MapComponent from '../../components/api/googleMapsController';
+// import MapComponent from '../../components/api/googleMapsController';
 import MapsDrawer from '../../components/ui/drawer/mapsDrawer';
-
-// Import required library and functions
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';  
+const LazyMapComponent = lazy(() => import('../../components/api/googleMapsController'));
 
 function Maps() {
     const [busDirection, setBusDirection] = useState("1");
@@ -29,20 +30,15 @@ function Maps() {
             .then((response) => {
                 const data = response.data;
                 setBusStops(data);
+                console.log('bus stop scrapping complete');
             })
             .catch((error) => {
                 console.log(error);
             }); 
         }
-    }, [searchFormValue, checkBoxStatusValue, busNumber, busDirection]);  
+    }, [busNumber, busDirection]);  
 
     console.log(busStops);
-
-    // Used for the reverse button
-    // const toggleBusDirection = () => {
-    //     const newDirection = busDirection === "1" ? "2" : "1";
-    //     setBusDirection(newDirection);
-    // };
     
     const handleReturnValues = (checkBoxStatus, searchFormValue) => {
         // Create local instances of the return values from maps drawer for easier usage
@@ -64,7 +60,9 @@ function Maps() {
         <div className={Styles.mapContainer}>
             {/* <ReverseBtn toggleBusDirection={toggleBusDirection} /> */}
             <MapsDrawer returnValues={handleReturnValues} className={Styles.mapDrawer}/>
-            <MapComponent busNumber={busNumber} busStops={busStops} checkBoxStatus={checkBoxStatusValue} busDirection={busDirection} className={Styles.MapComponent}/>
+            <Suspense fallback={<div>Loading...</div>}>
+                <LazyMapComponent busNumber={busNumber} busStops={busStops} checkBoxStatus={checkBoxStatusValue} busDirection={busDirection} className={Styles.MapComponent}/>
+            </Suspense>
         </div>
     );  
 }

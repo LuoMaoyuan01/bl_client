@@ -13,28 +13,16 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log(busStops);
-    console.log(busNumber);
-    console.log(checkBoxStatus);
-    console.log(busDirection);
 
     // Function that waits for mapRef to load before running initMap
     const waitForMapRef = async () => {
       while (!mapRef.current) {
-        await new Promise((resolve) => setTimeout(resolve, 100));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
       }
-      initMap();
-    };
-
-    // catches ResizeObserver error and throws it
-    const handleGlobalError = (event) => {
-      if (event.message.includes('ResizeObserver loop limit exceeded')) {
-          event.preventDefault();
-          console.warn('ResizeObserver loop limit exceeded error suppressed');
+      if(mapRef.current){
+        initMap();
       }
     };
-
-    window.addEventListener('error', handleGlobalError);
 
     // First time running initMap, mapRef might return null, so function waitForMapRef needed to wait for mapRef to not be null before initMap runs again
     const initMap = async () => {
@@ -103,8 +91,8 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
 
       }
     };
-    initMap();
     waitForMapRef();
+    initMap();
 
   }, [busStops, busNumber, checkBoxStatus, busDirection]);
 
