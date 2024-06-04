@@ -30,11 +30,14 @@ function Maps() {
             .then((response) => {
                 const data = response.data;
                 setBusStops(data);
-                console.log('bus stop scrapping complete');
             })
             .catch((error) => {
                 console.log(error);
             }); 
+        }
+
+        return () => {
+            console.log('Maps Unmounted!');
         }
     }, [busNumber, busDirection]);  
 

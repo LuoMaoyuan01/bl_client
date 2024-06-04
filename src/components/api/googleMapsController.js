@@ -94,6 +94,10 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
     waitForMapRef();
     initMap();
 
+    return () => {
+      console.log("MapComponent Unmounted!");
+    }
+
   }, [busStops, busNumber, checkBoxStatus, busDirection]);
 
   if(loading){

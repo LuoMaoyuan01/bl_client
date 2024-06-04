@@ -38,6 +38,10 @@ const MapsDrawer = ({ returnValues }) => {
 
         // Passes the different values needed in the parent component as a prop called returnValues
         returnValues(checkBoxStatus, searchFormValue);
+
+        return () => {
+
+        }
     }, [busNumberSearchValue, busDirectionValue, returnValues]);
 
     // Function to be called when a keydown event is triggered
@@ -45,6 +49,10 @@ const MapsDrawer = ({ returnValues }) => {
         // Function to be run if ENTER KEY is pressed
         if (event.key === 'Enter') {
             handleSubmit(); // Trigger form submit
+        }
+
+        return () => {
+
         }
     }, [handleSubmit]);
 
