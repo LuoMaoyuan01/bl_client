@@ -1,5 +1,5 @@
 // Import required libraries and functions
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 // import { Tooltip } from 'react-tooltip'
 
 // Import required components
@@ -12,47 +12,21 @@ import MapsRadioBtn from '../radioBtn/mapsRadioBtn';
 import Styles from './mapsDrawer.module.css';
 
 const MapsDrawer = ({ returnValues }) => {
-    const [busNumberSearchValue, setBusNumberSearchValue] = useState('');
-    const [busDirectionValue, setBusDirectionValue] = useState('');
-    const [toggleCheckbox, setToggleCheckbox] = useState(false);
+    const [busNumberSearchValue, setBusNumberSearchValue] = useState('0');
+    const [busDirectionValue, setBusDirectionValue] = useState('1');
     const busStopsCheckboxRef = useRef(null);
     const busNumberSearchCheckboxRef = useRef(null);
 
-    const handleKeyDown = (event) => {
-
-        // Function to be run if ENTER KEY is pressed
-        if (event.key === 'Enter') {
-            event.preventDefault(); // Prevent default form submit behavior (Only submit when form validation is done and prevents page reload)
-            handleSubmit(); // Trigger form submit
-        }
-    };
-
-    // Toggles isCheckboxChecked value
-    const handleCheckboxChange = () => {
-        if(busStopsCheckboxRef.current.checked || busNumberSearchCheckboxRef.current.checked){
-            setToggleCheckbox(!toggleCheckbox);
-        }
-    }
-
-    // Runs whenever the items in the list in the parameter of useEffect has change
-    useEffect((handleKeyDown) => {
-        // Function to handle key down event
-        
-        // Global listener added for any keys that are pressed down
-        window.addEventListener('keydown', handleKeyDown);
-        return () => {
-            // Remove global listener to free up processing resources
-            window.removeEventListener('keydown', handleKeyDown);
-        };
-    }, [toggleCheckbox, busDirectionValue, busNumberSearchValue]);
-
     // Function to handle form submission
-    const handleSubmit = () => {
+    const handleSubmit = useCallback(() => {
+        const busNumberSearchCheckboxChecked = busNumberSearchCheckboxRef.current ? busNumberSearchCheckboxRef.current.checked : false;
+        const busStopsCheckboxChecked = busStopsCheckboxRef.current ? busStopsCheckboxRef.current.checked : false;
 
         // Appends the checkbox status boolean values to an array
         const checkBoxStatus = {
-            busNumberSearchCheckbox: busNumberSearchCheckboxRef.current.checked,
-            busStopsCheckbox: busStopsCheckboxRef.current.checked,
+            // Checks if the checkbox has no reference currently or is false, if condition fulfilled, return false
+            busNumberSearchCheckbox: busNumberSearchCheckboxChecked,
+            busStopsCheckbox: busStopsCheckboxChecked,
         };
 
         // Appends the searchbox form values to an array
@@ -63,7 +37,28 @@ const MapsDrawer = ({ returnValues }) => {
 
         // Passes the different values needed in the parent component as a prop called returnValues
         returnValues(checkBoxStatus, searchFormValue);
-    };
+    }, [busNumberSearchValue, busDirectionValue, returnValues]);
+
+    // Function to be called when a keydown event is triggered
+    const handleKeyDown = useCallback((event) => {
+        // Function to be run if ENTER KEY is pressed
+        if (event.key === 'Enter') {
+            handleSubmit(); // Trigger form submit
+        }
+    }, [handleSubmit]);
+
+
+    // // Runs whenever the items in the list in the parameter of useEffect has change
+    useEffect(() => {
+        // Global listener added for any keys that are pressed down
+        window.addEventListener('keydown', handleKeyDown);
+
+        // Cleanup function to remove event listener
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [handleKeyDown]);
+
 
     return (
         <div onKeyDown={handleKeyDown}>
@@ -80,10 +75,10 @@ const MapsDrawer = ({ returnValues }) => {
                             <MapsCheckbox label='busNumberSearchCheckbox' ref={busNumberSearchCheckboxRef} />Search By Bus Number
                         </li>
                         <li className={Styles.entry}>
-                            <SearchForm setBusNumberSearchValue={setBusNumberSearchValue} />
+                            <SearchForm setBusNumberSearchValue={setBusNumberSearchValue} busDirectionValue={busDirectionValue}/>
                         </li>
                         <li className={Styles.entry}>
-                            <MapsRadioBtn setBusDirectionValue={setBusDirectionValue} busDirectionValue={busDirectionValue} />
+                            <MapsRadioBtn setBusDirectionValue={setBusDirectionValue} busDirectionValue={busDirectionValue}/>
                         </li>
                     </ul>
 

@@ -13,8 +13,8 @@ const LoadRoutes = async (apiKey, busStops, busNumber, routingPreference) => {
   let endLng = parseFloat(busStops[busStops.length-1]['lng']);
 
   // -------------------------------------- DEBUG LOGGING -------------------------------------------------- //
-  console.log(busStops[0]['Bus Stop Name']);
-  console.log(busStops[busStops.length-1]['Bus Stop Name']);
+  // console.log(busStops[0]['Bus Stop Name']);
+  // console.log(busStops[busStops.length-1]['Bus Stop Name']);
   // ------------------------------------------------------------------------------------------------------- //
 
   // Template request body to be sent as payload to API endpoint
@@ -87,13 +87,13 @@ const LoadRoutes = async (apiKey, busStops, busNumber, routingPreference) => {
     // Verify if the routes returned contains the requested bus number
     // If dont exists, try to load route with different transitPreference parameter and see if this route has the requested bus number
     let exists = verifyTransitLineExists(response.data, busNumber);
-    console.log(exists);
+    // console.log(exists);
     if(!exists){
-      console.log("Checking alternate API call");
+      // console.log("Checking alternate API call");
       requestBody['transitPreferences']['routingPreference'] = 'LESS_WALKING';
       await axios.post(BaseUrl, requestBody, { headers }).then((response) => {
         exists = verifyTransitLineExists(response.data, busNumber);
-        console.log(exists);
+        // console.log(exists);
         if(exists){
           console.log("Alternate Preference Loaded!");
           return [response.data, exists];

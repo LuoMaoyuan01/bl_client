@@ -13,6 +13,10 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log(busStops);
+    console.log(busNumber);
+    console.log(checkBoxStatus);
+    console.log(busDirection);
 
     // Function that waits for mapRef to load before running initMap
     const waitForMapRef = async () => {
@@ -70,15 +74,15 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
           if(parseInt(busNumber) && checkBoxStatus.busNumberSearchCheckbox){
             // Obtain split up route information in a list
             const routes = await RoutesLoader(apiKey, busStops, busNumber);
-            console.log("Routes Loaded!");
-            console.log(routes);
+            // console.log("Routes Loaded!");
+            // console.log(routes);
 
             // Display the splitted routes on google maps in increments
             for(let i = 0; i < routes.length; i++){
-              console.log("Iteration: ", i);
+              // console.log("Iteration: ", i);
               await DisplayRoute(busNumber ,routes[i], googleMaps, mapInstance);
             }
-            console.log("Routes Displayed!");
+            // console.log("Routes Displayed!");
           }
 
           // Runs if valid bus number inputted && busStopsCheckbox is checked

@@ -2,7 +2,7 @@
 import Styles from './googlemaps.module.css';
 
 // Import required components
-import ReverseBtn from '../../components/ui/buttons/reverseBtn';
+// import ReverseBtn from '../../components/ui/buttons/reverseBtn';
 import MapComponent from '../../components/api/googleMapsController';
 import MapsDrawer from '../../components/ui/drawer/mapsDrawer';
 
@@ -11,7 +11,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';  
 
 function Maps() {
-    const [busDirection, setBusDirection] = useState(1);
+    const [busDirection, setBusDirection] = useState("1");
     const [busStops, setBusStops] = useState([]);
     const [busNumber, setBusNumber] = useState(0);
     const [checkBoxStatusValue, setCheckBoxStatusValue] = useState({});
@@ -20,10 +20,12 @@ function Maps() {
     // use effect runs everytime busNumber or busDirection is changed
     useEffect(() => {
         console.log(`Bus ${busNumber} going in direction ${busDirection}`);
+        console.log(checkBoxStatusValue.busStopsCheckbox);
+        console.log(checkBoxStatusValue.busNumberSearchCheckbox);
 
         // API call to server side runs only if the busStops checkbox is ticked and a valid bus number that is != 0 is entered
-        if (busNumber && checkBoxStatusValue.busStopsCheckbox) {
-            axios.get(`http://localhost:5000/scrape/${busNumber.toUpperCase()}/${busDirection}`)
+        if (busNumber && (checkBoxStatusValue.busStopsCheckbox || checkBoxStatusValue.busNumberSearchCheckbox)) {
+            axios.get(`http://localhost:5000/scrape/${busNumber.toUpperCase()}/${busDirection.toString()}`)
             .then((response) => {
                 const data = response.data;
                 setBusStops(data);
@@ -32,7 +34,7 @@ function Maps() {
                 console.log(error);
             }); 
         }
-    }, [busNumber, busDirection]);  
+    }, [searchFormValue, checkBoxStatusValue, busNumber, busDirection]);  
 
     console.log(busStops);
 
@@ -54,7 +56,7 @@ function Maps() {
 
         // Utilize values in the returned array
         setBusNumber(searchFormValue.busNumberSearchValue);
-        setBusDirection(searchFormValue.busDirectionValue);
+        setBusDirection(searchFormValue.busDirectionValue.toString());
         console.log(busDirection);
     }
 
