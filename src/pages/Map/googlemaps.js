@@ -42,6 +42,7 @@ function Maps() {
         }
     }, [busNumber, busDirection, checkBoxStatusValue]);  
 
+    console.log("googlemaps");
     console.log(busStops);
     
     const handleReturnValues = (checkBoxStatus, searchFormValue) => {

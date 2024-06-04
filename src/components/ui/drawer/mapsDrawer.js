@@ -13,7 +13,8 @@ import Styles from './mapsDrawer.module.css';
 
 const MapsDrawer = ({ returnValues }) => {
     console.log('test');
-    const [busNumberSearchValue, setBusNumberSearchValue] = useState('0');
+    // const [busNumberSearchValue, setBusNumberSearchValue] = useState('0');
+    const busNumberSearchValueRef = useRef(null);
     const busStopsCheckboxRef = useRef(null);
     const busNumberSearchCheckboxRef = useRef(null);
     const busDirectionSearchCheckboxRef = useRef(null);
@@ -27,7 +28,9 @@ const MapsDrawer = ({ returnValues }) => {
 
         // SearchForm refs
         const busDirectionValue = busDirectionSearchCheckboxRef.current.checkedStatus;
-        console.log(busDirectionValue);
+        const busNumberSearchValue = busNumberSearchValueRef.current.value;
+
+        console.log(busNumberSearchValue);
 
         // Appends the checkbox status boolean values to an array
         const checkBoxStatus = {
@@ -38,7 +41,7 @@ const MapsDrawer = ({ returnValues }) => {
 
         // Appends the searchbox form values to an array
         const searchFormValue = {
-            busNumberSearchValue: busNumberSearchValue.toString(),
+            busNumberSearchValue: busNumberSearchValue.toString()  || '0', 
             busDirectionValue: busDirectionValue,
         };
 
@@ -48,7 +51,7 @@ const MapsDrawer = ({ returnValues }) => {
         return () => {
             console.log('Maps Drawer handleSubmit Unmounted');
         }
-    }, [busNumberSearchValue, returnValues]);
+    }, [returnValues]);
 
     // Function to be called when a keydown event is triggered
     const handleKeyDown = useCallback((event) => {
@@ -95,7 +98,7 @@ const MapsDrawer = ({ returnValues }) => {
                             <MapsCheckbox label='busNumberSearchCheckbox' ref={busNumberSearchCheckboxRef} />Search By Bus Number
                         </li>
                         <li className={Styles.entry}>
-                            <SearchForm setBusNumberSearchValue={setBusNumberSearchValue}/>
+                            <SearchForm label='busNumberSearchValue' ref={busNumberSearchValueRef} />
                         </li>
                         <li className={Styles.entry}>
                             <MapsRadioBtn label='busDirectionSearchCheckbox' ref={busDirectionSearchCheckboxRef}/>
