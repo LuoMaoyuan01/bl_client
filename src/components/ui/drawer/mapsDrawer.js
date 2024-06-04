@@ -32,8 +32,8 @@ const MapsDrawer = ({ returnValues }) => {
 
         // Appends the searchbox form values to an array
         const searchFormValue = {
-            busNumberSearchValue: busNumberSearchValue,
-            busDirectionValue: busDirectionValue,
+            busNumberSearchValue: busNumberSearchValue.toString(),
+            busDirectionValue: busDirectionValue.toString(),
         };
 
         // Passes the different values needed in the parent component as a prop called returnValues

@@ -9,6 +9,7 @@ import Styles from './googlemaps.module.css';
 // Import required components
 // import MapComponent from '../../components/api/googleMapsController';
 import MapsDrawer from '../../components/ui/drawer/mapsDrawer';
+// Utilize lazy and suspense to only load MapComponent once all functions in mapsDrawer & googlemaps has finished
 const LazyMapComponent = lazy(() => import('../../components/api/googleMapsController'));
 
 function Maps() {
@@ -39,7 +40,7 @@ function Maps() {
         return () => {
             console.log('Maps Unmounted!');
         }
-    }, [busNumber, busDirection]);  
+    }, [busNumber, busDirection, checkBoxStatusValue]);  
 
     console.log(busStops);
     
@@ -56,7 +57,6 @@ function Maps() {
         // Utilize values in the returned array
         setBusNumber(searchFormValue.busNumberSearchValue);
         setBusDirection(searchFormValue.busDirectionValue.toString());
-        console.log(busDirection);
     }
 
     return(
