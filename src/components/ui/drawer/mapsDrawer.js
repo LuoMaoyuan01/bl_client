@@ -1,5 +1,5 @@
 // Import required libraries and functions
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef } from 'react';
 // import { Tooltip } from 'react-tooltip'
 
 // Import required components
@@ -21,7 +21,7 @@ const MapsDrawer = ({ returnValues }) => {
     
     
     // Function to handle form submission
-    const handleSubmit = useCallback(() => {
+    const handleSubmit = () => {
         // ? used to prevent undefined values from being submitted
         // Checkbox refs
         const busNumberSearchCheckboxChecked = busNumberSearchCheckboxRef.current ? busNumberSearchCheckboxRef.current.checked : false;
@@ -52,10 +52,10 @@ const MapsDrawer = ({ returnValues }) => {
         return () => {
             console.log('Maps Drawer handleSubmit Unmounted');
         }
-    }, [returnValues]);
+    }
 
     // Function to be called when a keydown event is triggered
-    const handleKeyDown = useCallback((event) => {
+    const handleKeyDown = (event) => {
         // Function to be run if ENTER KEY is pressed
         if (event.key === 'Enter') {
             event.preventDefault(); // Prevent default form submission
@@ -67,11 +67,10 @@ const MapsDrawer = ({ returnValues }) => {
 
         }
 
-    }, [handleSubmit]);
-
+    }
 
     // // Runs whenever the items in the list in the parameter of useEffect has change
-    useEffect(() => {
+    useEffect((event) => {
         // Global listener added for any keys that are pressed down
         window.addEventListener('keydown', handleKeyDown);
 
@@ -79,11 +78,11 @@ const MapsDrawer = ({ returnValues }) => {
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, [handleKeyDown]);
+    });
 
 
     return (
-        <div onKeyDown={handleKeyDown}>
+        <div>
             {/* Start of content in Drawer component */}
             <div className={`${Styles.drawer} ${Styles.drawerOpen}`}>
                 <div className={Styles.content}>
@@ -113,7 +112,7 @@ const MapsDrawer = ({ returnValues }) => {
                     </ul>
 
                     {/* Submit button in Drawer component that sends the data to parent googlemaps */}
-                    <SubmitBtn handleSubmit={handleSubmit} />
+                    <SubmitBtn handleSubmit={handleSubmit} onKeyDown={handleKeyDown}/>
                 </div>
             </div>
         </div>
