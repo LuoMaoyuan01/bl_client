@@ -1,14 +1,14 @@
 .pl {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    position: fixed;
-    top: 38vh;
-    left: 39vw;
-    width: 20vw;
-    height: 20vh;    
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: fixed;
+  top: 38vh;
+  left: 39vw;
+  width: 20vw;
+  height: 20vh;    
+}
+
 .pl__arrows,
 .pl__ring-rotate,
 .pl__ring-stroke,
