@@ -5,7 +5,7 @@ const RoutesLoader = async (apiKey, busStops, busNumber) => {
 
     const routingPreference = 'FEWER_TRANSFERS';
     let routes = [];
-    let segmentNo = 1;
+    let segmentNo = 4;
     let results;
 
     // Algorithm to iterate through different number of route splits to generate the correct path
@@ -31,13 +31,13 @@ const RoutesLoader = async (apiKey, busStops, busNumber) => {
         }
 
         segmentNo++;
-        // Evaluating condition
+        // Evaluating condition: if results array returned does not include any false
         if(!(results.includes(false))){
             break;
         }
 
         // Break condition: when the route is split into 5 but still no optimal route can be obtained.
-        if(segmentNo == 3){
+        if(segmentNo == 5){
             break;
         }
     }

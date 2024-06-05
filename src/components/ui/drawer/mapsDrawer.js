@@ -93,9 +93,6 @@ const MapsDrawer = ({ returnValues }) => {
                     <h1 className="tw-text-lg tw-font-bold tw-font-under" style={{ textDecoration: 'underline' }}>Search Options</h1>
                     <ul style={{ paddingBottom: '1.5vw' }}>
                         <li className={Styles.entry}>
-                            <MapsCheckbox label='busNumberSearchCheckbox' ref={busNumberSearchCheckboxRef} />Search By Bus Number
-                        </li>
-                        <li className={Styles.entry}>
                             <SearchForm label='busNumberSearchValue' ref={busNumberSearchValueRef} />
                         </li>
                         <li className={Styles.entry}>
@@ -106,6 +103,9 @@ const MapsDrawer = ({ returnValues }) => {
                     {/* Display Options Content */}
                     <h1 className="tw-text-lg tw-font-bold" style={{ textDecoration: 'underline' }}>Display Options</h1>
                     <ul style={{ paddingBottom: '1.5vw' }}>
+                        <li className={Styles.entry}>
+                            <MapsCheckbox label='busNumberSearchCheckbox' ref={busNumberSearchCheckboxRef} />Bus Routes
+                        </li>
                         <li className={Styles.entry}>
                             <MapsCheckbox label='busStopsCheckbox' ref={busStopsCheckboxRef} />Bus Stops
                         </li>
