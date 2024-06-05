@@ -10,6 +10,7 @@ import DisplayMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
 const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
 
@@ -66,10 +67,10 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
 
             // Display the splitted routes on google maps in increments
             for(let i = 0; i < routes.length; i++){
-              console.log("Iteration: ", i);
+              // console.log("Iteration: ", i);
               await DisplayRoute(busNumber ,routes[i], googleMaps, mapInstance);
             }
-            console.log("Routes Displayed!");
+            // console.log("Routes Displayed!");
           }
 
           // Runs if valid bus number inputted && busStopsCheckbox is checked
@@ -82,6 +83,7 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
         // Catches error if mapRef is null
         }else {
           console.error('mapRef.current is null');  
+          setLoading(false);
           return;
         }
       } catch (error) {
@@ -98,6 +100,9 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
 
   }, [busStops, busNumber, checkBoxStatus, busDirection]);
 
+  if(loading){
+    return <div>Loading...</div>; 
+  }
 
   // Returns the map component with its styling parameters
   return <div ref={mapRef} style={{ height: '100vh', width: '85%', zIndex: '1' }} />;
