@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import loadGoogleMapsApi from './loadGoogleMapsApi';
 import RoutesLoader from './routesController';
-import DisplayRoute from '../../utils/googlemaps/routes/displayBusRoute';
+import DisplayRoute from '../../utils/googlemaps/routes/bus/displayBusRoute';
 import DisplayMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
 // import GMapsGeoCoding from '../../utils/geoCoding';
 

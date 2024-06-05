@@ -1,5 +1,5 @@
 // Import required libraries and functions
-import deepEqual from "../../misc/comparison";
+import deepEqual from "../../../misc/comparison";
 
 export const DisplayRoute = async (busNumber, responseData, googleMaps, mapInstance) => {
 

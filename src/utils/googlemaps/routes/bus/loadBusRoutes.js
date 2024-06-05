@@ -1,8 +1,8 @@
 // Import required libraries and functions
 import axios from 'axios';
-import verifyTransitLineExists from './verifyTransitLineExist';
+import verifyTransitLineExists from '../verifyTransitLineExist';
 
-const LoadRoutes = async (apiKey, busStops, busNumber, routingPreference) => {
+const LoadBusRoutes = async (apiKey, busStops, busNumber, routingPreference) => {
 
   const BaseUrl = "https://routes.googleapis.com/directions/v2:computeRoutes";
 
@@ -119,4 +119,4 @@ const LoadRoutes = async (apiKey, busStops, busNumber, routingPreference) => {
     }
 };
 
-export default LoadRoutes;
+export default LoadBusRoutes;
