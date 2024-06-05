@@ -18,6 +18,7 @@ const MapsDrawer = ({ returnValues }) => {
     const busStopsCheckboxRef = useRef(null);
     const busNumberSearchCheckboxRef = useRef(null);
     const busDirectionSearchCheckboxRef = useRef(null);
+    const brtRoutesSearchCheckboxRef = useRef(null);
     
     
     // Function to handle form submission
@@ -25,6 +26,7 @@ const MapsDrawer = ({ returnValues }) => {
         // ? used to prevent undefined values from being submitted
         // Checkbox refs
         const busNumberSearchCheckboxChecked = busNumberSearchCheckboxRef.current ? busNumberSearchCheckboxRef.current.checked : false;
+        const brtRoutesSearchCheckboxChecked = brtRoutesSearchCheckboxRef.current ? brtRoutesSearchCheckboxRef.current.checked : false;
         const busStopsCheckboxChecked = busStopsCheckboxRef.current ? busStopsCheckboxRef.current.checked : false;
 
         // SearchForm refs
@@ -37,13 +39,14 @@ const MapsDrawer = ({ returnValues }) => {
         const checkBoxStatus = {
             // Checks if the checkbox has no reference currently or is false, if condition fulfilled, return false
             busNumberSearchCheckbox: busNumberSearchCheckboxChecked,
+            brtRoutesCheckbox: brtRoutesSearchCheckboxChecked,
             busStopsCheckbox: busStopsCheckboxChecked,
         };
 
         // Appends the searchbox form values to an array
         const searchFormValue = {
             busNumberSearchValue: busNumberSearchValue  || '0', 
-            busDirectionValue: busDirectionValue,
+            busDirectionValue: busDirectionValue || '1',
         };
 
         // Passes the different values needed in the parent component as a prop called returnValues
@@ -105,6 +108,9 @@ const MapsDrawer = ({ returnValues }) => {
                     <ul style={{ paddingBottom: '1.5vw' }}>
                         <li className={Styles.entry}>
                             <MapsCheckbox label='busNumberSearchCheckbox' ref={busNumberSearchCheckboxRef} />Bus Routes
+                        </li>
+                        <li className={Styles.entry}>
+                            <MapsCheckbox label='brtRoutesCheckbox' ref={brtRoutesSearchCheckboxRef} />BRT Routes
                         </li>
                         <li className={Styles.entry}>
                             <MapsCheckbox label='busStopsCheckbox' ref={busStopsCheckboxRef} />Bus Stops

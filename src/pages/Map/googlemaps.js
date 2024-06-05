@@ -69,7 +69,8 @@ const Maps = () => {
     }
 
     console.log("googlemaps");
-    console.log(state.busStops);
+    // console.log(state.busStops);
+    console.log(state.checkBoxStatusValue);
 
     return (
         <div className={Styles.mapContainer}>
