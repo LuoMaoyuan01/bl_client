@@ -1,8 +1,8 @@
 // Import required library and functions
 import React, { useEffect, useRef, useState } from 'react';
 import loadGoogleMapsApi from './loadGoogleMapsApi';
-import RoutesLoader from './busRoutesController';
-import LoadBrtRoutes from '../../utils/googlemaps/routes/brt/loadBrtRoutes';
+import busRoutesLoader from '../../utils/googlemaps/routes/bus/busRoutesController';
+import brtRoutesLoader from '../../utils/googlemaps/routes/brt/brtRoutesController';
 import DisplayRoute from '../../utils/googlemaps/routes/bus/displayBusRoute';
 import DisplayBrtRoute from '../../utils/googlemaps/routes/brt/displayBrtRoute';
 import DisplayMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
@@ -63,9 +63,9 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
           // Displays bus routes if valid bus number inputted && bus routes checkbox is checked
           if(parseInt(busNumber) && checkBoxStatus.busNumberSearchCheckbox){
             // Obtain split up route information in a list
-            const routes = await RoutesLoader(apiKey, busStops, busNumber);
+            const routes = await busRoutesLoader(apiKey, busStops, busNumber);
 
-            // Display the splitted routes on google maps in increments
+            // Display the splitted bus routes on google maps in increments
             for(let i = 0; i < routes.length; i++){
               // console.log("Iteration: ", i);
               await DisplayRoute(busNumber ,routes[i], googleMaps, mapInstance);
@@ -82,10 +82,14 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
 
           // Displays brt routes if valid bus number inputted & brt routes checkbox is checked
           if(parseInt(busNumber) && checkBoxStatus.brtRoutesCheckbox){
-            const brtRoutes = await LoadBrtRoutes(apiKey, busStops, busNumber);
+            const brtRoutes = await brtRoutesLoader(apiKey, busStops, busNumber);
+            console.log("BRT Routes Loaded");
 
-            // Display the laoded brt routes on the map
-            await DisplayBrtRoute(busNumber ,brtRoutes, googleMaps, mapInstance);
+            // Display the splitted brt routes on googleMaps in increments
+            for(let i = 0; i < brtRoutes.length; i++){
+              console.log("Iteration: ", i);
+              await DisplayBrtRoute(busNumber ,brtRoutes[i], googleMaps, mapInstance);
+            }
             console.log("BRT Routes Displayed");
 
           }

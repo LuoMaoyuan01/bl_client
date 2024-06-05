@@ -2,6 +2,8 @@
 import axios from 'axios';
 
 const LoadBrtRoutes = async (apiKey, busStops, busNumber) => {
+    // BRT Route is essentially a 'DRIVE' route that is the fastest and takes the average traffic experienced on the road in 24hrs 
+    // The route generated aims to mimic how a BRT route will be like
 
     const BaseUrl = "https://routes.googleapis.com/directions/v2:computeRoutes";
 
@@ -59,6 +61,7 @@ const LoadBrtRoutes = async (apiKey, busStops, busNumber) => {
     // Call google routes API to obtain the corresponding routes information from the requestbody
     try {
         const response = await axios.post(BaseUrl, requestBody, { headers })
+        console.log(response.data);
         return response.data;
 
     }catch (error) {

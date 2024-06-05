@@ -1,7 +1,7 @@
 // Import required libraries and functions
-import LoadBusRoutes from '../../utils/googlemaps/routes/bus/loadBusRoutes';
+import LoadBusRoutes from './loadBusRoutes';
 
-const RoutesLoader = async (apiKey, busStops, busNumber) => {
+const busRoutesLoader = async (apiKey, busStops, busNumber) => {
 
     const routingPreference = 'FEWER_TRANSFERS';
     let routes = [];
@@ -20,11 +20,10 @@ const RoutesLoader = async (apiKey, busStops, busNumber) => {
             const start = i * segmentLength;
             const end = Math.min(((i + 1) * segmentLength) + 1, busStops.length);
             const segment = busStops.slice(start, end);
-            console.log("iteration");
             
             await LoadBusRoutes(apiKey, segment, busNumber, routingPreference).then(([route, result]) => {
-                results.push(result);
                 routes.push(route);
+                results.push(result);
             }).catch((error => {
                 console.log(error);
             }));
@@ -37,7 +36,7 @@ const RoutesLoader = async (apiKey, busStops, busNumber) => {
         }
 
         // Break condition: when the route is split into 5 but still no optimal route can be obtained.
-        if(segmentNo == 5){
+        if(segmentNo === 5){
             break;
         }
     }
@@ -45,4 +44,4 @@ const RoutesLoader = async (apiKey, busStops, busNumber) => {
 
 }
 
-export default RoutesLoader;
+export default busRoutesLoader;

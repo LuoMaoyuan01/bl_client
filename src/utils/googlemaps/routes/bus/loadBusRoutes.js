@@ -38,7 +38,7 @@ const LoadBusRoutes = async (apiKey, busStops, busNumber, routingPreference) => 
     // intermediates: [],
     travelMode: 'TRANSIT',
     // routingPreference: 'TRAFFIC_UNAWARE',
-    polylineQuality: 'OVERVIEW',
+    polylineQuality: 'HIGH_QUALITY',
     departureTime: "2024-05-30T05:00:00Z",
     computeAlternativeRoutes: true,
     transitPreferences: { 
