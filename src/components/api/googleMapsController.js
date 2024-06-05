@@ -1,8 +1,10 @@
 // Import required library and functions
 import React, { useEffect, useRef, useState } from 'react';
 import loadGoogleMapsApi from './loadGoogleMapsApi';
-import RoutesLoader from './routesController';
+import RoutesLoader from './busRoutesController';
+import LoadBrtRoutes from '../../utils/googlemaps/routes/brt/loadBrtRoutes';
 import DisplayRoute from '../../utils/googlemaps/routes/bus/displayBusRoute';
+import DisplayBrtRoute from '../../utils/googlemaps/routes/brt/displayBrtRoute';
 import DisplayMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
 // import GMapsGeoCoding from '../../utils/geoCoding';
 
@@ -58,26 +60,33 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
           // const updatedBusStops = await GMapsGeoCoding(busStops);
 // ------------------------------------------------------------------------------------------------------------------------------------------------- //
 
-          // Run if valid bus number inputted && busNumberSearchCheckBox is checked
+          // Displays bus routes if valid bus number inputted && bus routes checkbox is checked
           if(parseInt(busNumber) && checkBoxStatus.busNumberSearchCheckbox){
             // Obtain split up route information in a list
             const routes = await RoutesLoader(apiKey, busStops, busNumber);
-            // console.log("Routes Loaded!");
-            // console.log(routes);
 
             // Display the splitted routes on google maps in increments
             for(let i = 0; i < routes.length; i++){
               // console.log("Iteration: ", i);
               await DisplayRoute(busNumber ,routes[i], googleMaps, mapInstance);
             }
-            // console.log("Routes Displayed!");
+            console.log("Bus Routes Displayed!");
           }
 
-          // Runs if valid bus number inputted && busStopsCheckbox is checked
+          // Displays bus stops markers if valid bus number inputted & bus stops checkbox is checked
           if(parseInt(busNumber) && checkBoxStatus.busStopsCheckbox){
             // Display bus stop markers on google maps
             await DisplayMarkers(busStops, googleMaps, mapInstance);
             console.log("Markers Displayed!");
+          }
+
+          // Displays brt routes if valid bus number inputted & brt routes checkbox is checked
+          if(parseInt(busNumber) && checkBoxStatus.brtRoutesCheckbox){
+            const brtRoutes = await LoadBrtRoutes(apiKey, busStops, busNumber);
+
+            // Display the laoded brt routes on the map
+            await DisplayBrtRoute(busNumber ,brtRoutes, googleMaps, mapInstance);
+            
           }
         
         // Catches error if mapRef is null
