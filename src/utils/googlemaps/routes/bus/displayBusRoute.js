@@ -18,7 +18,7 @@ export const DisplayRoute = async (busNumber, responseData, googleMaps, mapInsta
   const data = responseData;
   routes = data.routes;
 
-  // console.log(routes);
+  console.log(routes);
   // console.log("Route Length " + routes.length);
 
   // Checks through an array of routes & returns the route number that contains the bus number in it
@@ -33,15 +33,30 @@ export const DisplayRoute = async (busNumber, responseData, googleMaps, mapInsta
             const leg = route.legs[legIndex];
             console.log(leg);
             if (leg.steps && leg.steps.length > 0) {
-              for (let stepIndex = 0; stepIndex < leg.steps.length; stepIndex++) {
+              let routeNumber = 1000;
+              for (let stepIndex = 0; stepIndex <= leg.steps.length; stepIndex++) {
+                if(stepIndex === leg.steps.length && routeNumber !== 1000){
+                  console.log(routeNumber);
+                  return [routeNumber, true];
+                }
+                if(stepIndex === leg.steps.length){
+                  break;
+                }
                 const step = leg.steps[stepIndex];
                 if (step.transitDetails && step.transitDetails.transitLine) {
-                  const lineName = step.transitDetails.transitLine.name;
-                  if (lineName === busNumber) {
-                    // console.log("Bus Number Found In Route");
-                    return [routeIndex, true];
-                  }
+                }else{
+                  console.log('skipped');
+                  continue;
                 }
+                let lineName = step.transitDetails.transitLine.name;
+                if (lineName === busNumber) {
+                  console.log("Bus Number Found In Route");
+                }else{
+                  console.log("Wrong Bus Number In Legs");
+                  break;
+                }
+                console.log("updated routeNumber");
+                routeNumber = routeIndex;
               }
             }
           }
@@ -53,6 +68,7 @@ export const DisplayRoute = async (busNumber, responseData, googleMaps, mapInsta
   }
 
   let routeNumber = obtainRouteNumber(data, busNumber);
+  console.log(routeNumber);
 
   // Try to get route for bus number without M at the back
   if(routeNumber[1] == false && busNumber.slice(busNumber.length-1, ) == 'M'){
@@ -62,6 +78,7 @@ export const DisplayRoute = async (busNumber, responseData, googleMaps, mapInsta
   // console.log("Route Number: " + routeNumber[0]);
 
   // Obtain the polyline corresponding to that route number, and decodes it
+  console.log(routes[routeNumber[0]]);
   const polyline = routes[routeNumber[0]].polyline.encodedPolyline;
   const path = googleMaps.geometry.encoding.decodePath(polyline);
   

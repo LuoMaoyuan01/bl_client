@@ -86,7 +86,8 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
 
             // Display the laoded brt routes on the map
             await DisplayBrtRoute(busNumber ,brtRoutes, googleMaps, mapInstance);
-            
+            console.log("BRT Routes Displayed");
+
           }
         
         // Catches error if mapRef is null

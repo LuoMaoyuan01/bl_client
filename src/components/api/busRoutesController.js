@@ -20,6 +20,7 @@ const RoutesLoader = async (apiKey, busStops, busNumber) => {
             const start = i * segmentLength;
             const end = Math.min(((i + 1) * segmentLength) + 1, busStops.length);
             const segment = busStops.slice(start, end);
+            console.log("iteration");
             
             await LoadBusRoutes(apiKey, segment, busNumber, routingPreference).then(([route, result]) => {
                 results.push(result);
