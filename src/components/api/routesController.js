@@ -22,9 +22,12 @@ const RoutesLoader = async (apiKey, busStops, busNumber) => {
             const end = Math.min(((i + 1) * segmentLength) + 1, busStops.length);
             const segment = busStops.slice(start, end);
             
-            const [route, result] = await LoadRoutes(apiKey, segment, busNumber, routingPreference);
-            results.push(result);
-            routes.push(route);
+            await LoadRoutes(apiKey, segment, busNumber, routingPreference).then(([route, result]) => {
+                results.push(result);
+                routes.push(route);
+            }).catch((error => {
+                console.log(error);
+            }));
         }
 
         segmentNo++;
@@ -34,7 +37,7 @@ const RoutesLoader = async (apiKey, busStops, busNumber) => {
         }
 
         // Break condition: when the route is split into 5 but still no optimal route can be obtained.
-        if(segmentNo == 6){
+        if(segmentNo == 3){
             break;
         }
     }
