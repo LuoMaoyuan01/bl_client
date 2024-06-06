@@ -17,14 +17,14 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
   useEffect(() => {
 
     // Function that waits for mapRef to load before running initMap
-    const waitForMapRef = async () => {
-      while (!mapRef.current) {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-      }
-      if(mapRef.current){
-        initMap();
-      }
-    };
+    // const waitForMapRef = async () => {
+    //   while (!mapRef.current) {
+    //     await new Promise((resolve) => setTimeout(resolve, 1000));
+    //   }
+    //   if(mapRef.current){
+    //     initMap();
+    //   }
+    // };
 
     // First time running initMap, mapRef might return null, so function waitForMapRef needed to wait for mapRef to not be null before initMap runs again
     const initMap = async () => {
@@ -44,7 +44,7 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
           // Load googlemaps auto focus on starting bus stop of the route
           // If invalid bus number or BusNumberSearch checkbox not checked, load in the center of sg map
           const mapOptions = {
-            center: (busNumber && checkBoxStatus.busNumberSearchCheckbox) ? { lat: parseFloat(busStops[0]['lat']), lng: parseFloat(busStops[0]['lng']) }: { lat: 1.3521, lng: 103.8198 },
+            center: (busNumber && checkBoxStatus.busNumberSearchCheckbox) ? { lat: parseFloat(busStops[0]['lat'] || 1.3521), lng: parseFloat(busStops[0]['lng'] || 103.8198) }: { lat: 1.3521, lng: 103.8198 },
             zoom: (busNumber && checkBoxStatus.busNumberSearchCheckbox) ? 15 : 12.4,
             mapTypeId: googleMaps.MapTypeId.HYBRID  , // Set the default map type to Satellite view with labels
             mapId: process.env.REACT_APP_MAP_ID,
@@ -105,7 +105,8 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
 
       }
     };
-    waitForMapRef();
+    // waitForMapRef();
+    // initMap();
     initMap();
 
     return () => {
