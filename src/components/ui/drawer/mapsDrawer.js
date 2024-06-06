@@ -73,7 +73,7 @@ const MapsDrawer = ({ returnValues }) => {
     }
 
     // // Runs whenever the items in the list in the parameter of useEffect has change
-    useEffect((event) => {
+    useEffect(() => {
         // Global listener added for any keys that are pressed down
         window.addEventListener('keydown', handleKeyDown);
 

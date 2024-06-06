@@ -12,19 +12,20 @@ import DisplayMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
 const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
 
     // Function that waits for mapRef to load before running initMap
-    // const waitForMapRef = async () => {
-    //   while (!mapRef.current) {
-    //     await new Promise((resolve) => setTimeout(resolve, 1000));
-    //   }
-    //   if(mapRef.current){
-    //     initMap();
-    //   }
-    // };
+    const waitForMapRef = async () => {
+      // Delays initMap till mapRef.current is set
+      while (!mapRef.current) {
+        console.log("Run");
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      }
+      if(mapRef.current){
+        initMap();
+      }
+    };
 
     // First time running initMap, mapRef might return null, so function waitForMapRef needed to wait for mapRef to not be null before initMap runs again
     const initMap = async () => {
@@ -97,7 +98,6 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
         // Catches error if mapRef is null
         }else {
           console.error('mapRef.current is null');  
-          setLoading(false);
           return;
         }
       } catch (error) {
@@ -105,19 +105,14 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus, busDirection }) => 
 
       }
     };
-    // waitForMapRef();
-    // initMap();
-    initMap();
+
+    waitForMapRef();
 
     return () => {
       console.log("MapComponent Unmounted!");
     }
 
-  }, [busStops, busNumber, checkBoxStatus, busDirection]);
-
-  if(loading){
-    return <div>Loading...</div>; 
-  }
+  }, []);
 
   // Returns the map component with its styling parameters
   return <div ref={mapRef} style={{ height: '100vh', width: '85%', zIndex: '1' }} />;
