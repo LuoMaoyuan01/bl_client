@@ -101,6 +101,7 @@ const LoadBusRoutes = async (apiKey, busStops, busNumber, routingPreference) => 
       })
     }
 
+    console.log(response.data);
     return [response.data, exists];
   } catch (error) {
     if (error.response) {

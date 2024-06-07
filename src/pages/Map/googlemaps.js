@@ -91,7 +91,6 @@ const Maps = () => {
                 busNumber={state.searchFormValue.busNumberSearchValue || '0'}
                 busStops={state.busStops}
                 checkBoxStatus={state.checkBoxStatusValue}
-                busDirection={state.searchFormValue.busDirectionValue || '0'}
                 className={Styles.MapComponent}
                 />
             </Suspense>
