@@ -14,9 +14,10 @@ const displayBusRoute = (routesTime, routesPath, googleMaps, mapInstance) => {
         const routePath = new googleMaps.Polyline({
         path: routesPath[i],
         geodesic: true,
-        strokeColor: '#FF4433',
-        strokeOpacity: 0.8,
+        strokeColor: '#805EBF',
+        strokeOpacity: 1,
         strokeWeight: 4,
+        zIndex: 1,
     });
 
     routePath.setMap(mapInstance);

@@ -15,8 +15,9 @@ const displayBrtRoute = (routesTime, routesPath, googleMaps, mapInstance) => {
             path: routesPath[i],
             geodesic: true,
             strokeColor: '#0096FF',
-            strokeOpacity: 0.8,
-            strokeWeight: 4
+            strokeOpacity: 1,
+            strokeWeight: 4,
+            zIndex: 1,
         });
 
     routePath.setMap(mapInstance);

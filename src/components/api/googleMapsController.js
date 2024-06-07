@@ -125,7 +125,8 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
             }
             // Displays polyline on maps and attaches event listener to the polyline that shows an infoWindow upon mouseover on the polyline
             console.log(routesPath);
-            displayBrtRoute(routesTime, routesPath, googleMaps, mapInstance);
+            // Toggle if want to display brt route without traffic information
+            // displayBrtRoute(routesTime, routesPath, googleMaps, mapInstance);
 
             console.log("BRT Routes Displayed");
 
