@@ -80,10 +80,8 @@ export const obtainBusRoute = async (busNumber, responseData, googleMaps, mapIns
   // Obtain the polyline corresponding to that route number, and decodes it
   const polyline = routes[routeNumber[0]].polyline.encodedPolyline;
   const path = googleMaps.geometry.encoding.decodePath(polyline);
-  console.log(path);
   
   // Return the route associated with the set path
-  console.log([routes[routeNumber[0]], path]);
   return {route: routes[routeNumber[0]], path: path};
 
 };

@@ -38,9 +38,10 @@ const LoadBrtRoutes = async (apiKey, busStops) => {
       },
       // intermediates: [],
       travelMode: 'DRIVE',
-      routingPreference: 'TRAFFIC_UNAWARE',
+      extraComputations: ["TRAFFIC_ON_POLYLINE"],
+      routingPreference: 'TRAFFIC_AWARE_OPTIMAL',
       polylineQuality: 'HIGH_QUALITY',
-    // departureTime: "2024-05-30T05:00:00Z",
+      // departureTime: "2024-06-08T05:00:00Z",
       computeAlternativeRoutes: true,
       routeModifiers: {
         avoidTolls: false,
@@ -51,11 +52,11 @@ const LoadBrtRoutes = async (apiKey, busStops) => {
       units: 'IMPERIAL'
     };
 
-    
+    // routes.legs.travelAdvisory.speedReadingIntervals gives speed information about the legs of a route
     const headers = {
         'Content-Type': 'application/json',
         'X-Goog-Api-Key': apiKey,
-        'X-Goog-FieldMask': 'routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline,routes.legs.steps.transitDetails'
+        'X-Goog-FieldMask': 'routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline,routes.legs.steps.transitDetails,routes.travelAdvisory,routes.legs.travelAdvisory,routes.legs.polyline'
     };
 
     // Call google routes API to obtain the corresponding routes information from the requestbody

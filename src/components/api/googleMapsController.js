@@ -8,6 +8,7 @@ import obtainBusRoute from '../../utils/googlemaps/routes/bus/obtainBusRoute';
 import obtainBrtRoute from '../../utils/googlemaps/routes/brt/obtainBrtRoute';
 import displayBusRoute from '../../utils/googlemaps/routes/bus/displayBusRoute';
 import displayBrtRoute from '../../utils/googlemaps/routes/brt/displayBrtRoute';
+import displayBrtRouteWithTraffic from '../../utils/googlemaps/routes/brt/displayBrtRouteWithTraffic';
 import DisplayMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
 // import GMapsGeoCoding from '../../utils/geoCoding';
 
@@ -50,7 +51,7 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
           const mapOptions = {
             center: (busNumber && checkBoxStatus.busNumberSearchCheckbox) ? { lat: parseFloat(busStops[0]['lat'] || 1.3521), lng: parseFloat(busStops[0]['lng'] || 103.8198) }: { lat: 1.3521, lng: 103.8198 },
             zoom: (busNumber && checkBoxStatus.busNumberSearchCheckbox) ? 15 : 12.4,
-            mapTypeId: googleMaps.MapTypeId.HYBRID  , // Set the default map type to Satellite view with labels
+            // mapTypeId: googleMaps.MapTypeId.HYBRID  , // Set the default map type to Satellite view with labels
             mapId: process.env.REACT_APP_MAP_ID,
           };
 
@@ -120,9 +121,12 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
                 routesTime += parseFloat(routeDisplayedTiming);
                 routesPath.push(path);
               }
+              displayBrtRouteWithTraffic(routesTime, routeResults.route, googleMaps, mapInstance);
             }
             // Displays polyline on maps and attaches event listener to the polyline that shows an infoWindow upon mouseover on the polyline
+            console.log(routesPath);
             displayBrtRoute(routesTime, routesPath, googleMaps, mapInstance);
+
             console.log("BRT Routes Displayed");
 
           }
