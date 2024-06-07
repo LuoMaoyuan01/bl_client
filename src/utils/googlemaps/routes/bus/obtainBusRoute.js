@@ -82,17 +82,6 @@ export const obtainBusRoute = async (busNumber, responseData, googleMaps, mapIns
   const path = googleMaps.geometry.encoding.decodePath(polyline);
   console.log(path);
   
-  // Plotting of route on google maps
-  const routePath = new googleMaps.Polyline({
-    path: path,
-    geodesic: true,
-    strokeColor: '#FF4433',
-    strokeOpacity: 0.8,
-    strokeWeight: 4
-  });
-
-  routePath.setMap(mapInstance);
-  
   // Return the route associated with the set path
   console.log([routes[routeNumber[0]], path]);
   return {route: routes[routeNumber[0]], path: path};

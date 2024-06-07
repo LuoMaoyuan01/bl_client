@@ -1,35 +1,39 @@
-// Import required libraries and functions
-import deepEqual from "../../../misc/comparison";
 
-export const DisplayBrtRoute = async (busNumber, responseData, googleMaps, mapInstance) => {
 
-    // ------------------------- DEBUGGING LOGS ------------------------------ //
-    // console.log(responseData);
-    // ----------------------------------------------------------------------- //
+const displayBrtRoute = (routesTime, routesPath, googleMaps, mapInstance) => {
+    
+    // Creating infoWindow component
+    const infoWindow = new googleMaps.InfoWindow({
+        content: '',
+        ariaLabel: "Uluru",
 
-    // Check if responseData passed in is empty
-    if(deepEqual(responseData, {})){
-        return;
-    }
-
-    const brtRoutes = responseData.routes;
-
-    // Take the first route generated as it is the fastest & obtain the polyline from that route
-    const polyline = brtRoutes[0].polyline.encodedPolyline;
-
-    // Obtain path corresponding to the polyline
-    const path = googleMaps.geometry.encoding.decodePath(polyline);
-
-    // Plotting of route on google maps
-    const routePath = new googleMaps.Polyline({
-        path: path,
-        geodesic: true,
-        strokeColor: '#0096FF',
-        strokeOpacity: 0.8,
-        strokeWeight: 4
     });
+  
+    // Plotting of routes on google maps
+    for (let i = 0; i < routesPath.length; i++) {
+        const routePath = new googleMaps.Polyline({
+            path: routesPath[i],
+            geodesic: true,
+            strokeColor: '#0096FF',
+            strokeOpacity: 0.8,
+            strokeWeight: 4
+        });
 
     routePath.setMap(mapInstance);
 
+    // Add event listener to each route that displays the routesTime in an infowindow at that position
+    googleMaps.event.addListener(routePath, 'mouseover', function (e) {
+
+        infoWindow.setPosition(e.latLng);
+        infoWindow.setContent(`<p><b>Travel Time From Start Location: <u>${routesTime} mins<u></b></p>`);
+        infoWindow.open(mapInstance);
+    });
+
+    // Close infowindow once mouse does not hover at that location
+    googleMaps.event.addListener(routePath, 'mouseout', function () {
+        infoWindow.close();
+    });
+  }
 };
-  export default DisplayBrtRoute;
+
+export default displayBrtRoute;

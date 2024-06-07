@@ -1,14 +1,14 @@
 // Import required library and functions
 import React, { useEffect, useRef, useState } from 'react';
-import {Tooltip} from 'react-tooltip';
 
 import loadGoogleMapsApi from './loadGoogleMapsApi';
 import busRoutesLoader from '../../utils/googlemaps/routes/bus/busRoutesController';
 import brtRoutesLoader from '../../utils/googlemaps/routes/brt/brtRoutesController';
 import obtainBusRoute from '../../utils/googlemaps/routes/bus/obtainBusRoute';
-import DisplayBrtRoute from '../../utils/googlemaps/routes/brt/displayBrtRoute';
-import DisplayMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
+import obtainBrtRoute from '../../utils/googlemaps/routes/brt/obtainBrtRoute';
 import displayBusRoute from '../../utils/googlemaps/routes/bus/displayBusRoute';
+import displayBrtRoute from '../../utils/googlemaps/routes/brt/displayBrtRoute';
+import DisplayMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
 // import GMapsGeoCoding from '../../utils/geoCoding';
 
 
@@ -67,14 +67,15 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
           // Displays bus routes if valid bus number inputted && bus routes checkbox is checked
           if(parseInt(busNumber) && checkBoxStatus.busNumberSearchCheckbox){
             // Obtain split up route information in a list
-            const routes = await busRoutesLoader(apiKey, busStops, busNumber);
+            const busRoutes = await busRoutesLoader(apiKey, busStops, busNumber);
             // routesTime stores the total time taken across the paths and routePaths stores the individual decoded paths from the polylines
             let routesTime = 0.00;
             let routesPath = [];
 
             // Display the splitted bus routes on google maps in increments
-            for(let i = 0; i < routes.length; i++){
-              let routeResults = await obtainBusRoute(busNumber ,routes[i], googleMaps, mapInstance) || 0;
+            for(let i = 0; i < busRoutes.length; i++){
+              // Obtain correct route number out of all the routes & decoded polyline from that route
+              let routeResults = await obtainBusRoute(busNumber ,busRoutes[i], googleMaps, mapInstance) || 0;
               let routeDisplayed = routeResults.route;
               let path = routeResults.path;
               let routeDisplayedTiming = 0;
@@ -100,13 +101,28 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
 
           // Displays brt routes if valid bus number inputted & brt routes checkbox is checked
           if(parseInt(busNumber) && checkBoxStatus.brtRoutesCheckbox){
-            const brtRoutes = await brtRoutesLoader(apiKey, busStops, busNumber);
-            console.log("BRT Routes Loaded");
+            const brtRoutes = await brtRoutesLoader(apiKey, busStops);
+            console.log(brtRoutes);
+            // routesTime stores the total time taken across the paths and routePaths stores the individual decoded paths from the polylines
+            let routesTime = 0.00;
+            let routesPath = [];
 
             // Display the splitted brt routes on googleMaps in increments
             for(let i = 0; i < brtRoutes.length; i++){
-              await DisplayBrtRoute(busNumber ,brtRoutes[i], googleMaps, mapInstance);
+              let routeResults = await obtainBrtRoute(brtRoutes[i], googleMaps, mapInstance);
+              let routeDisplayed = routeResults.route;
+              console.log(routeDisplayed);
+              let path = routeResults.path;
+              let routeDisplayedTiming = 0;
+              // Convert timing to mins, in floating point, to nearest 2dp
+              if(routeDisplayed){
+                routeDisplayedTiming = (parseFloat(routeDisplayed.duration.slice(0,routeDisplayed.duration.length - 1))/60).toFixed(2) || 0;
+                routesTime += parseFloat(routeDisplayedTiming);
+                routesPath.push(path);
+              }
             }
+            // Displays polyline on maps and attaches event listener to the polyline that shows an infoWindow upon mouseover on the polyline
+            displayBrtRoute(routesTime, routesPath, googleMaps, mapInstance);
             console.log("BRT Routes Displayed");
 
           }

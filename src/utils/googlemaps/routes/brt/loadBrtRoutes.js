@@ -1,7 +1,7 @@
 // Import required libraries and functions
 import axios from 'axios';
 
-const LoadBrtRoutes = async (apiKey, busStops, busNumber) => {
+const LoadBrtRoutes = async (apiKey, busStops) => {
     // BRT Route is essentially a 'DRIVE' route that is the fastest and takes the average traffic experienced on the road in 24hrs 
     // The route generated aims to mimic how a BRT route will be like
 
@@ -67,7 +67,7 @@ const LoadBrtRoutes = async (apiKey, busStops, busNumber) => {
     }catch (error) {
         console.log(error);
     }
-
+    
 };
 
 export default LoadBrtRoutes;

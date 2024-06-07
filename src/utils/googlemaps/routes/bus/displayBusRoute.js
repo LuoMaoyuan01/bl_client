@@ -1,4 +1,4 @@
-import { Tooltip } from 'react-tooltip';
+
 
 const displayBusRoute = (routesTime, routesPath, googleMaps, mapInstance) => {
     
@@ -27,7 +27,6 @@ const displayBusRoute = (routesTime, routesPath, googleMaps, mapInstance) => {
         infoWindow.setPosition(e.latLng);
         infoWindow.setContent(`<p><b>Travel Time From Start Location: <u>${routesTime} mins<u></b></p>`);
         infoWindow.open(mapInstance);
-        console.log("ToolTip is visible");
     });
 
     // Close infowindow once mouse does not hover at that location
