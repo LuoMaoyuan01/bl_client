@@ -8,6 +8,7 @@ import Styles from './googlemaps.module.css';
 // Import required components
 import Loader from '../../components/ui/loaders/loader';
 import MapsDrawer from '../../components/ui/drawer/mapsDrawer';
+import ErrorPopup from '../../components/ui/popup/errorPopup';
 const LazyMapComponent = lazy(() => import('../../components/api/googleMapsController'));
 
 const Maps = () => {
@@ -17,9 +18,11 @@ const Maps = () => {
         checkBoxStatusValue: {},
         searchFormValue: {},
         isLoading: false,
+        // isExists: true,
         triggerEffect: false,
     };
     const [state, setState] = useState(stateTemplate); 
+    // const [isExists, setIsExists] = useState(true);
 
     // React hook that returns a memoized  version of the callback function, function only recreated if one of its dependencies change
     const handleReturnValues = useCallback((checkBoxStatus, searchFormValue) => {
@@ -38,15 +41,19 @@ const Maps = () => {
 
             const busNumber = state.searchFormValue.busNumberSearchValue || '0';
             const busDirection = state.searchFormValue.busDirectionValue || '0';
+            console.log(busNumber);
             
             // Runs only if valid bus number & checkboxes are ticked
             if (busNumber !== '0' && (state.checkBoxStatusValue.busStopsCheckbox || state.checkBoxStatusValue.busNumberSearchCheckbox)) {
                 try {
                     const response = await axios.get(`http://localhost:5000/scrape/${busNumber.toUpperCase()}/${busDirection.toString()}`);
 
+                    // bus direction or bus number do not exist
                     if(response.data.length === 0){
-                        setState(stateTemplate);
+                        // setState(stateTemplate => ({ ...stateTemplate, isExists: false }));
+                        // setIsExists(false);
                     }
+
                     // Minimum loading time of 1s
                     setTimeout(() => {
                     setState(prevState => ({ ...prevState, busStops: response.data, isLoading: false }));
@@ -58,10 +65,12 @@ const Maps = () => {
                     setTimeout(() => {
                     setState(prevState => ({ ...prevState, isLoading: false }));
                     }, 1000);
+
                     // Response given if bus number or direction does not exist
-                    if(error.response.status === 500){
-                        // Code to generate a popup informing use bus number or direction does not exist
-                        setState(stateTemplate);
+                    if(error.response.request.status === 500){
+                        // Reset map state if error occurs
+                        // setState(stateTemplate => ({ ...stateTemplate, isExists: false }));
+                        // setIsExists(false);
                     }
                 }
             } else {
@@ -72,6 +81,8 @@ const Maps = () => {
         };
 
         fetchBusStops();
+        setTimeout(() => {
+        }, 1000);
     
     }, [state.triggerEffect]);
 
@@ -85,6 +96,7 @@ const Maps = () => {
 
     return (
         <div className={Styles.mapContainer}>
+            {/* {state.isExists ? null : <ErrorPopup/>} */}
             <Suspense fallback={<div>Loading...</div>}>
                 <MapsDrawer returnValues={handleReturnValues} className={Styles.mapDrawer} />
                 <LazyMapComponent
