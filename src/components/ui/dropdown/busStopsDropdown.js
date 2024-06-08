@@ -21,9 +21,7 @@ const BusStopsDropdown = forwardRef((props, ref) => {
     <Dropdown.Menu as={DropdownSearchMenu}>
         <Dropdown.Item eventKey="1">Red</Dropdown.Item>
         <Dropdown.Item eventKey="2">Blue</Dropdown.Item>
-        <Dropdown.Item eventKey="3" active>
-            Orange
-        </Dropdown.Item>
+        <Dropdown.Item eventKey="3" active>Orange</Dropdown.Item>
         <Dropdown.Item eventKey="1">Red-Orange</Dropdown.Item>
     </Dropdown.Menu>
   </Dropdown>

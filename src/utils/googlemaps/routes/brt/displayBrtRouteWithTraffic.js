@@ -50,7 +50,7 @@ const displayBrtRouteWithTraffic = (routesTime, routeDisplayed, googleMaps, mapI
         googleMaps.event.addListener(routePath, 'mouseover', function (e) {
 
             infoWindow.setPosition(e.latLng);
-            infoWindow.setContent(`<p><b>Travel Time From Start Location: <u>${routesTime} mins<u></b></p>`);
+            infoWindow.setContent(`<p><b>Travel Time From Start Location: <u>${routesTime.toFixed(2)} mins<u></b></p>`);
             infoWindow.open(mapInstance);
         });
 

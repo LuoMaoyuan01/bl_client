@@ -7,18 +7,19 @@ import MapsCheckbox from '../checkbox/mapsCheckbox';
 import SubmitBtn from '../buttons/submitBtn';
 import SearchForm from '../form/searchForm';
 import MapsRadioBtn from '../radioBtn/mapsRadioBtn';
+import BusStopsDropdown from '../dropdown/busStopsDropdown';
 
 // Import required styles
 import Styles from './mapsDrawer.module.css';
 
 const MapsDrawer = ({ returnValues }) => {
     console.log('test');
-    // const [busNumberSearchValue, setBusNumberSearchValue] = useState('0');
     const busNumberSearchValueRef = useRef(null);
     const busStopsCheckboxRef = useRef(null);
     const busNumberSearchCheckboxRef = useRef(null);
     const busDirectionSearchCheckboxRef = useRef(null);
     const brtRoutesSearchCheckboxRef = useRef(null);
+    const busStopsDropdownRef = useRef(null);
     
     
     // Function to handle form submission
@@ -114,6 +115,14 @@ const MapsDrawer = ({ returnValues }) => {
                         </li>
                         <li className={Styles.entry}>
                             <MapsCheckbox label='busStopsCheckbox' ref={busStopsCheckboxRef} />Bus Stops
+                        </li>
+                    </ul>
+
+                    {/* Selection Options Content */}
+                    <h1 className="tw-text-lg tw-font-bold" style={{ textDecoration: 'underline' }}>Display Options</h1>
+                    <ul style={{ paddingBottom: '1.5vw' }}>
+                        <li className={Styles.entry}>
+                            <BusStopsDropdown label='busStopsDropdown' ref={busStopsDropdownRef} />
                         </li>
                     </ul>
 
