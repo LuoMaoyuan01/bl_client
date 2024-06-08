@@ -1,5 +1,5 @@
 // Import required library and functions
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 
 import loadGoogleMapsApi from './loadGoogleMapsApi';
 import busRoutesLoader from '../../utils/googlemaps/routes/bus/busRoutesController';
@@ -12,10 +12,14 @@ import displayBrtRouteWithTraffic from '../../utils/googlemaps/routes/brt/displa
 import DisplayMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
 // import GMapsGeoCoding from '../../utils/geoCoding';
 
+// Import required context
+import MapContext from '../../context/mapContext';
+
 
 const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
+  const { setMapInstance } = useContext(MapContext);
 
   useEffect(() => {
 
@@ -58,6 +62,10 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
           // googleMaps.Map loads in google.maps.Map instance
           const mapInstance = new googleMaps.Map(mapRef.current, mapOptions);
           setMap(mapInstance);
+
+          // Set mapInstance for MapContext
+          setMapInstance(mapInstance);
+          
           console.log("Google Maps Loaded!");
 
 // -------------------- Geocoding function (Disable if not needed since it costs quite abit to run) ------------------------------------------------ //

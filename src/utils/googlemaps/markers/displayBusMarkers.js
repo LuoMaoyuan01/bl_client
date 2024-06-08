@@ -27,6 +27,8 @@ const DisplayMarkers = async (busStops, googleMaps, mapInstance) =>{
             title: (busStops[i]['Bus Stop Name'] + '\nBus Stop ' + busStops[i]['Bus Stop Number']).toUpperCase(),
             content: busIcon,
         });
+
+        // Add event listener for click and displays a moveable popup
     }
 
     return;

@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import required context
 import BusStopsContext from '../../../context/busStopsContext';
+import MapContext from '../../../context/mapContext';
 
 // Import required components
 import DropdownSearchMenu from './dropdownSearchMenu';
@@ -16,10 +17,20 @@ const BusStopsDropdown = forwardRef((props, ref) => {
 
     // Context is available to all child components of the component which the context is defined in
     const { busStops } = useContext(BusStopsContext);
+    const { setViewPoint } = useContext(MapContext); // Get the panTo function from context
+
+    // On select, utilize the mapRef in mapContext, and the provided panTo function to pan the map to the selected bus stop
+    const handleSelect = (eventKey) => {
+        const selectedBusStop = busStops[eventKey];
+        const selectedLatLng ={lat: parseFloat(selectedBusStop['lat']), lng: parseFloat(selectedBusStop['lng'])}
+        console.log(selectedLatLng);
+        setViewPoint(selectedLatLng);
+    }
+
     console.log(busStops);
 
     return (
-    <Dropdown>
+    <Dropdown onSelect={handleSelect}>
         <Dropdown.Toggle id="dropdown-custom-1" variant='light'>
             Bus Stops
         </Dropdown.Toggle>
