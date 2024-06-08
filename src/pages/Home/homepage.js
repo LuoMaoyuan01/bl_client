@@ -8,6 +8,7 @@ import MapsRadioBtn from "../../components/ui/radioBtn/mapsRadioBtn";
 import MapsCheckbox from '../../components/ui/checkbox/mapsCheckbox';
 import MapsDrawer from '../../components/ui/drawer/mapsDrawer';
 import BusStopsDropdown from '../../components/ui/dropdown/busStopsDropdown';
+import BusStopsCard from '../../components/ui/popup/busStopCard';
 
 // Import required library and functions
 import { useNavigate } from 'react-router-dom';
@@ -26,10 +27,7 @@ function HomePage() {
 
     return(
         <div>
-            <BusStopsDropdown/>
-            <MapsCheckbox/>
-            <HomePageSearchBtn handleSubmit={handleSearchBtnSubmit}/>   
-            <MapsRadioBtn radioInputValue={radioInputValue} setRadioInputValue={setRadioInputValue}/>
+            <BusStopsCard/>
         </div>
     )
 }
