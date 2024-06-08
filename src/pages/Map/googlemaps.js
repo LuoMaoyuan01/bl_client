@@ -1,17 +1,24 @@
 // Import required libraries
-import React, { useState, useEffect, useCallback, lazy, Suspense } from 'react';
+import React, { useState, useEffect, useCallback, useContext, lazy, Suspense } from 'react';
 import axios from 'axios';
 
 // Import required styles
 import Styles from './googlemaps.module.css';
 
+// Import required context
+import BusStopsContext from '../../context/busStopsContext';
+
 // Import required components
 import Loader from '../../components/ui/loaders/loader';
 import MapsDrawer from '../../components/ui/drawer/mapsDrawer';
-import ErrorPopup from '../../components/ui/popup/errorPopup';
+// import ErrorPopup from '../../components/ui/popup/errorPopup';
 const LazyMapComponent = lazy(() => import('../../components/api/googleMapsController'));
 
+
 const Maps = () => {
+    // Context used
+    const { busStops, setBusStops } = useContext(BusStopsContext);
+
     // Initial state of the map
     const stateTemplate = {
         busStops: [],
@@ -56,7 +63,9 @@ const Maps = () => {
 
                     // Minimum loading time of 1s
                     setTimeout(() => {
-                    setState(prevState => ({ ...prevState, busStops: response.data, isLoading: false }));
+                        // Set BusStops context & current state of maps
+                        setBusStops(response.data);
+                        setState(prevState => ({ ...prevState, busStops: response.data, isLoading: false }));
                     }, 1000);
 
                 } catch (error) {

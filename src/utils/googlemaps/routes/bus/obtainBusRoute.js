@@ -45,17 +45,17 @@ export const obtainBusRoute = async (busNumber, responseData, googleMaps, mapIns
                 const step = leg.steps[stepIndex];
                 if (step.transitDetails && step.transitDetails.transitLine) {
                 }else{
-                  console.log('skipped');
+                  // console.log('skipped');
                   continue;
                 }
                 let lineName = step.transitDetails.transitLine.name;
                 if (lineName === busNumber) {
-                  console.log("Bus Number Found In Route");
+                  // console.log("Bus Number Found In Route");
                 }else{
-                  console.log("Wrong Bus Number In Legs");
+                  // console.log("Wrong Bus Number In Legs");
                   break;
                 }
-                console.log("updated routeNumber");
+                // console.log("updated routeNumber");
                 routeNumber = routeIndex;
               }
             }
@@ -68,7 +68,7 @@ export const obtainBusRoute = async (busNumber, responseData, googleMaps, mapIns
   }
 
   let routeNumber = obtainRouteNumber(data, busNumber);
-  console.log(routeNumber);
+  // console.log(routeNumber);
 
   // Try to get route for bus number without M at the back
   if(routeNumber[1] == false && busNumber.slice(busNumber.length-1, ) == 'M'){

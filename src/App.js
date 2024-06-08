@@ -2,12 +2,15 @@
 import './App.css';
 
 // Import required libraries & functions
-import React, { Component, useEffect, useState } from 'react';
+import React from 'react';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'; // Install components, router, route
 
 // Import required pages and components
 import HomePage from "./pages/Home/homepage.js";
 import Maps from "./pages/Map/googlemaps.js";
+
+// Import required Provider for context
+import { BusStopsProvider } from './context/busStopsContext.js';
   
 function App() {
 
@@ -15,6 +18,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <BusStopsProvider>
           <Routes>
             <Route path="/">
               <Route path = "" exact element={<Navigate to="googlemaps/0/1" />} />
@@ -24,8 +28,9 @@ function App() {
               </Route>
             </Route>
           </Routes>
-        </Router>
-      </div>
+        </BusStopsProvider>
+      </Router>
+    </div>
   );  
 }
 
