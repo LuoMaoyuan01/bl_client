@@ -1,0 +1,10 @@
+.dropdownItemDivider {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .dropdownItemDivider:last-child {
+    border-bottom: none; /* Remove the border from the last item */
+    margin-bottom: 0;
+  }
