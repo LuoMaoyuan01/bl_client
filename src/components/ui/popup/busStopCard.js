@@ -37,6 +37,7 @@ const BusStopsCard = ({busStopData}) => {
                         </g>
                     </g>
                 </svg>
+                {/* <h1 className={Styles.cardsvg}>Bus Stop 00000</h1> */}
                 <div className={Styles.card__content}>
                     <div className={Styles.handle}>
                         <button className={Styles.closeButton} onClick={handleClose}>×</button>
