@@ -19,6 +19,12 @@ const BusStopsDropdown = forwardRef((props, ref) => {
     const { busStops } = useContext(BusStopsContext);
     const { setViewPoint } = useContext(MapContext); // Get the panTo function from context
 
+    // Check if a valid bus number is filled into the form
+    let validSearchValue = false;
+    if(parseInt(props.busNumberSearchValue) > 0){
+        validSearchValue = true;
+    }
+
     // On select, utilize the mapRef in mapContext, and the provided panTo function to pan the map to the selected bus stop
     const handleSelect = (eventKey) => {
         const selectedBusStop = busStops[eventKey];
@@ -28,7 +34,8 @@ const BusStopsDropdown = forwardRef((props, ref) => {
 
     return (
     <Dropdown onSelect={handleSelect}>
-        <Dropdown.Toggle id="dropdown-custom-1" variant='light'>
+        {/* If no valid search value, dropdown is disabled*/}
+        <Dropdown.Toggle id="dropdown-custom-1" variant='light' disabled={!validSearchValue}>
             Bus Stops
         </Dropdown.Toggle>
 

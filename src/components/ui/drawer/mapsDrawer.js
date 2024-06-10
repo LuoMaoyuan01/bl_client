@@ -156,7 +156,7 @@ const MapsDrawer = ({ returnValues }) => {
                     <h1 className="tw-text-lg tw-font-bold" style={{ textDecoration: 'underline' }}>Filter Options</h1>
                     <ul style={{ paddingBottom: '1.5vw' }}>
                         <li className={Styles.entry}>
-                            <BusStopsDropdown label='busStopsDropdown' ref={busStopsDropdownRef} />
+                            <BusStopsDropdown label='busStopsDropdown' ref={busStopsDropdownRef} busNumberSearchValue={mapState.searchFormValue?.busNumberSearchValue || '0'}/>
                         </li>
                     </ul>
 
