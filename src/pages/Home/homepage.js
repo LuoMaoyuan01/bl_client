@@ -9,6 +9,7 @@ import MapsCheckbox from '../../components/ui/checkbox/mapsCheckbox';
 import MapsDrawer from '../../components/ui/drawer/mapsDrawer';
 import BusStopsDropdown from '../../components/ui/dropdown/busStopsDropdown';
 import BusStopsCard from '../../components/ui/popup/busStopCard';
+import RefreshBtn from '../../components/ui/buttons/refreshBtn';
 
 // Import required library and functions
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +28,7 @@ function HomePage() {
 
     return(
         <div>
-            <BusStopsCard/>
+            <RefreshBtn/>
         </div>
     )
 }

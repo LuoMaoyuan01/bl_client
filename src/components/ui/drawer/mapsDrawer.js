@@ -8,6 +8,7 @@ import SubmitBtn from '../buttons/submitBtn';
 import SearchForm from '../form/searchForm';
 import MapsRadioBtn from '../radioBtn/mapsRadioBtn';
 import BusStopsDropdown from '../dropdown/busStopsDropdown';
+import RefreshBtn from '../buttons/refreshBtn';
 
 // Import required styles
 import Styles from './mapsDrawer.module.css';
@@ -160,8 +161,13 @@ const MapsDrawer = ({ returnValues }) => {
                         </li>
                     </ul>
 
-                    {/* Submit button in Drawer component that sends the data to parent googlemaps */}
-                    <SubmitBtn handleSubmit={handleSubmit} onKeyDown={handleKeyDown}/>
+                    <ul style={{ paddingBottom: '1.5vw' }}>
+                        <li className={Styles.entry}>
+                            {/* Submit button in Drawer component that sends the data to parent googlemaps */}
+                            <SubmitBtn handleSubmit={handleSubmit} onKeyDown={handleKeyDown}/>
+                            <RefreshBtn/>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
