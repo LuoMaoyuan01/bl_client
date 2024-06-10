@@ -82,7 +82,7 @@ const MapsDrawer = ({ returnValues }) => {
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    });
+    }, []);
 
 
     return (
