@@ -165,7 +165,7 @@ const MapsDrawer = ({ returnValues }) => {
                         <li className={Styles.entry}>
                             {/* Submit button in Drawer component that sends the data to parent googlemaps */}
                             <SubmitBtn handleSubmit={handleSubmit} onKeyDown={handleKeyDown}/>
-                            <RefreshBtn/>
+                            <RefreshBtn style={{ paddingBottom: '1.5vw' }}/>
                         </li>
                     </ul>
                 </div>

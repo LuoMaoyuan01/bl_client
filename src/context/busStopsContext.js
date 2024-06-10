@@ -8,7 +8,6 @@ const BusStopsContext = createContext();
 // Provider component that manages busStops data
 export const BusStopsProvider = ({ children }) => {
     const [busStops, setBusStops] = useState([]);
-
     return (
         <BusStopsContext.Provider value={{ busStops, setBusStops }}>
             {children}

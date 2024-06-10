@@ -19,6 +19,8 @@ const BusStopsDropdown = forwardRef((props, ref) => {
     const { busStops } = useContext(BusStopsContext);
     const { setViewPoint } = useContext(MapContext); // Get the panTo function from context
 
+    const [selectedBusStopName, setSelectedBusStopName] = useState('Bus Stops');
+
     // Check if a valid bus number is filled into the form
     let validSearchValue = false;
     if(parseInt(props.busNumberSearchValue) > 0){
@@ -30,18 +32,24 @@ const BusStopsDropdown = forwardRef((props, ref) => {
         const selectedBusStop = busStops[eventKey];
         const selectedLatLng ={lat: parseFloat(selectedBusStop['lat']), lng: parseFloat(selectedBusStop['lng'])}
         setViewPoint(selectedLatLng);
+        setSelectedBusStopName(selectedBusStop['Full Name']);
     }
+
+    // Set default dropdown name
 
     return (
     <Dropdown onSelect={handleSelect}>
         {/* If no valid search value, dropdown is disabled*/}
         <Dropdown.Toggle id="dropdown-custom-1" variant='light' disabled={!validSearchValue}>
-            Bus Stops
+            {selectedBusStopName.slice(0, 22)}
         </Dropdown.Toggle>
 
-        <Dropdown.Menu as={DropdownSearchMenu}>
+        <Dropdown.Menu as={DropdownSearchMenu} style={{maxWidth: '17vw'}}>
             {busStops.map((busStop, index) => (
-                <Dropdown.Item eventKey={index} key={index} className={Styles.dropdownItemDivider}>{busStop['Full Name']}</Dropdown.Item>
+                <Dropdown.Item eventKey={index} key={index} className={Styles.dropdownItemDivider}>
+                    {busStop['Full Name']}
+                    <Dropdown.Divider/>
+                </Dropdown.Item>
             ))}
         </Dropdown.Menu>
     </Dropdown>
