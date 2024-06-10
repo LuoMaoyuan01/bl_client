@@ -1,5 +1,5 @@
 // Import required libraries
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Table from 'react-bootstrap/Table';
 
 // Import required styling
@@ -7,9 +7,14 @@ import Styles from './busStopCard.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Draggable from 'react-draggable';
 
-const BusStopsCard = (busStopData) => {
+const BusStopsCard = ({busStopData}) => {
 
     const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        setIsVisible(true);
+
+    }, [busStopData]);
 
     const handleClose = () => {
         setIsVisible(false);
@@ -41,25 +46,17 @@ const BusStopsCard = (busStopData) => {
                             <tr>
                                 <th style={{backgroundColor: '#A9A9A9'}}>Bus No</th>
                                 <th style={{backgroundColor: '#A9A9A9'}}>ETA</th>
-                                <th style={{backgroundColor: '#A9A9A9'}}>Status</th>
+                                <th style={{backgroundColor: '#A9A9A9'}}>ETA 2</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Soon</td>
-                                <td>@twitter</td>
-                            </tr>
+                            {busStopData.map((data, index) => (
+                                <tr key={index}>
+                                    <td>{data.serviceNo}</td>
+                                    <td>{data.eta}</td>
+                                    <td>{data.eta2}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </Table>
                 </div>
