@@ -30,9 +30,6 @@ const DisplayMarkers = async (busStops, googleMaps, mapInstance, handleMarkerCli
             content: busIcon,
         });
 
-        // googleMapsMarker.setMap(mapInstance);
-        console.log(`http://localhost:5000/scrape/${busStops[i]['Bus Stop Number']}`);
-
         // Create an event listener for sending api call to lta datamall & displaying popup card
         googleMaps.event.addListener(googleMapsMarker, 'click', async function (e) {
             await axios.get(`http://localhost:5000/scrape/${busStops[i]['Bus Stop Number']}`).then((response) => {

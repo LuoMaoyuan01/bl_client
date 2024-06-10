@@ -2,11 +2,12 @@
 import Styles from './mapsCheckbox.module.css';
 
 // Import required libraries and functions
-import React, { useState, forwardRef } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 
 // Utilize forwardRef to pass the reference from parent components
 const MapsCheckbox = forwardRef((props, ref) => {
-    const [mapsCheckboxValue, setMapsCheckboxValue] = useState(false);
+    const [mapsCheckboxValue, setMapsCheckboxValue] = useState(props.checkedStatus || false);
+
 
     return (
         <div className={Styles.checkboxwrapper31}>

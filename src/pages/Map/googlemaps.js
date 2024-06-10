@@ -7,6 +7,7 @@ import Styles from './googlemaps.module.css';
 
 // Import required context
 import BusStopsContext from '../../context/busStopsContext';
+// import MapStateContext from '../../context/mapStateContext';
 
 // Import required components
 import Loader from '../../components/ui/loaders/loader';
@@ -18,7 +19,6 @@ const LazyMapComponent = lazy(() => import('../../components/api/googleMapsContr
 const Maps = () => {
     // Consume context in googlemaps.js
     const { busStops, setBusStops } = useContext(BusStopsContext);
-    // const { mapRef } = useContext(MapContext);
 
     // Initial state of the map
     const stateTemplate = {
@@ -26,11 +26,10 @@ const Maps = () => {
         checkBoxStatusValue: {},
         searchFormValue: {},
         isLoading: false,
-        // isExists: true,
         triggerEffect: false,
     };
+
     const [state, setState] = useState(stateTemplate); 
-    // const [isExists, setIsExists] = useState(true);
 
     // React hook that returns a memoized  version of the callback function, function only recreated if one of its dependencies change
     const handleReturnValues = useCallback((checkBoxStatus, searchFormValue) => {
@@ -40,6 +39,7 @@ const Maps = () => {
         checkBoxStatusValue: checkBoxStatus,
         triggerEffect: !prevState.triggerEffect,
         }));
+
     }, []);
 
     // Runs only when handleReturnValues functions run
@@ -49,7 +49,6 @@ const Maps = () => {
 
             const busNumber = state.searchFormValue.busNumberSearchValue || '0';
             const busDirection = state.searchFormValue.busDirectionValue || '0';
-            console.log(busNumber);
             
             // Runs only if valid bus number & checkboxes are ticked
             if (busNumber !== '0' && (state.checkBoxStatusValue.busStopsCheckbox || state.checkBoxStatusValue.busNumberSearchCheckbox)) {

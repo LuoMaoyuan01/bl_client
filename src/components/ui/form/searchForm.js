@@ -1,11 +1,12 @@
 // Import required libraries and functionalities
-import React, {forwardRef} from 'react';
+import React, {useState, forwardRef} from 'react';
 
 // Import required styles
 import Styles from './searchForm.module.css';
 
 const SearchForm = forwardRef((props, ref) => {
 
+  const [busNumberSearchValue, setBusNumberSearchValue] = useState(parseInt(props.busNumberSearchValue) ? props.busNumberSearchValue : 'Enter A Bus Number');
 
   return (
     <form className={Styles.form}>
@@ -18,7 +19,7 @@ const SearchForm = forwardRef((props, ref) => {
       </button>
       
       {/* Input Field */}
-      <input className={Styles.input} placeholder="Enter A Bus Number" required={false} type="text" ref={ref}/>
+      <input className={Styles.input} placeholder={busNumberSearchValue} required={false} type="text" ref={ref}/>
 
       {/* Reset Button */}
       <button className={Styles.reset} type="reset" aria-label="Clear search">

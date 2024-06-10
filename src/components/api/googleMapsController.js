@@ -126,7 +126,6 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
           // Displays brt routes if valid bus number inputted & brt routes checkbox is checked
           if(parseInt(busNumber) && checkBoxStatus.brtRoutesCheckbox){
             const brtRoutes = await brtRoutesLoader(apiKey, busStops);
-            console.log(brtRoutes);
             // routesTime stores the total time taken across the paths and routePaths stores the individual decoded paths from the polylines
             let routesTime = 0.00;
             let routesPath = [];
@@ -135,7 +134,6 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
             for(let i = 0; i < brtRoutes.length; i++){
               let routeResults = await obtainBrtRoute(brtRoutes[i], googleMaps, mapInstance);
               let routeDisplayed = routeResults.route;
-              console.log(routeDisplayed);
               let path = routeResults.path;
               let routeDisplayedTiming = 0;
               // Convert timing to mins, in floating point, to nearest 2dp

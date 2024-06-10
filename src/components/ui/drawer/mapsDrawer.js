@@ -1,5 +1,5 @@
 // Import required libraries and functions
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 // import { Tooltip } from 'react-tooltip'
 
 // Import required components
@@ -12,6 +12,10 @@ import BusStopsDropdown from '../dropdown/busStopsDropdown';
 // Import required styles
 import Styles from './mapsDrawer.module.css';
 
+// Import required context
+import MapStateContext from '../../../context/mapStateContext';
+import Maps from '../../../pages/Map/googlemaps';
+
 const MapsDrawer = ({ returnValues }) => {
     console.log('test');
     const busNumberSearchValueRef = useRef(null);
@@ -20,7 +24,9 @@ const MapsDrawer = ({ returnValues }) => {
     const busDirectionSearchCheckboxRef = useRef(null);
     const brtRoutesSearchCheckboxRef = useRef(null);
     const busStopsDropdownRef = useRef(null);
-    
+
+    // use the context
+    const { mapState, setMapState } = useContext(MapStateContext);
     
     // Function to handle form submission
     const handleSubmit = () => {
@@ -49,6 +55,15 @@ const MapsDrawer = ({ returnValues }) => {
             busNumberSearchValue: busNumberSearchValue  || '0', 
             busDirectionValue: busDirectionValue || '1',
         };
+
+        // Put state into MapStateContext
+        setMapState(prevState => ({
+            ...prevState,
+            searchFormValue: searchFormValue,
+            checkBoxStatusValue: checkBoxStatus,
+        }));
+
+        console.log(mapState);
 
         // Passes the different values needed in the parent component as a prop called returnValues
         returnValues(checkBoxStatus, searchFormValue);
@@ -82,7 +97,7 @@ const MapsDrawer = ({ returnValues }) => {
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, []);
+    });
 
 
     return (
@@ -97,7 +112,11 @@ const MapsDrawer = ({ returnValues }) => {
                     <h1 className="tw-text-lg tw-font-bold tw-font-under" style={{ textDecoration: 'underline' }}>Search Options</h1>
                     <ul style={{ paddingBottom: '1.5vw' }}>
                         <li className={Styles.entry}>
-                            <SearchForm label='busNumberSearchValue' ref={busNumberSearchValueRef} />
+                            <SearchForm 
+                            label='busNumberSearchValue' 
+                            ref={busNumberSearchValueRef} 
+                            busNumberSearchValue={mapState.searchFormValue?.busNumberSearchValue || '0'}
+                            />
                         </li>
                         <li className={Styles.entry}>
                             <MapsRadioBtn label='busDirectionSearchCheckbox' ref={busDirectionSearchCheckboxRef}/>
@@ -108,13 +127,28 @@ const MapsDrawer = ({ returnValues }) => {
                     <h1 className="tw-text-lg tw-font-bold" style={{ textDecoration: 'underline' }}>Display Options</h1>
                     <ul style={{ paddingBottom: '1.5vw' }}>
                         <li className={Styles.entry}>
-                            <MapsCheckbox label='busNumberSearchCheckbox' ref={busNumberSearchCheckboxRef} />Bus Routes
+                            <MapsCheckbox 
+                            label='busNumberSearchCheckbox' 
+                            ref={busNumberSearchCheckboxRef} 
+                            checkedStatus={mapState.checkBoxStatusValue?.busNumberSearchCheckbox || false}
+                            />
+                            Bus Routes
                         </li>
                         <li className={Styles.entry}>
-                            <MapsCheckbox label='brtRoutesCheckbox' ref={brtRoutesSearchCheckboxRef} />BRT Routes
+                            <MapsCheckbox 
+                            label='brtRoutesCheckbox' 
+                            ref={brtRoutesSearchCheckboxRef} 
+                            checkedStatus={mapState.checkBoxStatusValue?.brtRoutesCheckbox || false}
+                            />
+                            BRT Routes
                         </li>
                         <li className={Styles.entry}>
-                            <MapsCheckbox label='busStopsCheckbox' ref={busStopsCheckboxRef} />Bus Stops
+                            <MapsCheckbox 
+                            label='busStopsCheckbox' 
+                            ref={busStopsCheckboxRef} 
+                            checkedStatus={mapState.checkBoxStatusValue?.busStopsCheckbox || false}
+                            />
+                            Bus Stops
                         </li>
                     </ul>
 

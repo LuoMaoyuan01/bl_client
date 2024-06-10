@@ -18,11 +18,15 @@
 
 
 .content {
-    padding: 1.25rem;
+    padding: 1vh;
 }
 
 .entry {
     margin-top: 0.5vw; /* Tailwind mt-2 */
     display: flex;
     align-content: center;
+}
+
+.content ul {
+    padding-left: 0;
 }

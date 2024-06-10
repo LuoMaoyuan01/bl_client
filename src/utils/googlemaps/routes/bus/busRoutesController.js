@@ -7,8 +7,7 @@ const busRoutesLoader = async (apiKey, busStops, busNumber) => {
     let routes = [];
     let segmentNo = 1;
     let results;
-
-    console.log(routes);
+    
     // Algorithm to iterate through different number of route splits to generate the correct path
     // segmentNo = 1 will address all paths that have no loops
     // segMentNo = 2 will address most paths with loops

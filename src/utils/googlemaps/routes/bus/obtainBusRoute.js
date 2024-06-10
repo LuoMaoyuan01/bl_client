@@ -18,7 +18,7 @@ export const obtainBusRoute = async (busNumber, responseData, googleMaps, mapIns
   const data = responseData;
   routes = data.routes;
 
-  console.log(routes);
+  // console.log(routes);
   // console.log("Route Length " + routes.length);
 
   // Checks through an array of routes & returns the route number that contains the bus number in it
