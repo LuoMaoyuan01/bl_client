@@ -120,7 +120,7 @@ const MapsDrawer = ({ returnValues }) => {
                             />
                         </li>
                         <li className={Styles.entry}>
-                            <MapsRadioBtn label='busDirectionSearchCheckbox' ref={busDirectionSearchCheckboxRef}/>
+                            <MapsRadioBtn label='busDirectionSearchCheckbox' ref={busDirectionSearchCheckboxRef} busDirectionValue={mapState.searchFormValue?.busDirectionValue || '1'}/>
                         </li>
                     </ul>
 

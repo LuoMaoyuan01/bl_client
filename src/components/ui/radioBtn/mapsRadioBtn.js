@@ -6,7 +6,7 @@ import React , {useState, forwardRef} from 'react';
 
 const MapsRadioBtn = forwardRef((props, ref) => {
 
-    const [checkedStatus, setCheckedStatus] = useState("1");
+    const [checkedStatus, setCheckedStatus] = useState(props.busDirectionValue || "1");
 
     const handleChange = () => {
         console.log(checkedStatus);
