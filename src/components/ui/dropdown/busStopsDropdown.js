@@ -50,7 +50,6 @@ const BusStopsDropdown = forwardRef((props, ref) => {
             {busStops.map((busStop, index) => (
                 <Dropdown.Item eventKey={index} key={index} className={Styles.dropdownItemDivider}>
                     {busStop['Full Name']}
-                    <Dropdown.Divider/>
                 </Dropdown.Item>
             ))}
         </Dropdown.Menu>
