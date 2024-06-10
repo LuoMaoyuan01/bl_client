@@ -32,6 +32,8 @@ const BusStopsDropdown = forwardRef((props, ref) => {
         const selectedBusStop = busStops[eventKey];
         const selectedLatLng ={lat: parseFloat(selectedBusStop['lat']), lng: parseFloat(selectedBusStop['lng'])}
         setViewPoint(selectedLatLng);
+
+        // Store value of the bus stop that was selected
         setSelectedBusStopName(selectedBusStop['Full Name']);
     }
 
