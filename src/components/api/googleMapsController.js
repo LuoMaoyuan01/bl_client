@@ -1,5 +1,6 @@
 // Import required library and functions
 import React, { useEffect, useRef, useState, useContext } from 'react';
+import ReactDOM from 'react-dom';
 
 import loadGoogleMapsApi from './loadGoogleMapsApi';
 import busRoutesLoader from '../../utils/googlemaps/routes/bus/busRoutesController';
@@ -10,7 +11,10 @@ import displayBusRoute from '../../utils/googlemaps/routes/bus/displayBusRoute';
 import displayBrtRoute from '../../utils/googlemaps/routes/brt/displayBrtRoute';
 import displayBrtRouteWithTraffic from '../../utils/googlemaps/routes/brt/displayBrtRouteWithTraffic';
 import DisplayMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
-// import GMapsGeoCoding from '../../utils/geoCoding';
+
+// Import required component
+import BusStopsCard from '../../components/ui/popup/busStopCard';
+
 
 // Import required context
 import MapContext from '../../context/mapContext';
@@ -19,7 +23,18 @@ import MapContext from '../../context/mapContext';
 const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
+  const [busStopData, setBusStopData] = useState(null);
   const { setMapInstance } = useContext(MapContext);
+
+  // Handles the clicking on bus markers
+  const handleMarkerClick = async (busMarkerResponseData) => {
+    try {
+      setBusStopData(busMarkerResponseData);
+      // Toggles the busMarker 
+    } catch (error) {
+      console.error('Error fetching bus stop data:', error);
+    }
+  };
 
   useEffect(() => {
 
@@ -104,7 +119,7 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
           // Displays bus stops markers if valid bus number inputted & bus stops checkbox is checked
           if(parseInt(busNumber) && checkBoxStatus.busStopsCheckbox){
             // Display bus stop markers on google maps
-            await DisplayMarkers(busStops, googleMaps, mapInstance);
+            await DisplayMarkers(busStops, googleMaps, mapInstance, handleMarkerClick);
             console.log("Markers Displayed!");
           }
 
@@ -160,7 +175,13 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
   }, []);
 
   // Returns the map component with its styling parameters
-  return <div ref={mapRef} style={{ height: '100vh', width: '85%', zIndex: '1' }} />;
+  return (
+    <>
+      <div ref={mapRef} style={{ height: '100vh', width: '85%', zIndex: '1', position: 'relative'}} />
+      {busStopData ? <BusStopsCard busStopData = {busStopData}/> : null}
+    </>
+  )
+  // return (<div ref={mapRef} style={{ height: '100vh', width: '85%', zIndex: '1', position: 'relative'}} />);
 };
 
 export default MapComponent;

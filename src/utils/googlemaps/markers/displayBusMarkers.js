@@ -1,9 +1,11 @@
 // Import required images
 
-
 // Import required libraries and functions
+import axios from 'axios';
 
-const DisplayMarkers = async (busStops, googleMaps, mapInstance) =>{
+// Import required components
+
+const DisplayMarkers = async (busStops, googleMaps, mapInstance, handleMarkerClick) =>{
 
 
     // Loop through busStops array and for each bus stop entry's lat & lng coordinates, create a marker.
@@ -21,11 +23,23 @@ const DisplayMarkers = async (busStops, googleMaps, mapInstance) =>{
         const longitude = parseFloat(busStops[i]['lng']);
 
         // Create marker with custom icon and lat,lng coordinates
-        new googleMaps.marker.AdvancedMarkerElement({
+        const googleMapsMarker = new googleMaps.marker.AdvancedMarkerElement({
             map: mapInstance,
             position: { lat: latitude, lng: longitude },
             title: (busStops[i]['Bus Stop Name'] + '\nBus Stop ' + busStops[i]['Bus Stop Number']).toUpperCase(),
             content: busIcon,
+        });
+
+        // googleMapsMarker.setMap(mapInstance);
+        console.log(`http://localhost:5000/scrape/${busStops[i]['Bus Stop Number']}`);
+
+        // Create an event listener for sending api call to lta datamall & displaying popup card
+        googleMaps.event.addListener(googleMapsMarker, 'click', async function (e) {
+            await axios.get(`http://localhost:5000/scrape/${busStops[i]['Bus Stop Number']}`).then((response) => {
+                const responseData = response.data;
+                // Go back to Maps Controller to handle the click and display the DOM of Bus Stops Card
+                handleMarkerClick(responseData);
+            })
         });
 
         // Add event listener for click and displays a moveable popup

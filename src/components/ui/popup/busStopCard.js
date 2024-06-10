@@ -7,7 +7,7 @@ import Styles from './busStopCard.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Draggable from 'react-draggable';
 
-const BusStopsCard = () => {
+const BusStopsCard = (busStopData) => {
 
     const [isVisible, setIsVisible] = useState(true);
 
