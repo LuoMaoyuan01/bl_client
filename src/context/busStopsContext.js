@@ -6,6 +6,7 @@ import React, { createContext, useState } from 'react';
 const BusStopsContext = createContext();
 
 // Provider component that manages busStops data
+// value available to all children components nested within provider
 export const BusStopsProvider = ({ children }) => {
     const [busStops, setBusStops] = useState([]);
     return (
