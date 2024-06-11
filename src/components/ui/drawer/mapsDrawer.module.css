@@ -3,7 +3,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 15%; /* Tailwind w-64 */
+    width: 17%; /* Tailwind w-64 */
     height: 100%;
     z-index: 5;
     background-color: #1F2937; /* Tailwind gray-800 */
@@ -24,9 +24,17 @@
 .entry {
     margin-top: 0.5vw; /* Tailwind mt-2 */
     display: flex;
-    align-content: center;
+    align-items: center;
 }
 
 .content ul {
     padding-left: 0.2vw;
+    border: 2px solid white
+}
+
+.submitEntry {
+    margin-top: 0.5vw; /* Tailwind mt-2 */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }

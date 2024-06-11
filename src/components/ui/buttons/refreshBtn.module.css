@@ -16,7 +16,8 @@
     color: black;
     background-color: white;
     cursor: pointer;
-    margin-left: 1vw;
+    margin-left: 0.5vw;
+    margin-right: 1vw;
 }
 
 .btn:hover {

@@ -4,23 +4,26 @@
     border: none;
     background: none;
     color: #8b8ba7;
+    display: flex;
+    align-items: start;
   }
   /* styling of whole input container */
   .form {
     --timing: 0.3s;
-    --width-of-input: 200px;
-    --height-of-input: 40px;
+    --width-of-input: 6vw;
+    --height-of-input: 4vh;
     --border-height: 2px;
     --input-bg: #fff;
     --border-color: #2f2ee9;
-    --border-radius: 30px;
-    --after-border-radius: 1px;
+    --border-radius: 8px;
+    --after-border-radius: 8px;
     position: relative;
     width: var(--width-of-input);
     height: var(--height-of-input);
     display: flex;
     align-items: center;
     padding-inline: 0.8em;
+    margin-right: 0.5vw;
     border-radius: var(--border-radius);
     transition: border-radius 0.5s ease;
     background: var(--input-bg,#fff);

@@ -118,9 +118,12 @@ const MapsDrawer = ({ returnValues }) => {
                             ref={busNumberSearchValueRef} 
                             busNumberSearchValue={mapState.searchFormValue?.busNumberSearchValue || '0'}
                             />
+                            <MapsRadioBtn label='busDirectionSearchCheckbox' ref={busDirectionSearchCheckboxRef} busDirectionValue={mapState.searchFormValue?.busDirectionValue || '1'}/>
                         </li>
                         <li className={Styles.entry}>
-                            <MapsRadioBtn label='busDirectionSearchCheckbox' ref={busDirectionSearchCheckboxRef} busDirectionValue={mapState.searchFormValue?.busDirectionValue || '1'}/>
+                        </li>
+                        <li className={Styles.entry}>
+                            <BusStopsDropdown label='busStopsDropdown' ref={busStopsDropdownRef} busNumberSearchValue={mapState.searchFormValue?.busNumberSearchValue || '0'}/>
                         </li>
                     </ul>
 
@@ -153,16 +156,8 @@ const MapsDrawer = ({ returnValues }) => {
                         </li>
                     </ul>
 
-                    {/* Selection Options Content */}
-                    <h1 className="tw-text-lg tw-font-bold" style={{ textDecoration: 'underline' }}>Filter Options</h1>
-                    <ul style={{ paddingBottom: '1.5vw' }}>
-                        <li className={Styles.entry}>
-                            <BusStopsDropdown label='busStopsDropdown' ref={busStopsDropdownRef} busNumberSearchValue={mapState.searchFormValue?.busNumberSearchValue || '0'}/>
-                        </li>
-                    </ul>
-
-                    <ul style={{ paddingBottom: '1.5vw' }}>
-                        <li className={Styles.entry}>
+                    <ul style={{ paddingBottom: '1.5vw', border: 'none'}}>
+                        <li className={Styles.submitEntry} >
                             {/* Submit button in Drawer component that sends the data to parent googlemaps */}
                             <SubmitBtn handleSubmit={handleSubmit} onKeyDown={handleKeyDown}/>
                             <RefreshBtn style={{ paddingBottom: '1.5vw' }}/>

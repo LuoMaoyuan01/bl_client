@@ -42,11 +42,11 @@ const BusStopsDropdown = forwardRef((props, ref) => {
     return (
     <Dropdown onSelect={handleSelect}>
         {/* If no valid search value, dropdown is disabled*/}
-        <Dropdown.Toggle id="dropdown-custom-1" variant='light' disabled={!validSearchValue}>
-            {selectedBusStopName.slice(0, 22)}
+        <Dropdown.Toggle id="dropdown-custom-1" variant='light' disabled={!validSearchValue} style={{minWidth: '9.4vw'}}>
+            {selectedBusStopName.slice(0, 19)}
         </Dropdown.Toggle>
 
-        <Dropdown.Menu as={DropdownSearchMenu} style={{maxWidth: '17vw'}}>
+        <Dropdown.Menu as={DropdownSearchMenu} style={{maxWidth: '15vw'}}>
             {busStops.map((busStop, index) => (
                 <Dropdown.Item eventKey={index} key={index} className={Styles.dropdownItemDivider} active={selectedBusStopName == busStop['Full Name']}>
                     {busStop['Full Name']}

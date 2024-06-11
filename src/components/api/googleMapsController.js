@@ -175,7 +175,7 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
   // Returns the map component with its styling parameters
   return (
     <>
-      <div ref={mapRef} style={{ height: '100vh', width: '85%', zIndex: '1', position: 'relative'}} />
+      <div ref={mapRef} style={{ height: '100vh', width: '83%', zIndex: '1', position: 'relative'}} />
       {busStopData ? <BusStopsCard busStopData = {busStopData}/> : null}
     </>
   )
