@@ -6,7 +6,14 @@ import Styles from './searchForm.module.css';
 
 const SearchForm = forwardRef((props, ref) => {
 
-  const [busNumberSearchValue, setBusNumberSearchValue] = useState(parseInt(props.busNumberSearchValue) ? props.busNumberSearchValue : 'Bus No');
+  // Default value
+  let busNumberSearchValue = 'Bus No';
+
+  // Check is a valid input has been set for busNumberSearchValueRef
+  if(ref.current !== null){
+    busNumberSearchValue = ref.current;
+    console.log(busNumberSearchValue);
+  }
 
   return (
     <form className={Styles.form}>

@@ -6,10 +6,10 @@ import React , {useState, forwardRef} from 'react';
 
 const MapsRadioBtn = forwardRef((props, ref) => {
 
+    console.log(props.busDirectionValue);
     const [checkedStatus, setCheckedStatus] = useState(props.busDirectionValue || "1");
 
     const handleChange = () => {
-        console.log(checkedStatus);
         checkedStatus === '1' ? setCheckedStatus('2') : setCheckedStatus('1');
     }
 

@@ -18,30 +18,34 @@ import MapStateContext from '../../../context/mapStateContext';
 import Maps from '../../../pages/Map/googlemaps';
 
 const MapsDrawer = ({ returnValues }) => {
-    console.log('test');
-    const busNumberSearchValueRef = useRef(null);
-    const busStopsCheckboxRef = useRef(null);
-    const busNumberSearchCheckboxRef = useRef(null);
-    const busDirectionSearchCheckboxRef = useRef(null);
-    const brtRoutesSearchCheckboxRef = useRef(null);
-    const busStopsDropdownRef = useRef(null);
 
     // use the context
     const { mapState, setMapState } = useContext(MapStateContext);
+
+    // Search options references
+    const busNumberSearchValueRef = useRef(mapState.searchFormValue?.busNumberSearchValue || null);
+    const busDirectionSearchCheckboxRef = useRef(mapState.searchFormValue?.busDirectionValue || '1');
+    const busStopsDropdownRef = useRef(null);
+
+    // Checkbox references
+    const busNumberSearchCheckboxRef = useRef(mapState.checkBoxStatus?.busNumberSearchCheckbox || null);
+    const brtRoutesSearchCheckboxRef = useRef(mapState.checkBoxStatus?.brtRoutesCheckbox || null);
+    const busStopsCheckboxRef = useRef(mapState.checkBoxStatus?.busStopsCheckbox || null);   
+
     
     // Function to handle form submission
     const handleSubmit = () => {
+
         // ? used to prevent undefined values from being submitted
-        // Checkbox refs
-        const busNumberSearchCheckboxChecked = busNumberSearchCheckboxRef.current ? busNumberSearchCheckboxRef.current.checked : false;
-        const brtRoutesSearchCheckboxChecked = brtRoutesSearchCheckboxRef.current ? brtRoutesSearchCheckboxRef.current.checked : false;
-        const busStopsCheckboxChecked = busStopsCheckboxRef.current ? busStopsCheckboxRef.current.checked : false;
+        // Checkbox refs, in the mapsCheckbox component it refers to the <input> DOM
+        const busNumberSearchCheckboxChecked = busNumberSearchCheckboxRef.current.checked ? busNumberSearchCheckboxRef.current.checked : false;
+        const brtRoutesSearchCheckboxChecked = brtRoutesSearchCheckboxRef.current.checked ? brtRoutesSearchCheckboxRef.current.checked : false;
+        const busStopsCheckboxChecked = busStopsCheckboxRef.current.checked ? busStopsCheckboxRef.current.checked : false;
 
         // SearchForm refs
-        const busDirectionValue = busDirectionSearchCheckboxRef.current.checkedStatus ? busDirectionSearchCheckboxRef.current.checkedStatus : '1';
+        console.log(busDirectionSearchCheckboxRef.current.value);
         const busNumberSearchValue = busNumberSearchValueRef.current.value ? busNumberSearchValueRef.current.value : '0';
-
-        console.log(busNumberSearchValue);
+        const busDirectionValue = busDirectionSearchCheckboxRef.current.checkedStatus ? busDirectionSearchCheckboxRef.current.checkedStatus : '1';
 
         // Appends the checkbox status boolean values to an array
         const checkBoxStatus = {
@@ -53,8 +57,8 @@ const MapsDrawer = ({ returnValues }) => {
 
         // Appends the searchbox form values to an array
         const searchFormValue = {
-            busNumberSearchValue: busNumberSearchValue  || '0', 
-            busDirectionValue: busDirectionValue || '1',
+            busNumberSearchValue: busNumberSearchValue,  
+            busDirectionValue: busDirectionValue
         };
 
         // Put state into MapStateContext
@@ -100,6 +104,7 @@ const MapsDrawer = ({ returnValues }) => {
         };
     });
 
+    console.log('Maps Drawer Loaded');
 
     return (
         <div>
@@ -116,7 +121,6 @@ const MapsDrawer = ({ returnValues }) => {
                             <SearchForm 
                             label='busNumberSearchValue' 
                             ref={busNumberSearchValueRef} 
-                            busNumberSearchValue={mapState.searchFormValue?.busNumberSearchValue || '0'}
                             />
                             <MapsRadioBtn label='busDirectionSearchCheckbox' ref={busDirectionSearchCheckboxRef} busDirectionValue={mapState.searchFormValue?.busDirectionValue || '1'}/>
                         </li>

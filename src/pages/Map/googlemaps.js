@@ -18,7 +18,7 @@ const LazyMapComponent = lazy(() => import('../../components/api/googleMapsContr
 
 const Maps = () => {
     // Consume context in googlemaps.js
-    const { busStops, setBusStops } = useContext(BusStopsContext);
+    const { setBusStops } = useContext(BusStopsContext);
 
     // Initial state of the map
     const stateTemplate = {
