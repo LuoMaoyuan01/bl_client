@@ -10,7 +10,7 @@
   /* styling of whole input container */
   .form {
     --timing: 0.3s;
-    --width-of-input: 6vw;
+    --width-of-input: 5.5vw;
     --height-of-input: 4vh;
     --border-height: 2px;
     --input-bg: #fff;

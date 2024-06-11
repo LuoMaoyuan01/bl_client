@@ -3,7 +3,7 @@
   }
   
   .radioInput {
-    --container_width: 8vw;
+    --container_width: 5vw;
     border: black;
     border-width: thin;
     position: relative;
@@ -19,7 +19,7 @@
   
   .radioInput label {
     width: 100%;
-    padding: 5px;
+    padding: 0.46vw;
     cursor: pointer;
     display: flex;  
     justify-content: center;
@@ -27,7 +27,7 @@
     z-index: 1;
     font-weight: 600;
     letter-spacing: 1px;
-    font-size: 12px;
+    font-size: 13px;
   }
   
   .selection {
