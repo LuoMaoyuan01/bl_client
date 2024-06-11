@@ -10,7 +10,7 @@ export const MapProvider = ({ children }) => {
     if (mapInstance) {
         console.log(mapInstance);
         mapInstance.setCenter(latLng);
-        mapInstance.setZoom(19);
+        mapInstance.setZoom(20);
     }
   };
 

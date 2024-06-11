@@ -48,7 +48,7 @@ const BusStopsDropdown = forwardRef((props, ref) => {
 
         <Dropdown.Menu as={DropdownSearchMenu} style={{maxWidth: '17vw'}}>
             {busStops.map((busStop, index) => (
-                <Dropdown.Item eventKey={index} key={index} className={Styles.dropdownItemDivider}>
+                <Dropdown.Item eventKey={index} key={index} className={Styles.dropdownItemDivider} active={selectedBusStopName == busStop['Full Name']}>
                     {busStop['Full Name']}
                 </Dropdown.Item>
             ))}
