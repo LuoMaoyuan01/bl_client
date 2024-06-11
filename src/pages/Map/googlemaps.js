@@ -29,6 +29,7 @@ const Maps = () => {
         triggerEffect: false,
     };
 
+    // Map reloads everytime state of page changes
     const [state, setState] = useState(stateTemplate); 
 
     // React hook that returns a memoized  version of the callback function, function only recreated if one of its dependencies change

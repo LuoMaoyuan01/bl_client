@@ -22,8 +22,9 @@ import MapContext from '../../context/mapContext';
 
 const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
   const mapRef = useRef(null);
-  const [map, setMap] = useState(null);
   const [busStopData, setBusStopData] = useState(null);
+
+  // Map instance context consumed
   const { setMapInstance } = useContext(MapContext);
 
   // Handles the clicking on bus markers
@@ -76,9 +77,8 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
 
           // googleMaps.Map loads in google.maps.Map instance
           const mapInstance = new googleMaps.Map(mapRef.current, mapOptions);
-          setMap(mapInstance);
 
-          // Set mapInstance for MapContext
+          // Inputs mapInstance value into setMap context
           setMapInstance(mapInstance);
           
           console.log("Google Maps Loaded!");
@@ -98,11 +98,13 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
 
             // Display the splitted bus routes on google maps in increments
             for(let i = 0; i < busRoutes.length; i++){
+
               // Obtain correct route number out of all the routes & decoded polyline from that route
               let routeResults = await obtainBusRoute(busNumber ,busRoutes[i], googleMaps, mapInstance) || 0;
               let routeDisplayed = routeResults.route;
               let path = routeResults.path;
               let routeDisplayedTiming = 0;
+
               // Convert timing to mins, in floating point, to nearest 2dp
               if(routeDisplayed){
                 routeDisplayedTiming = (parseFloat(routeDisplayed.duration.slice(0,routeDisplayed.duration.length - 1))/60).toFixed(2) || 0;
@@ -118,6 +120,7 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
 
           // Displays bus stops markers if valid bus number inputted & bus stops checkbox is checked
           if(parseInt(busNumber) && checkBoxStatus.busStopsCheckbox){
+
             // Display bus stop markers on google maps
             await DisplayMarkers(busStops, googleMaps, mapInstance, handleMarkerClick);
             console.log("Markers Displayed!");
@@ -126,6 +129,7 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
           // Displays brt routes if valid bus number inputted & brt routes checkbox is checked
           if(parseInt(busNumber) && checkBoxStatus.brtRoutesCheckbox){
             const brtRoutes = await brtRoutesLoader(apiKey, busStops);
+
             // routesTime stores the total time taken across the paths and routePaths stores the individual decoded paths from the polylines
             let routesTime = 0.00;
             let routesPath = [];
@@ -136,6 +140,7 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
               let routeDisplayed = routeResults.route;
               let path = routeResults.path;
               let routeDisplayedTiming = 0;
+
               // Convert timing to mins, in floating point, to nearest 2dp
               if(routeDisplayed){
                 routeDisplayedTiming = (parseFloat(routeDisplayed.duration.slice(0,routeDisplayed.duration.length - 1))/60).toFixed(2) || 0;
@@ -144,8 +149,10 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
               }
               displayBrtRouteWithTraffic(routesTime, routeResults.route, googleMaps, mapInstance);
             }
+
             // Displays polyline on maps and attaches event listener to the polyline that shows an infoWindow upon mouseover on the polyline
             console.log(routesPath);
+
             // Toggle if want to display brt route without traffic information
             // displayBrtRoute(routesTime, routesPath, googleMaps, mapInstance);
 
@@ -179,7 +186,6 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
       {busStopData ? <BusStopsCard busStopData = {busStopData}/> : null}
     </>
   )
-  // return (<div ref={mapRef} style={{ height: '100vh', width: '85%', zIndex: '1', position: 'relative'}} />);
 };
 
 export default MapComponent;

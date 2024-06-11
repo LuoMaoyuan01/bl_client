@@ -3,7 +3,6 @@ import './homepage.css';
 
 
 // Import required components
-import HomePageSearchBtn from "../../components/ui/buttons/homePageSearchBtn";
 import MapsRadioBtn from "../../components/ui/radioBtn/mapsRadioBtn";
 import MapsCheckbox from '../../components/ui/checkbox/mapsCheckbox';
 import MapsDrawer from '../../components/ui/drawer/mapsDrawer';
