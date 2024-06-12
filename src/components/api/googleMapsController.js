@@ -12,6 +12,7 @@ import displayBrtRoute from '../../utils/googlemaps/routes/brt/displayBrtRoute';
 // import displayBrtRouteWithTraffic from '../../utils/googlemaps/routes/brt/displayBrtRouteWithTraffic';
 import DisplayMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
 import brtRouteInformation from '../../data/brtRouteInfo';
+import DisplayBrtMarkers from '../../utils/googlemaps/markers/displayBrtMarkers';
 
 // Import required component
 import BusStopsCard from '../../components/ui/popup/busStopCard';
@@ -84,11 +85,6 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
           
           console.log("Google Maps Loaded!");
 
-// -------------------- Geocoding function (Disable if not needed since it costs quite abit to run) ------------------------------------------------ //
-          
-          // const updatedBusStops = await GMapsGeoCoding(busStops);
-// ------------------------------------------------------------------------------------------------------------------------------------------------- //
-
           // Displays bus routes if valid bus number inputted && bus routes checkbox is checked
           if(parseInt(busNumber) && checkBoxStatus.busNumberSearchCheckbox){
             // Obtain split up route information in a list
@@ -127,14 +123,20 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
             console.log("Markers Displayed!");
           }
 
+          // Displays selected Brt Route if brtRoute checkbox selected
           if(parseInt(busNumber) && checkBoxStatus.brtRoutesCheckbox){
             // Only activate to obtain decoded polyline information from a new route
             // obtainBrtRoutePolyline(googleMaps);
 
             const brtRouteInfo = brtRouteInformation();
-            let routesTime = 0;
+            let routesTime = (parseFloat(brtRouteInfo['Blue Route']['Duration'] / 60));
             let routesPath = brtRouteInfo['Blue Route']['Decoded Polyline'];
+            let brtStops = brtRouteInfo['Blue Route']['Brt Stations'];
+
             displayBrtRoute(routesTime, routesPath, googleMaps, mapInstance);
+
+            await DisplayBrtMarkers(brtStops, googleMaps, mapInstance);
+
           }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------//

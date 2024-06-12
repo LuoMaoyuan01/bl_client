@@ -1,5 +1,4 @@
 
-
 const displayBrtRoute = (routesTime, routesPath, googleMaps, mapInstance) => {
     
     // Creating infoWindow component
@@ -12,6 +11,7 @@ const displayBrtRoute = (routesTime, routesPath, googleMaps, mapInstance) => {
     // Plotting of routes on google maps
     for (let i = 0; i < routesPath.length; i++) {
         const routePath = new googleMaps.Polyline({
+            // Uncomment line 17 for pre-decoded paths
             path: googleMaps.geometry.encoding.decodePath(routesPath[i]),
             // path: routesPath[i],
             geodesic: true,
