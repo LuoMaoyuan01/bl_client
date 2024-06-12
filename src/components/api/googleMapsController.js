@@ -9,7 +9,7 @@ import obtainBusRoute from '../../utils/googlemaps/routes/bus/obtainBusRoute';
 // import obtainBrtRoute from '../../utils/googlemaps/routes/brt/obtainBrtRoute';
 import displayBusRoute from '../../utils/googlemaps/routes/bus/displayBusRoute';
 import displayBrtRoute from '../../utils/googlemaps/routes/brt/displayBrtRoute';
-// import displayBrtRouteWithTraffic from '../../utils/googlemaps/routes/brt/displayBrtRouteWithTraffic';
+import displayBrtRouteWithTraffic from '../../utils/googlemaps/routes/brt/displayBrtRouteWithTraffic';
 import DisplayBusMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
 import brtRouteInformation from '../../data/brtRouteInfo';
 import DisplayBrtMarkers from '../../utils/googlemaps/markers/displayBrtMarkers';
@@ -22,7 +22,7 @@ import BusStopsCard from '../../components/ui/popup/busStopCard';
 import MapContext from '../../context/mapContext';
 
 
-const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
+const MapComponent = ({ busStops, brtRoute, busNumber, checkBoxStatus}) => {
   const mapRef = useRef(null);
   const [busStopData, setBusStopData] = useState(null);
 
@@ -123,16 +123,16 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
             console.log("Markers Displayed!");
           }
 
-          // Displays selected Brt Route if brtRoute checkbox selected
-          if(parseInt(busNumber) && checkBoxStatus.brtRoutesCheckbox){
+          // Displays selected Brt Route if a correct route is selected and brtRoute checkbox selected
+          if((brtRoute !== '0') && checkBoxStatus.brtRoutesCheckbox){
             // Only activate to obtain decoded polyline information from a new route
             // obtainBrtRoutePolyline(googleMaps);
-            
+            console.log(brtRoute);
             const brtRouteInfo = brtRouteInformation();
 
-            let routesTime = (parseFloat(brtRouteInfo['Blue Route']['Duration'] / 60));
-            let routesPath = brtRouteInfo['Blue Route']['Decoded Polyline'];
-            let brtStations = brtRouteInfo['Blue Route']['Brt Stations'];
+            let routesTime = (parseFloat(brtRouteInfo[brtRoute]['Duration'] / 60));
+            let routesPath = brtRouteInfo[brtRoute]['Decoded Polyline'];
+            let brtStations = brtRouteInfo[brtRoute]['Brt Stations'];
 
             // Plot selected Brt Route on Maps
             displayBrtRoute(routesTime, routesPath, googleMaps, mapInstance);

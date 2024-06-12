@@ -110,6 +110,7 @@ const Maps = () => {
             <Suspense fallback={<div>Loading...</div>}>
                 <LazyMapComponent
                 busNumber={state.searchFormValue.busNumberSearchValue || '0'}
+                brtRoute={state.searchFormValue.brtRouteValue || 'Blue Route'}
                 busStops={state.busStops}
                 checkBoxStatus={state.checkBoxStatusValue}
                 className={Styles.MapComponent}

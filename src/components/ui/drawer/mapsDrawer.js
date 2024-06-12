@@ -8,6 +8,7 @@ import SubmitBtn from '../buttons/submitBtn';
 import SearchForm from '../form/searchForm';
 import MapsRadioBtn from '../radioBtn/mapsRadioBtn';
 import BusStopsDropdown from '../dropdown/busStops/busStopsDropdown';
+import BrtStationsDropdown from '../dropdown/brtStations/brtStationsDropdown';
 import RefreshBtn from '../buttons/refreshBtn';
 
 // Import required styles
@@ -15,7 +16,6 @@ import Styles from './mapsDrawer.module.css';
 
 // Import required context
 import MapStateContext from '../../../context/mapStateContext';
-import Maps from '../../../pages/Map/googlemaps';
 
 const MapsDrawer = ({ returnValues }) => {
 
@@ -25,6 +25,7 @@ const MapsDrawer = ({ returnValues }) => {
     // Search options references
     const busNumberSearchValueRef = useRef(mapState.searchFormValue?.busNumberSearchValue || null);
     const busDirectionSearchCheckboxRef = useRef(mapState.searchFormValue?.busDirectionValue || '1');
+    const brtRouteValueRef = useRef(mapState.searchFormValue?.brtRouteValue || '0');
     const busStopsDropdownRef = useRef(null);
 
     // Checkbox references
@@ -37,15 +38,15 @@ const MapsDrawer = ({ returnValues }) => {
     const handleSubmit = () => {
 
         // ? used to prevent undefined values from being submitted
-        // Checkbox refs, in the mapsCheckbox component it refers to the <input> DOM
+        // Checkbox values to be returned , in the mapsCheckbox component it refers to the <input> DOM
         const busNumberSearchCheckboxChecked = busNumberSearchCheckboxRef.current.checked ? busNumberSearchCheckboxRef.current.checked : false;
         const brtRoutesSearchCheckboxChecked = brtRoutesSearchCheckboxRef.current.checked ? brtRoutesSearchCheckboxRef.current.checked : false;
         const busStopsCheckboxChecked = busStopsCheckboxRef.current.checked ? busStopsCheckboxRef.current.checked : false;
 
-        // SearchForm refs
-        console.log(busDirectionSearchCheckboxRef.current.value);
+        // SearchForm Values to be returned
         const busNumberSearchValue = busNumberSearchValueRef.current.value ? busNumberSearchValueRef.current.value : '0';
         const busDirectionValue = busDirectionSearchCheckboxRef.current.checkedStatus ? busDirectionSearchCheckboxRef.current.checkedStatus : '1';
+        const brtRouteValue = brtRouteValueRef.current.getSelectedBrtStation() ? brtRouteValueRef.current.getSelectedBrtStation() : '0';
 
         // Appends the checkbox status boolean values to an array
         const checkBoxStatus = {
@@ -58,7 +59,8 @@ const MapsDrawer = ({ returnValues }) => {
         // Appends the searchbox form values to an array
         const searchFormValue = {
             busNumberSearchValue: busNumberSearchValue,  
-            busDirectionValue: busDirectionValue
+            busDirectionValue: busDirectionValue,
+            brtRouteValue: brtRouteValue,
         };
 
         // Put state into MapStateContext
@@ -125,6 +127,7 @@ const MapsDrawer = ({ returnValues }) => {
                             <MapsRadioBtn label='busDirectionSearchCheckbox' ref={busDirectionSearchCheckboxRef} busDirectionValue={mapState.searchFormValue?.busDirectionValue || '1'}/>
                         </li>
                         <li className={Styles.entry}>
+                            <BrtStationsDropdown label='brtRouteValue' ref={brtRouteValueRef}/>
                         </li>
                         <li className={Styles.entry}>
                             <BusStopsDropdown label='busStopsDropdown' ref={busStopsDropdownRef} busNumberSearchValue={mapState.searchFormValue?.busNumberSearchValue || '0'}/>
