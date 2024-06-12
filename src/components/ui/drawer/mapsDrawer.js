@@ -135,7 +135,12 @@ const MapsDrawer = ({ returnValues }) => {
                             <BrtStationsDropdown label='brtRouteValue' ref={brtRouteValueRef} brtRouteValue={mapState.searchFormValue?.brtRouteValue || '0'}/>
                         </li>
                         <li className={Styles.entry}>
-                            <BusStopsDropdown label='busStopsDropdown' ref={busStopsDropdownRef} busNumberSearchValue={mapState.searchFormValue?.busNumberSearchValue || '0'}/>
+                            <BusStopsDropdown 
+                            label='busStopsDropdown' 
+                            ref={busStopsDropdownRef} 
+                            busNumberSearchValue={mapState.searchFormValue?.busNumberSearchValue || '0'}
+                            brtStationsCheckbox={mapState.checkBoxStatus?.brtStationsCheckbox || false}
+                            busStopsCheckbox={mapState.checkBoxStatus?.busStopsCheckbox || false}/>
                         </li>
                     </ul>
 

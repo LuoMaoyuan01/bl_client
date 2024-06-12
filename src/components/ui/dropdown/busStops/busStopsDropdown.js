@@ -18,8 +18,10 @@ const BusStopsDropdown = forwardRef((props, ref) => {
     // Context is available to all child components of the component which the context is defined in
     const { busStops } = useContext(BusStopsContext);
     const { setViewPoint } = useContext(MapContext); // Get the panTo function from context
+    console.log(busStops);
 
     const [selectedBusStopName, setSelectedBusStopName] = useState('Stations');
+    console.log(props.busStopsCheckbox);
 
     // Check if a valid bus number is filled into the form
     let validSearchValue = false;
