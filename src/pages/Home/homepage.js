@@ -9,6 +9,7 @@ import MapsDrawer from '../../components/ui/drawer/mapsDrawer';
 import BusStopsDropdown from '../../components/ui/dropdown/busStopsDropdown';
 import BusStopsCard from '../../components/ui/popup/busStopCard';
 import RefreshBtn from '../../components/ui/buttons/refreshBtn';
+import Model3D from '../../components/3dModels/test';
 
 // Import required library and functions
 import { useNavigate } from 'react-router-dom';
@@ -26,8 +27,8 @@ function HomePage() {
     };
 
     return(
-        <div>
-            <RefreshBtn/>
+        <div style={{width: '100%', height: '100%'}}>
+            <Model3D/>
         </div>
     )
 }

@@ -115,7 +115,7 @@ const MapsDrawer = ({ returnValues }) => {
                     {/* List of content in Drawer component */}
 
                     {/* Search Options Content */}
-                    <h1 className="tw-text-lg tw-font-bold tw-font-under" style={{ textDecoration: 'underline' }}>Search Options</h1>
+                    <h1 className="tw-text-lg tw-font-bold tw-font-under">Search Options</h1>
                     <ul className={Styles.formUl} style={{ paddingBottom: '1.5vw' }}>
                         <li className={Styles.entry}>
                             <SearchForm 
@@ -132,7 +132,7 @@ const MapsDrawer = ({ returnValues }) => {
                     </ul>
 
                     {/* Display Options Content */}
-                    <h1 className="tw-text-lg tw-font-bold" style={{ textDecoration: 'underline' }}>Display Options</h1>
+                    <h1 className="tw-text-lg tw-font-bold">Display Options</h1>
                     <ul className={Styles.formUl} style={{ paddingBottom: '1.5vw' }}>
                         <li className={Styles.entry}>
                             <MapsCheckbox 
