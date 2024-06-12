@@ -29,6 +29,9 @@ const MapComponent = ({ busStops, brtRoute, busNumber, checkBoxStatus}) => {
   // Map instance context consumed
   const { setMapInstance } = useContext(MapContext);
 
+  // Obtain stored static BRT Route data
+  const brtRouteInfo = brtRouteInformation();
+
   // Handles the clicking on bus markers
   const handleMarkerClick = async (busMarkerResponseData) => {
     try {
@@ -120,7 +123,7 @@ const MapComponent = ({ busStops, brtRoute, busNumber, checkBoxStatus}) => {
 
             // Display bus stop markers on google maps
             await DisplayBusMarkers(busStops, googleMaps, mapInstance, handleMarkerClick);
-            console.log("Markers Displayed!");
+            console.log("Bus Markers Displayed!");
           }
 
           // Displays selected Brt Route if a correct route is selected and brtRoute checkbox selected
@@ -128,17 +131,24 @@ const MapComponent = ({ busStops, brtRoute, busNumber, checkBoxStatus}) => {
             // Only activate to obtain decoded polyline information from a new route
             // obtainBrtRoutePolyline(googleMaps);
             console.log(brtRoute);
-            const brtRouteInfo = brtRouteInformation();
 
             let routesTime = (parseFloat(brtRouteInfo[brtRoute]['Duration'] / 60));
             let routesPath = brtRouteInfo[brtRoute]['Decoded Polyline'];
-            let brtStations = brtRouteInfo[brtRoute]['Brt Stations'];
 
             // Plot selected Brt Route on Maps
             displayBrtRoute(routesTime, routesPath, googleMaps, mapInstance);
 
+            
+
+          }
+
+          // Displays Brt station markers if valid brt station inputted & brt stations checkbox is checked
+          if((brtRoute !== '0') && checkBoxStatus.brtStationsCheckbox){
+
+            let brtStations = brtRouteInfo[brtRoute]['Brt Stations'];
             await DisplayBrtMarkers(brtStations, googleMaps, mapInstance);
 
+            console.log("BRT Markers Displayed!");
           }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------//

@@ -12,7 +12,7 @@ import Styles from './brtStationsDropdown.module.css';
 const BrtStationsDropdown = forwardRef((props, ref) => {
 
     const brtRouteInfo = brtRouteInformation();
-    const [selectedBrtStation, setSelectedBrtStation] = useState('Brt Stations');
+    const [selectedBrtStation, setSelectedBrtStation] = useState('Brt Routes');
 
     const handleSelect = (eventKey) => {
         setSelectedBrtStation( Object.keys(brtRouteInfo)[eventKey] );
@@ -22,7 +22,7 @@ const BrtStationsDropdown = forwardRef((props, ref) => {
     useImperativeHandle(ref, () => ({
         // Returns '0' if no Brt Stations Selected
         getSelectedBrtStation: () => {
-            if (selectedBrtStation === 'Brt Stations') {
+            if (selectedBrtStation === 'Brt Routes') {
                 return '0';
             } else {
                 return selectedBrtStation;
@@ -39,7 +39,7 @@ const BrtStationsDropdown = forwardRef((props, ref) => {
     
             <Dropdown.Menu style={{minWidth: '10.85vw'}}>
                 {Object.keys(brtRouteInfo).map((brtRoute, index) => (
-                    <Dropdown.Item eventKey={index} key={index} active={selectedBrtStation === brtRoute}> 
+                    <Dropdown.Item eventKey={index} key={index} active={selectedBrtStation === brtRoute}>
                         {brtRoute}
                     </Dropdown.Item>
                 ))}

@@ -31,7 +31,8 @@ const MapsDrawer = ({ returnValues }) => {
     // Checkbox references
     const busNumberSearchCheckboxRef = useRef(mapState.checkBoxStatus?.busNumberSearchCheckbox || null);
     const brtRoutesSearchCheckboxRef = useRef(mapState.checkBoxStatus?.brtRoutesCheckbox || null);
-    const busStopsCheckboxRef = useRef(mapState.checkBoxStatus?.busStopsCheckbox || null);   
+    const busStopsCheckboxRef = useRef(mapState.checkBoxStatus?.busStopsCheckbox || null);
+    const brtStationsCheckboxRef = useRef(mapState.checkBoxStatus?.brtStationsCheckbox || null);
 
     
     // Function to handle form submission
@@ -42,6 +43,7 @@ const MapsDrawer = ({ returnValues }) => {
         const busNumberSearchCheckboxChecked = busNumberSearchCheckboxRef.current.checked ? busNumberSearchCheckboxRef.current.checked : false;
         const brtRoutesSearchCheckboxChecked = brtRoutesSearchCheckboxRef.current.checked ? brtRoutesSearchCheckboxRef.current.checked : false;
         const busStopsCheckboxChecked = busStopsCheckboxRef.current.checked ? busStopsCheckboxRef.current.checked : false;
+        const brtStationsCheckboxChecked = brtStationsCheckboxRef.current.checked ? brtStationsCheckboxRef.current.checked : false;
 
         // SearchForm Values to be returned
         const busNumberSearchValue = busNumberSearchValueRef.current.value ? busNumberSearchValueRef.current.value : '0';
@@ -54,6 +56,8 @@ const MapsDrawer = ({ returnValues }) => {
             busNumberSearchCheckbox: busNumberSearchCheckboxChecked,
             brtRoutesCheckbox: brtRoutesSearchCheckboxChecked,
             busStopsCheckbox: busStopsCheckboxChecked,
+            brtStationsCheckbox: brtStationsCheckboxChecked,
+
         };
 
         // Appends the searchbox form values to an array
@@ -61,6 +65,7 @@ const MapsDrawer = ({ returnValues }) => {
             busNumberSearchValue: busNumberSearchValue,  
             busDirectionValue: busDirectionValue,
             brtRouteValue: brtRouteValue,
+
         };
 
         // Put state into MapStateContext
@@ -160,6 +165,14 @@ const MapsDrawer = ({ returnValues }) => {
                             checkedStatus={mapState.checkBoxStatusValue?.busStopsCheckbox || false}
                             />
                             Bus Stops
+                        </li>
+                        <li className={Styles.entry}>
+                            <MapsCheckbox 
+                            label='brtStationsCheckbox' 
+                            ref={brtStationsCheckboxRef} 
+                            checkedStatus={mapState.checkBoxStatusValue?.brtStationsCheckbox || false}
+                            />
+                            BRT Stations
                         </li>
                     </ul>
 
