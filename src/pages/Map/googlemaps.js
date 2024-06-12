@@ -102,19 +102,19 @@ const Maps = () => {
 
     console.log("googlemaps");
     // console.log(state.busStops);
-    console.log(state.checkBoxStatusValue);
+    // console.log(state.checkBoxStatusValue);
 
     return (
         <div className={Styles.mapContainer}>
             {/* {state.isExists ? null : <ErrorPopup/>} */}
             <Suspense fallback={<div>Loading...</div>}>
-                <MapsDrawer returnValues={handleReturnValues} className={Styles.mapDrawer} />
                 <LazyMapComponent
                 busNumber={state.searchFormValue.busNumberSearchValue || '0'}
                 busStops={state.busStops}
                 checkBoxStatus={state.checkBoxStatusValue}
                 className={Styles.MapComponent}
                 />
+                <MapsDrawer returnValues={handleReturnValues} className={Styles.mapDrawer} />
             </Suspense>
         </div>
     );

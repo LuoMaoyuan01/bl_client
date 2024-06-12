@@ -12,7 +12,6 @@ const SearchForm = forwardRef((props, ref) => {
   // Check is a valid input has been set for busNumberSearchValueRef
   if(ref.current !== null){
     busNumberSearchValue = ref.current;
-    console.log(busNumberSearchValue);
   }
 
   return (
