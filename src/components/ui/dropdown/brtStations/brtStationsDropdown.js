@@ -14,6 +14,13 @@ const BrtStationsDropdown = forwardRef((props, ref) => {
     const brtRouteInfo = brtRouteInformation();
     const [selectedBrtStation, setSelectedBrtStation] = useState('Brt Routes');
 
+    // Retain the value of blue route in the dropdown display
+    let brtStationName;
+    console.log(brtStationName);
+    if(props.brtRouteValue !== '0'){
+        brtStationName = props.brtRouteValue;
+    }
+
     const handleSelect = (eventKey) => {
         setSelectedBrtStation( Object.keys(brtRouteInfo)[eventKey] );
     }
@@ -34,7 +41,7 @@ const BrtStationsDropdown = forwardRef((props, ref) => {
         <Dropdown onSelect={handleSelect}>
             {/* If no valid search value, dropdown is disabled*/}
             <Dropdown.Toggle id="dropdown-custom-1" variant='light' style={{minWidth: '10.85vw'}}>
-                {selectedBrtStation.slice(0, 22)}
+                {brtStationName ? brtStationName : selectedBrtStation.slice(0, 22)}
             </Dropdown.Toggle>
     
             <Dropdown.Menu style={{minWidth: '10.85vw'}}>

@@ -19,7 +19,7 @@ const BusStopsDropdown = forwardRef((props, ref) => {
     const { busStops } = useContext(BusStopsContext);
     const { setViewPoint } = useContext(MapContext); // Get the panTo function from context
 
-    const [selectedBusStopName, setSelectedBusStopName] = useState('Bus Stops');
+    const [selectedBusStopName, setSelectedBusStopName] = useState('Stations');
 
     // Check if a valid bus number is filled into the form
     let validSearchValue = false;
