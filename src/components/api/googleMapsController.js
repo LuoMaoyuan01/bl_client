@@ -4,13 +4,14 @@ import React, { useEffect, useRef, useState, useContext } from 'react';
 
 import loadGoogleMapsApi from './loadGoogleMapsApi';
 import busRoutesLoader from '../../utils/googlemaps/routes/bus/busRoutesController';
-import brtRoutesLoader from '../../utils/googlemaps/routes/brt/brtRoutesController';
+// import brtRoutesLoader from '../../utils/googlemaps/routes/brt/brtRoutesController';
 import obtainBusRoute from '../../utils/googlemaps/routes/bus/obtainBusRoute';
-import obtainBrtRoute from '../../utils/googlemaps/routes/brt/obtainBrtRoute';
+// import obtainBrtRoute from '../../utils/googlemaps/routes/brt/obtainBrtRoute';
 import displayBusRoute from '../../utils/googlemaps/routes/bus/displayBusRoute';
 import displayBrtRoute from '../../utils/googlemaps/routes/brt/displayBrtRoute';
-import displayBrtRouteWithTraffic from '../../utils/googlemaps/routes/brt/displayBrtRouteWithTraffic';
+// import displayBrtRouteWithTraffic from '../../utils/googlemaps/routes/brt/displayBrtRouteWithTraffic';
 import DisplayMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
+import brtRouteInformation from '../../data/brtRouteInfo';
 
 // Import required component
 import BusStopsCard from '../../components/ui/popup/busStopCard';
@@ -126,40 +127,54 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
             console.log("Markers Displayed!");
           }
 
-          // Displays brt routes if valid bus number inputted & brt routes checkbox is checked
           if(parseInt(busNumber) && checkBoxStatus.brtRoutesCheckbox){
-            const brtRoutes = await brtRoutesLoader(apiKey, busStops);
+            // Only activate to obtain decoded polyline information from a new route
+            // obtainBrtRoutePolyline(googleMaps);
 
-            // routesTime stores the total time taken across the paths and routePaths stores the individual decoded paths from the polylines
-            let routesTime = 0.00;
-            let routesPath = [];
-
-            // Display the splitted brt routes on googleMaps in increments
-            for(let i = 0; i < brtRoutes.length; i++){
-              let routeResults = await obtainBrtRoute(brtRoutes[i], googleMaps, mapInstance);
-              let routeDisplayed = routeResults.route;
-              let path = routeResults.path;
-              let routeDisplayedTiming = 0;
-
-              // Convert timing to mins, in floating point, to nearest 2dp
-              if(routeDisplayed){
-                routeDisplayedTiming = (parseFloat(routeDisplayed.duration.slice(0,routeDisplayed.duration.length - 1))/60).toFixed(2) || 0;
-                routesTime += parseFloat(routeDisplayedTiming);
-                routesPath.push(path);
-              }
-              displayBrtRouteWithTraffic(routesTime, routeResults.route, googleMaps, mapInstance);
-            }
-
-            // Displays polyline on maps and attaches event listener to the polyline that shows an infoWindow upon mouseover on the polyline
-            console.log(routesPath);
-
-            // Toggle if want to display brt route without traffic information
-            // displayBrtRoute(routesTime, routesPath, googleMaps, mapInstance);
-
-            console.log("BRT Routes Displayed");
-
+            const brtRouteInfo = brtRouteInformation();
+            let routesTime = 0;
+            let routesPath = brtRouteInfo['Blue Route']['Decoded Polyline'];
+            displayBrtRoute(routesTime, routesPath, googleMaps, mapInstance);
           }
-        
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------//
+          // Displays brt routes if valid bus number inputted & brt routes checkbox is checked
+          // This displays for all bus numbers
+          // if(parseInt(busNumber) && checkBoxStatus.brtRoutesCheckbox){
+          //   const brtRoutes = await brtRoutesLoader(apiKey, busStops);
+
+          //   // routesTime stores the total time taken across the paths and routePaths stores the individual decoded paths from the polylines
+          //   let routesTime = 0.00;
+          //   let routesPath = [];
+
+          //   // Display the splitted brt routes on googleMaps in increments
+          //   for(let i = 0; i < brtRoutes.length; i++){
+          //     let routeResults = await obtainBrtRoute(brtRoutes[i], googleMaps, mapInstance);
+          //     let routeDisplayed = routeResults.route;
+          //     let path = routeResults.path;
+          //     let routeDisplayedTiming = 0;
+
+          //     // Convert timing to mins, in floating point, to nearest 2dp
+          //     if(routeDisplayed){
+          //       routeDisplayedTiming = (parseFloat(routeDisplayed.duration.slice(0,routeDisplayed.duration.length - 1))/60).toFixed(2) || 0;
+          //       routesTime += parseFloat(routeDisplayedTiming);
+          //       routesPath.push(path);
+          //     }
+          //     displayBrtRouteWithTraffic(routesTime, routeResults.route, googleMaps, mapInstance);
+          //   }
+
+          //   // Displays polyline on maps and attaches event listener to the polyline that shows an infoWindow upon mouseover on the polyline
+          //   console.log(routesPath);
+
+          //   // Toggle if want to display brt route without traffic information
+          //   // displayBrtRoute(routesTime, routesPath, googleMaps, mapInstance);
+
+          //   console.log("BRT Routes Displayed");
+
+          // }
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+
         // Catches error if mapRef is null
         }else {
           console.error('mapRef.current is null');  

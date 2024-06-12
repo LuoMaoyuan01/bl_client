@@ -5,7 +5,7 @@
 import axios from 'axios';
 import brtRouteInformation from "../../../data/brtRouteInfo";
 
-const obtainBrtRoutePolyline = async () => {
+const obtainBrtRoutePolyline = async (googleMaps) => {
 
     let brtRouteInfo = brtRouteInformation();
     let lineInfo;
@@ -87,7 +87,16 @@ const obtainBrtRoutePolyline = async () => {
       // Call google routes API to obtain the corresponding routes information from the requestbody
       try {
           const response = await axios.post(BaseUrl, requestBody, { headers })
+          let responseData = response.data;
+          let EncodedPolyline;
+          let DecodedPolyline;
           console.log(response.data);
+          for(let route = 0; route < Object.keys(responseData['routes']).length; route++){
+            console.log(route);
+            EncodedPolyline = responseData['routes'][route]['polyline']['encodedPolyline'];
+            DecodedPolyline = googleMaps.geometry.encoding.decodePath(EncodedPolyline);
+            console.log(EncodedPolyline);
+          }
           return response.data;
   
       }catch (error) {

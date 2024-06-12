@@ -12,7 +12,8 @@ const displayBrtRoute = (routesTime, routesPath, googleMaps, mapInstance) => {
     // Plotting of routes on google maps
     for (let i = 0; i < routesPath.length; i++) {
         const routePath = new googleMaps.Polyline({
-            path: routesPath[i],
+            path: googleMaps.geometry.encoding.decodePath(routesPath[i]),
+            // path: routesPath[i],
             geodesic: true,
             strokeColor: '#0096FF',
             strokeOpacity: 1,
