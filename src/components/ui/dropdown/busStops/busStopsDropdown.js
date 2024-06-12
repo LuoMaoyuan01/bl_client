@@ -7,8 +7,8 @@ import Styles from './busStopsDropdown.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import required context
-import BusStopsContext from '../../../context/busStopsContext';
-import MapContext from '../../../context/mapContext';
+import BusStopsContext from '../../../../context/busStopsContext';
+import MapContext from '../../../../context/mapContext';
 
 // Import required components
 import DropdownSearchMenu from './dropdownSearchMenu';

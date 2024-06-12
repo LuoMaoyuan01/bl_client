@@ -7,7 +7,7 @@ import MapsCheckbox from '../checkbox/mapsCheckbox';
 import SubmitBtn from '../buttons/submitBtn';
 import SearchForm from '../form/searchForm';
 import MapsRadioBtn from '../radioBtn/mapsRadioBtn';
-import BusStopsDropdown from '../dropdown/busStopsDropdown';
+import BusStopsDropdown from '../dropdown/busStops/busStopsDropdown';
 import RefreshBtn from '../buttons/refreshBtn';
 
 // Import required styles

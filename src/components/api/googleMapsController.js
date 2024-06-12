@@ -10,7 +10,7 @@ import obtainBusRoute from '../../utils/googlemaps/routes/bus/obtainBusRoute';
 import displayBusRoute from '../../utils/googlemaps/routes/bus/displayBusRoute';
 import displayBrtRoute from '../../utils/googlemaps/routes/brt/displayBrtRoute';
 // import displayBrtRouteWithTraffic from '../../utils/googlemaps/routes/brt/displayBrtRouteWithTraffic';
-import DisplayMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
+import DisplayBusMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
 import brtRouteInformation from '../../data/brtRouteInfo';
 import DisplayBrtMarkers from '../../utils/googlemaps/markers/displayBrtMarkers';
 
@@ -119,7 +119,7 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
           if(parseInt(busNumber) && checkBoxStatus.busStopsCheckbox){
 
             // Display bus stop markers on google maps
-            await DisplayMarkers(busStops, googleMaps, mapInstance, handleMarkerClick);
+            await DisplayBusMarkers(busStops, googleMaps, mapInstance, handleMarkerClick);
             console.log("Markers Displayed!");
           }
 
@@ -127,15 +127,17 @@ const MapComponent = ({ busStops, busNumber, checkBoxStatus}) => {
           if(parseInt(busNumber) && checkBoxStatus.brtRoutesCheckbox){
             // Only activate to obtain decoded polyline information from a new route
             // obtainBrtRoutePolyline(googleMaps);
-
+            
             const brtRouteInfo = brtRouteInformation();
+
             let routesTime = (parseFloat(brtRouteInfo['Blue Route']['Duration'] / 60));
             let routesPath = brtRouteInfo['Blue Route']['Decoded Polyline'];
-            let brtStops = brtRouteInfo['Blue Route']['Brt Stations'];
+            let brtStations = brtRouteInfo['Blue Route']['Brt Stations'];
 
+            // Plot selected Brt Route on Maps
             displayBrtRoute(routesTime, routesPath, googleMaps, mapInstance);
 
-            await DisplayBrtMarkers(brtStops, googleMaps, mapInstance);
+            await DisplayBrtMarkers(brtStations, googleMaps, mapInstance);
 
           }
 

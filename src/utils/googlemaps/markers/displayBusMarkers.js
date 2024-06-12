@@ -5,7 +5,7 @@ import axios from 'axios';
 
 // Import required components
 
-const DisplayMarkers = async (busStops, googleMaps, mapInstance, handleMarkerClick) =>{
+const DisplayBusMarkers = async (busStops, googleMaps, mapInstance, handleMarkerClick) =>{
 
 
     // Loop through busStops array and for each bus stop entry's lat & lng coordinates, create a marker.
@@ -45,4 +45,4 @@ const DisplayMarkers = async (busStops, googleMaps, mapInstance, handleMarkerCli
     return;
 }
 
-export default DisplayMarkers;
+export default DisplayBusMarkers;

@@ -1,32 +1,32 @@
 // Import required images
-import brtStation from '../../../assets/images/brtStation.png';
+import brtStationIcon from '../../../assets/images/brtStation.png';
 
 // Import required libraries and functions
 
 // Import required components
 
-const DisplayBrtMarkers = async (brtStops, googleMaps, mapInstance) =>{
+const DisplayBrtMarkers = async (brtStations, googleMaps, mapInstance) =>{
 
 
     // Loop through busStops array and for each bus stop entry's lat & lng coordinates, create a marker.
-    for(let i = 0; i < brtStops.length; i++){
+    for(let i = 0; i < brtStations.length; i++){
 
         // Create a new DOM image for each marker
         const brtIcon = document.createElement("img"); // Update this path as needed
-        brtIcon.src = brtStation;
+        brtIcon.src = brtStationIcon;
 
         // Styling of icon
         brtIcon.style.width = '30px';
         brtIcon.style.height = '30px';
 
-        const latitude = parseFloat(brtStops[i]['lat']);
-        const longitude = parseFloat(brtStops[i]['lng']);
+        const latitude = parseFloat(brtStations[i]['lat']);
+        const longitude = parseFloat(brtStations[i]['lng']);
 
         // Create marker with custom icon and lat,lng coordinates
-        const googleMapsMarker = new googleMaps.marker.AdvancedMarkerElement({
+        new googleMaps.marker.AdvancedMarkerElement({
             map: mapInstance,
             position: { lat: latitude, lng: longitude },
-            title: brtStops[i]['Full Name'],
+            title: brtStations[i]['Full Name'],
             content: brtIcon,
         });
 
