@@ -10,6 +10,7 @@ import MapsRadioBtn from '../radioBtn/mapsRadioBtn';
 import BusStopsDropdown from '../dropdown/busStops/busStopsDropdown';
 import BrtStationsDropdown from '../dropdown/brtStations/brtStationsDropdown';
 import RefreshBtn from '../buttons/refreshBtn';
+import SimulationBtn from '../buttons/simulationBtn';
 
 // Import required styles
 import Styles from './mapsDrawer.module.css';
@@ -125,7 +126,7 @@ const MapsDrawer = ({ returnValues }) => {
 
                     {/* Search Options Content */}
                     <h1 className="tw-text-lg tw-font-bold tw-font-under">Search Options</h1>
-                    <ul className={Styles.formUl} style={{ paddingBottom: '1.5vw' }}>
+                    <ul className={Styles.formUl} style={{ paddingBottom: '0.5vw' }}>
                         <li className={Styles.entry}>
                             <SearchForm 
                             label='busNumberSearchValue' 
@@ -150,7 +151,7 @@ const MapsDrawer = ({ returnValues }) => {
 
                     {/* Display Options Content */}
                     <h1 className="tw-text-lg tw-font-bold">Display Options</h1>
-                    <ul className={Styles.formUl} style={{ paddingBottom: '1.5vw' }}>
+                    <ul className={Styles.formUl} style={{ paddingBottom: '0.5vw' }}>
                         <li className={Styles.entry}>
                             <MapsCheckbox 
                             label='busNumberSearchCheckbox' 
@@ -182,6 +183,15 @@ const MapsDrawer = ({ returnValues }) => {
                             checkedStatus={mapState.checkBoxStatusValue?.brtStationsCheckbox || false}
                             />
                             BRT Stations
+                        </li>
+                    </ul>
+
+                    {/* Simulation Options Content */}
+                    <h1 className="tw-text-lg tw-font-bold">Simulation Options</h1>
+                    <ul className={Styles.formUl} style={{ paddingBottom: '0.5vw' }}>
+                        <li className={Styles.entry}>
+                            {/* Renders EMS symbol & Bus Symbols on click, Provides a popup alert at RHS */}
+                            <SimulationBtn BtnName='EMS'/>
                         </li>
                     </ul>
 
