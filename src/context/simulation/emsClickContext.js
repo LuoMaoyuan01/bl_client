@@ -4,6 +4,7 @@
 import React, { createContext, useState, useContext } from 'react';
 import brtRouteInformation from '../../data/brtRouteInfo';
 import displayEmsSymbols from '../../utils/googlemaps/simulation/displayEmsSymbols';
+import displayBrtAnimation from '../../utils/googlemaps/simulation/displayBrtAnimation';
 
 // Import required context
 import MapContext from '../mapContext';
@@ -24,9 +25,10 @@ export const EmsClickProvider = ({ children }) => {
 
     // Function to be run on clicking of the EMS button
     const handleClick = () => {
-        displayEmsSymbols( brtRouteInfo, googleMaps, mapInstance );
+        // displayEmsSymbols( brtRouteInfo, googleMaps, mapInstance );
         setViewPoint(brtRouteInfo['Blue Route']['View Point'], 15);
         setShowEmsAlertPopup(showEmsAlertPopup+1);
+        displayBrtAnimation(brtRouteInfo['Blue Route']['Decoded Polyline'], googleMaps, mapInstance);
     }
 
     console.log('run');
