@@ -1,5 +1,5 @@
 // Import required images
-
+import busStopIcon from '../../../assets/images/busStopIcon.png'
 // Import required libraries and functions
 import axios from 'axios';
 
@@ -13,7 +13,7 @@ const DisplayBusMarkers = async (busStops, googleMaps, mapInstance, handleMarker
 
         // Create a new DOM image for each marker
         const busIcon = document.createElement("img"); // Update this path as needed
-        busIcon.src = 'https://cdn-icons-png.flaticon.com/128/3066/3066259.png';
+        busIcon.src = busStopIcon;
 
         // Styling of icon
         busIcon.style.width = '20px';
