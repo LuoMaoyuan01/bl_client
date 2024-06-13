@@ -1,6 +1,6 @@
 .card {
-    width: 300px;
-    height: 220px;
+    width: 20vw;
+    height: 21vh;
     background-color: rgb(255, 255, 255);
     border-radius: 8px;
     border: black;
@@ -11,14 +11,14 @@
     align-items: center;
     justify-content: center;
     padding: 0px;
-    gap: 10px;
+    gap: 0px;
     overflow: hidden;
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.062);
     background-color: rgb(228, 226, 226);
     z-index: 100;
     position: fixed;
-    top: 10vh;
-    left: 45vw;
+    top: 0vh;
+    left: 80vw;
   }
 
   .errorIcon {
@@ -38,7 +38,7 @@
   
   .cookieDescription {
     text-align: center;
-    font-size: 0.7em;
+    font-size: 1em;
     font-weight: 600;
     color: rgb(99, 99, 99);
   }

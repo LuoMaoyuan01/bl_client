@@ -1,7 +1,7 @@
 // emsClickContext.js
 
 // Import required libraries and functions
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import brtRouteInformation from '../../data/brtRouteInfo';
 import displayEmsSymbols from '../../utils/googlemaps/simulation/displayEmsSymbols';
 import displayBrtAnimation from '../../utils/googlemaps/simulation/displayBrtAnimation';
@@ -19,24 +19,32 @@ const EmsClickContext = createContext();
 export const EmsClickProvider = ({ children }) => {
 
     const { googleMaps, mapInstance, setViewPoint } = useContext(MapContext);
-    const [showEmsAlertPopup, setShowEmsAlertPopup] = useState(0);
+    const [showEmsAlertPopup, setShowEmsAlertPopup] = useState(false);
+    const [popupClosed, setPopupClosed] = useState(false);
 
     const brtRouteInfo = brtRouteInformation();
 
-    // Function to be run on clicking of the EMS button
     const handleClick = () => {
-        // displayEmsSymbols( brtRouteInfo, googleMaps, mapInstance );
         setViewPoint(brtRouteInfo['Blue Route']['View Point'], 15);
-        setShowEmsAlertPopup(showEmsAlertPopup+1);
-        displayBrtAnimation(brtRouteInfo['Blue Route']['Decoded Polyline'], googleMaps, mapInstance);
+        setShowEmsAlertPopup(true);
     }
 
-    console.log('run');
+    const handlePopupClose = () => {
+        setShowEmsAlertPopup(false);
+        setPopupClosed(true);
+    }
+
+    useEffect(() => {
+        if (popupClosed) {
+            displayBrtAnimation(brtRouteInfo['Blue Route']['Decoded Polyline'], googleMaps, mapInstance);
+            setPopupClosed(false); // Reset the state
+        }
+    }, [popupClosed, brtRouteInfo, googleMaps, mapInstance]);
 
     return (
         <EmsClickContext.Provider value={{ handleClick }}>
             {children}
-            {showEmsAlertPopup && <EMSAlertPopup/>}
+            {showEmsAlertPopup && <EMSAlertPopup onClose={handlePopupClose}/>}
         </EmsClickContext.Provider>
     );
 };

@@ -8,24 +8,24 @@ import Styles from './EMSAlertPopup.module.css';
 import ErrorIcon from '../../../assets/images/errorIcon.png';
 
 
-const EMSAlertPopup = () => {
+const EMSAlertPopup = ({ onClose }) => {
 
-    const [close, setClose] = useState(false)
-    const message = `This bus number or direction does not exist currently, please try again with a different value.`;
+    const message = `EMS is requesting to use Blue Route!`;
     
-    if(close === true){
-        return ;
+    const handleClose = () => {
+        // Logic to close the popup
+        onClose(); // Call the onClose prop
     }
 
     return (
       <div className={Styles.card}>
         <img src={ErrorIcon} alt='Error Icon' className={Styles.errorIcon} id="cookieSvg"/>
-        <p className={Styles.cookieHeading}>Input Error Occured</p>
+        <p className={Styles.cookieHeading}>EMS REQUEST ALERT</p>
         <p className={Styles.cookieDescription}>
           {message}
         </p>
         <div className={Styles.buttonContainer}>
-          <button className={Styles.acceptButton} onClick={() => {setClose(true)}}>Confirm</button>
+          <button className={Styles.acceptButton} onClick={handleClose}>Confirm</button>
         </div>
       </div>
     );

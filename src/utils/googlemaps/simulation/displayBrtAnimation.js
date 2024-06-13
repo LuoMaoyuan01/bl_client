@@ -1,9 +1,4 @@
 // Import required images
-import busIcon from '../../../assets/images/busIcon.png';
-import EMSIcon from '../../../assets/images/EMSIcon.png';
-import brtStation from '../../../assets/images/brtStation.png';
-import busSvg from '../../../assets/images/svg/busSvg';
-
 
 const displayBrtAnimation = (routesPath, googleMaps, mapInstance) => {
     
@@ -75,6 +70,6 @@ const animateSymbols = (routePath) => {
 
 }
 
-window.displayBrtAnimation = displayBrtAnimation;
+// window.displayBrtAnimation = displayBrtAnimation;
 
 export default displayBrtAnimation;
