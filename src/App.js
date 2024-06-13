@@ -13,6 +13,7 @@ import Maps from "./pages/Map/googlemaps.js";
 import { BusStopsProvider } from './context/busStopsContext.js';
 import { MapProvider } from './context/mapContext';
 import { MapStateProvider } from './context/mapStateContext';
+import { EmsClickProvider } from './context/simulation/emsClickContext.js';
   
 function App() {
 
@@ -23,15 +24,17 @@ function App() {
         <BusStopsProvider>
           <MapProvider>
             <MapStateProvider>
-              <Routes>
-                <Route path="/">
-                  <Route path = "" exact element={<Navigate to="googlemaps/0/1" />} />
-                  <Route path = "home" exact element={<HomePage/>} />
-                  <Route path = "googlemaps/" exact element={<Maps/>}>
-                    <Route path=':busNumber/:direction' exact element={<Maps/>}/>
+              <EmsClickProvider>
+                <Routes>
+                  <Route path="/">
+                    <Route path = "" exact element={<Navigate to="googlemaps/0/1" />} />
+                    <Route path = "home" exact element={<HomePage/>} />
+                    <Route path = "googlemaps/" exact element={<Maps/>}>
+                      <Route path=':busNumber/:direction' exact element={<Maps/>}/>
+                    </Route>
                   </Route>
-                </Route>
-              </Routes>
+                </Routes>
+              </EmsClickProvider>
             </MapStateProvider>
           </MapProvider>
         </BusStopsProvider>

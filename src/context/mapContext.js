@@ -1,9 +1,10 @@
 // mapContext.js
-import React, { createContext, useRef, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
 const MapContext = createContext();
 
 export const MapProvider = ({ children }) => {
+    const [googleMaps, setGoogleMaps] = useState();
     const [mapInstance, setMapInstance] = useState();
 
   const setViewPoint = (latLng) => {
@@ -15,7 +16,7 @@ export const MapProvider = ({ children }) => {
   };
 
   return (
-    <MapContext.Provider value={{ mapInstance, setMapInstance, setViewPoint }}>
+    <MapContext.Provider value={{ mapInstance, setMapInstance, googleMaps, setGoogleMaps, setViewPoint }}>
       {children}
     </MapContext.Provider>
   );

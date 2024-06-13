@@ -27,7 +27,7 @@ const MapComponent = ({ busStops, brtRoute, busNumber, checkBoxStatus}) => {
   const [busStopData, setBusStopData] = useState(null);
 
   // Map instance context consumed
-  const { setMapInstance } = useContext(MapContext);
+  const { setMapInstance, setGoogleMaps } = useContext(MapContext);
 
   // Obtain stored static BRT Route data
   const brtRouteInfo = brtRouteInformation();
@@ -88,8 +88,9 @@ const MapComponent = ({ busStops, brtRoute, busNumber, checkBoxStatus}) => {
           // googleMaps.Map loads in google.maps.Map instance
           const mapInstance = new googleMaps.Map(mapRef.current, mapOptions);
 
-          // Inputs mapInstance value into setMap context
+          // Inputs mapInstance & googleMaps value into setMap context
           setMapInstance(mapInstance);
+          setGoogleMaps(googleMaps);
           
           console.log("Google Maps Loaded!");
 

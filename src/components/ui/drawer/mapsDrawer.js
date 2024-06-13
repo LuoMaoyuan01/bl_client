@@ -34,9 +34,6 @@ const MapsDrawer = ({ returnValues }) => {
     const brtRoutesSearchCheckboxRef = useRef(mapState.checkBoxStatus?.brtRoutesCheckbox || null);
     const busStopsCheckboxRef = useRef(mapState.checkBoxStatus?.busStopsCheckbox || null);
     const brtStationsCheckboxRef = useRef(mapState.checkBoxStatus?.brtStationsCheckbox || null);
-
-    console.log('test');
-
     
     // Function to handle form submission
     const handleSubmit = () => {

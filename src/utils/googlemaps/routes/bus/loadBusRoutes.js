@@ -1,6 +1,6 @@
 // Import required libraries and functions
 import axios from 'axios';
-import verifyTransitLineExists from '../verifyTransitLineExist';
+import verifyTransitLineExists from '../../misc/verifyTransitLineExist';
 
 const LoadBusRoutes = async (apiKey, busStops, busNumber, routingPreference) => {
 

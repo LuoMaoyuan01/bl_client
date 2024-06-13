@@ -5,7 +5,7 @@ import brtRouteInformation from '../../../../data/brtRouteInfo';
 
 // Import required styles
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Styles from './brtStationsDropdown.module.css';
+// import Styles from './brtStationsDropdown.module.css';
 
 // Import required context
 
@@ -16,7 +16,6 @@ const BrtStationsDropdown = forwardRef((props, ref) => {
 
     // Retain the value of blue route in the dropdown display
     let brtStationName;
-    console.log(selectedBrtStation);
     if(props.brtRouteValue !== '0'){
         brtStationName = props.brtRouteValue;
     }
