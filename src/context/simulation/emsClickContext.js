@@ -17,7 +17,7 @@ const EmsClickContext = createContext();
 // value available to all children components nested within provider
 export const EmsClickProvider = ({ children }) => {
 
-    const { googleMaps, mapInstance } = useContext(MapContext);
+    const { googleMaps, mapInstance, setViewPoint } = useContext(MapContext);
     const [showEmsAlertPopup, setShowEmsAlertPopup] = useState(0);
 
     const brtRouteInfo = brtRouteInformation();
@@ -25,6 +25,7 @@ export const EmsClickProvider = ({ children }) => {
     // Function to be run on clicking of the EMS button
     const handleClick = () => {
         displayEmsSymbols( brtRouteInfo, googleMaps, mapInstance );
+        setViewPoint(brtRouteInfo['Blue Route']['View Point'], 15);
         setShowEmsAlertPopup(showEmsAlertPopup+1);
     }
 

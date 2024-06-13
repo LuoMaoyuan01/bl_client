@@ -52,7 +52,7 @@ const displayEmsSymbols = ( brtRouteInfo, googleMaps, mapInstance ) =>{
         new googleMaps.marker.AdvancedMarkerElement({
             map: mapInstance,
             position: { lat: latitude, lng: longitude },
-            title: ('BRT ID.....').toUpperCase(),
+            title: ('EMS ID.....').toUpperCase(),
             content: ems,
         });
     }

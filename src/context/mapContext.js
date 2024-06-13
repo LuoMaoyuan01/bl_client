@@ -7,11 +7,10 @@ export const MapProvider = ({ children }) => {
     const [googleMaps, setGoogleMaps] = useState();
     const [mapInstance, setMapInstance] = useState();
 
-  const setViewPoint = (latLng) => {
+  const setViewPoint = (latLng, zoom) => {
     if (mapInstance) {
-        console.log(mapInstance);
         mapInstance.setCenter(latLng);
-        mapInstance.setZoom(20);
+        mapInstance.setZoom(zoom);
     }
   };
 
