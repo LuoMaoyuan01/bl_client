@@ -70,15 +70,20 @@ const MapComponent = ({ busStops, brtRoute, busNumber, checkBoxStatus}) => {
         // ------------------------------------------------------------------------------------------------------ //
 
         if (mapRef.current) {
-
-          // Load googlemaps auto focus on starting bus stop of the route
-          // If invalid bus number or BusNumberSearch checkbox not checked, load in the center of sg map
           const mapOptions = {
-            center: (busNumber && checkBoxStatus.busNumberSearchCheckbox) ? { lat: parseFloat(busStops[0]['lat'] || 1.3521), lng: parseFloat(busStops[0]['lng'] || 103.8198) }: { lat: 1.3521, lng: 103.8198 },
-            zoom: (busNumber && checkBoxStatus.busNumberSearchCheckbox) ? 15 : 12.4,
+
+            // Load in center of map by default
+            center: { lat: 1.3521, lng: 103.8198 },
+            zoom: 12.4,
             // mapTypeId: googleMaps.MapTypeId.HYBRID  , // Set the default map type to Satellite view with labels
             mapId: process.env.REACT_APP_MAP_ID,
           };
+
+          // Load googlemaps auto focus on starting bus stop of the route if valid busNumber and checkbox is ticked
+          if(busNumber !== '0' && checkBoxStatus.busNumberSearchCheckbox){
+            mapOptions.center = { lat: parseFloat(busStops[0]['lat'] || 1.3521), lng: parseFloat(busStops[0]['lng'] || 103.8198) };
+            mapOptions.zoom = 15
+          }
 
           // googleMaps.Map loads in google.maps.Map instance
           const mapInstance = new googleMaps.Map(mapRef.current, mapOptions);

@@ -34,6 +34,8 @@ const MapsDrawer = ({ returnValues }) => {
     const busStopsCheckboxRef = useRef(mapState.checkBoxStatus?.busStopsCheckbox || null);
     const brtStationsCheckboxRef = useRef(mapState.checkBoxStatus?.brtStationsCheckbox || null);
 
+    console.log('test');
+
     
     // Function to handle form submission
     const handleSubmit = () => {
@@ -139,8 +141,10 @@ const MapsDrawer = ({ returnValues }) => {
                             label='busStopsDropdown' 
                             ref={busStopsDropdownRef} 
                             busNumberSearchValue={mapState.searchFormValue?.busNumberSearchValue || '0'}
-                            brtStationsCheckbox={mapState.checkBoxStatus?.brtStationsCheckbox || false}
-                            busStopsCheckbox={mapState.checkBoxStatus?.busStopsCheckbox || false}/>
+                            busStopsCheckbox={mapState.checkBoxStatusValue?.busStopsCheckbox || false}
+                            brtStationsCheckbox={mapState.checkBoxStatusValue?.brtStationsCheckbox || false}
+                            brtRouteValue={mapState.searchFormValue?.brtRouteValue || '0'}
+                            />
                         </li>
                     </ul>
 
