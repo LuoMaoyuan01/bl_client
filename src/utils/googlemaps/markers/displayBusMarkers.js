@@ -38,8 +38,6 @@ const DisplayBusMarkers = async (busStops, googleMaps, mapInstance, handleMarker
                 handleMarkerClick(responseData);
             })
         });
-
-        // Add event listener for click and displays a moveable popup
     }
 
     return;

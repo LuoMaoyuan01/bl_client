@@ -16,6 +16,7 @@ import DisplayBrtMarkers from '../../utils/googlemaps/markers/displayBrtMarkers'
 
 // Import required component
 import BusStopsCard from '../../components/ui/popup/busStopCard';
+import BrtStationModal from '../ui/modal/brtStationModal';
 
 
 // Import required context
@@ -25,18 +26,31 @@ import MapContext from '../../context/mapContext';
 const MapComponent = ({ busStops, brtRoute, busNumber, checkBoxStatus}) => {
   const mapRef = useRef(null);
   const [busStopData, setBusStopData] = useState(null);
+  const [brtMarkerClicked, setBrtMarkerClicked] = useState(false);
 
   // Map instance context consumed
   const { setMapInstance, setGoogleMaps } = useContext(MapContext);
 
   // Obtain stored static BRT Route data
   const brtRouteInfo = brtRouteInformation();
+  // console.log('rerender');
 
   // Handles the clicking on bus markers
   const handleMarkerClick = async (busMarkerResponseData) => {
     try {
       setBusStopData(busMarkerResponseData);
       // Toggles the busMarker 
+    } catch (error) {
+      console.error('Error fetching bus stop data:', error);
+    }
+  };
+
+  // Handles the clicking on bus markers
+  const handleBrtMarkerClick = () => {
+    try {
+      // Toggling of brtMarker status
+      setBrtMarkerClicked(!brtMarkerClicked);
+
     } catch (error) {
       console.error('Error fetching bus stop data:', error);
     }
@@ -152,7 +166,7 @@ const MapComponent = ({ busStops, brtRoute, busNumber, checkBoxStatus}) => {
           if((brtRoute !== '0') && checkBoxStatus.brtStationsCheckbox){
 
             let brtStations = brtRouteInfo[brtRoute]['Brt Stations'];
-            await DisplayBrtMarkers(brtStations, googleMaps, mapInstance);
+            await DisplayBrtMarkers(brtStations, googleMaps, mapInstance, handleBrtMarkerClick);
 
             console.log("BRT Markers Displayed!");
           }
@@ -219,6 +233,7 @@ const MapComponent = ({ busStops, brtRoute, busNumber, checkBoxStatus}) => {
     <>
       <div ref={mapRef} style={{ height: '100vh', width: '83%', zIndex: '1', position: 'relative'}} />
       {busStopData ? <BusStopsCard busStopData = {busStopData}/> : null}
+      {brtMarkerClicked ? <BrtStationModal handleModalClose={handleBrtMarkerClick}/> : null}
     </>
   )
 };
