@@ -11,6 +11,7 @@ import MapContext from '../mapContext';
 
 // Import required components
 import EMSAlertPopup from '../../components/ui/popup/EMSAlertPopup';
+import EmsModal from '../../components/ui/modal/emsModal';
 
 const EmsClickContext = createContext();
 
@@ -21,6 +22,7 @@ export const EmsClickProvider = ({ children }) => {
     const { googleMaps, mapInstance, setViewPoint } = useContext(MapContext);
     const [showEmsAlertPopup, setShowEmsAlertPopup] = useState(false);
     const [popupClosed, setPopupClosed] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false)
 
     const brtRouteInfo = brtRouteInformation();
 
@@ -34,6 +36,10 @@ export const EmsClickProvider = ({ children }) => {
         setPopupClosed(true);
     }
 
+    const handleModalClose = () => {
+        setModalOpen(false);
+    }
+
     useEffect(() => {
         const runAnimation = async () => {
             if (popupClosed) {
@@ -42,7 +48,7 @@ export const EmsClickProvider = ({ children }) => {
                 setPopupClosed(false); // Reset the state
                 
                 // Run Popup window Animation Video of EMS passing BRT
-                console.log('returned');
+                setModalOpen(true);
             }
         }
 
@@ -53,6 +59,7 @@ export const EmsClickProvider = ({ children }) => {
         <EmsClickContext.Provider value={{ handleClick }}>
             {children}
             {showEmsAlertPopup && <EMSAlertPopup onClose={handlePopupClose}/>}
+            {modalOpen && !showEmsAlertPopup && <EmsModal onClose={handleModalClose}/>}
         </EmsClickContext.Provider>
     );
 };

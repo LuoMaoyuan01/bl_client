@@ -20,11 +20,10 @@ const EmsModal = () => {
     return (
         <div
           className="modal show"
-          style={{ display: 'block', position: 'initial' }}
+          style={{ display: 'block', position: 'fixed', zIndex: '101'}}
         >
-          <Modal.Dialog>
+          <Modal.Dialog className='modal-fullscreen' style={{left: '17.03vw', height: '100vh', width: '82.9vw', border: '2px solid black'}}>
             <Modal.Header closeButton onClick={handleClose}>
-              <Modal.Title>Modal title</Modal.Title>
             </Modal.Header>
     
             <Modal.Body>
