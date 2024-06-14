@@ -25,7 +25,7 @@ export const EmsClickProvider = ({ children }) => {
     const brtRouteInfo = brtRouteInformation();
 
     const handleClick = () => {
-        setViewPoint(brtRouteInfo['Blue Route']['View Point'], 15);
+        setViewPoint(brtRouteInfo['Blue Route']['View Point'], 17);
         setShowEmsAlertPopup(true);
     }
 

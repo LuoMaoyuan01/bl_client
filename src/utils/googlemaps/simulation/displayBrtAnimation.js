@@ -53,10 +53,10 @@ const animateSymbols = (routePath) => {
     let emscount = 0;
     let brtcount = 800;
 
-    window.setInterval(() => {
-        emscount = (emscount + 1) % 20000; // Limit of traversal
+    const emsIntervalID = window.setInterval(() => {
+        emscount = (emscount + 1) % 2000; // Limit of traversal
 
-        brtcount = (brtcount + 1) % 20000;
+        brtcount = (brtcount + 1) % 2000;
 
         const icons = routePath.get("icons");
 
@@ -66,6 +66,16 @@ const animateSymbols = (routePath) => {
         // Brt 1 symbol
         icons[1].offset = brtcount / 300 + "%";
         routePath.set("icons", icons);
+
+        console.log(icons[0].offset);
+        console.log(icons[1].offset);
+
+        // Break loop once both icons offset same
+        if(icons[0].offset === icons[1].offset){
+            console.log('break');
+            clearInterval(emsIntervalID);
+            return;
+        }
     }, 20);
 
 }
