@@ -10,9 +10,10 @@ import BusStopsDropdown from '../../components/ui/dropdown/busStops/busStopsDrop
 import BrtStationsDropdown from '../../components/ui/dropdown/brtStations/brtStationsDropdown';
 import BusStopsCard from '../../components/ui/popup/busStopCard';
 import RefreshBtn from '../../components/ui/buttons/refreshBtn';
-import Model3D from '../../components/3dModels/test';
+import BrtStation3DModel from '../../components/3dModels/brtStation3DModel';
 import obtainBrtRoutePolyline from '../../utils/googlemaps/misc/obtainBrtRoutePolyline';
 import EmsModal from '../../components/ui/modal/emsModal';
+import Loader3D from '../../components/ui/loaders/loader3D';
 
 // Import required library and functions
 import { useNavigate } from 'react-router-dom';
@@ -23,7 +24,7 @@ function HomePage() {
 
     return(
         <div style={{width: '100%', height: '100%'}}>
-            <Model3D/>
+            <Loader3D/>
         </div>
     )
 }
