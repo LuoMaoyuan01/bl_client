@@ -35,10 +35,18 @@ export const EmsClickProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        if (popupClosed) {
-            displayBrtAnimation(brtRouteInfo['Blue Route']['Decoded Polyline'], googleMaps, mapInstance);
-            setPopupClosed(false); // Reset the state
+        const runAnimation = async () => {
+            if (popupClosed) {
+                // Run Brt Google Maps Route Animation
+                await displayBrtAnimation(brtRouteInfo['Blue Route']['Decoded Polyline'], googleMaps, mapInstance);
+                setPopupClosed(false); // Reset the state
+                
+                // Run Popup window Animation Video of EMS passing BRT
+                console.log('returned');
+            }
         }
+
+        runAnimation();
     }, [popupClosed, brtRouteInfo, googleMaps, mapInstance]);
 
     return (
