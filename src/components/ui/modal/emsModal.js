@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 
 // Import required styles
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Styles from './emsModal.module.css';
+// import Styles from './emsModal.module.css';
 
 // Import required animations
 import busAnimationVideo from '../../../assets/videos/busAnimationVideo.mp4';
@@ -23,10 +23,9 @@ const EmsModal = ({handleModalClose}) => {
             </Modal.Header>
     
             <Modal.Body>
-              {/* <p style={{display: 'flex', justifyContent: 'center'}}>Modal body text goes here.</p> */}
+              {/* Video autoplays on modal opening & auto closes on modal closing */}
               <video width="100%" style={{display: 'flex', justifyContent: 'center'}} controls autoPlay onEnded={handleModalClose}>
                 <source src={busAnimationVideo} type="video/mp4" />
-                Your browser does not support the video tag.
             </video>
             </Modal.Body>
           </Modal.Dialog>

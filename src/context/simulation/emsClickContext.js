@@ -24,6 +24,7 @@ export const EmsClickProvider = ({ children }) => {
     const [popupClosed, setPopupClosed] = useState(false);
     const [modalOpen, setModalOpen] = useState(false)
 
+    // Obtain static brtRoute information stored
     const brtRouteInfo = brtRouteInformation();
 
     const handleClick = () => {
@@ -47,8 +48,7 @@ export const EmsClickProvider = ({ children }) => {
                 await displayBrtAnimation(brtRouteInfo['Blue Route']['Decoded Polyline'], googleMaps, mapInstance);
                 setPopupClosed(false); // Reset the state
                 
-                // Run Popup window Animation Video of EMS passing BRT
-                setModalOpen(true);
+                setModalOpen(true); // Enable EmsModal to popup
 
             }
         }

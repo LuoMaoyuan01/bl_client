@@ -4,6 +4,8 @@ const displayBrtAnimation = async (routesPath, googleMaps, mapInstance) => {
     
     // Promise and resolve will ensure displayBrtAnimation will run all its components before the next function in emsClickContext can run
     return new Promise((resolve) => {
+
+        // Initialising the various symbols for route animation
         const emsSymbol = {
             path: googleMaps.SymbolPath.FORWARD_CLOSED_ARROW,
             scale: 9,
@@ -22,9 +24,8 @@ const displayBrtAnimation = async (routesPath, googleMaps, mapInstance) => {
             strokeColor: "black",
         };
     
-        // Plotting of routes on google maps
+        // Plotting of route on google maps
         const routePath = new googleMaps.Polyline({
-            // Uncomment line 17 for pre-decoded paths
             path: googleMaps.geometry.encoding.decodePath(routesPath[0]),
             icons:[
                 {
@@ -47,10 +48,8 @@ const displayBrtAnimation = async (routesPath, googleMaps, mapInstance) => {
     
         animateSymbols(routePath, resolve);
 
-        // resolve();
     })
 
-    // routePath.setMap(mapInstance);
 };
 
 const animateSymbols = (routePath, resolve) => {
@@ -77,7 +76,11 @@ const animateSymbols = (routePath, resolve) => {
         // Break loop once both icons offset same
         if(icons[0].offset === icons[1].offset){
             clearInterval(emsIntervalID);
+
+            // Remove route from map upon finishing animation
             routePath.setMap(null);
+
+            // Resolve promise and continue code flow
             resolve();
         }
     }, 20);
