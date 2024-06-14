@@ -27,6 +27,7 @@ const MapsDrawer = ({ returnValues }) => {
     const busNumberSearchValueRef = useRef(mapState.searchFormValue?.busNumberSearchValue || null);
     const busDirectionSearchCheckboxRef = useRef(mapState.searchFormValue?.busDirectionValue || '1');
     const brtRouteValueRef = useRef(mapState.searchFormValue?.brtRouteValue || '0');
+    console.log(brtRouteValueRef);
     const busStopsDropdownRef = useRef(null);
 
     // Checkbox references
@@ -49,6 +50,8 @@ const MapsDrawer = ({ returnValues }) => {
         const busNumberSearchValue = busNumberSearchValueRef.current.value ? busNumberSearchValueRef.current.value : '0';
         const busDirectionValue = busDirectionSearchCheckboxRef.current.checkedStatus ? busDirectionSearchCheckboxRef.current.checkedStatus : '1';
         const brtRouteValue = brtRouteValueRef.current.getSelectedBrtStation() ? brtRouteValueRef.current.getSelectedBrtStation() : '0';
+
+        console.log(brtRouteValue);
 
         // Appends the checkbox status boolean values to an array
         const checkBoxStatus = {
@@ -123,7 +126,7 @@ const MapsDrawer = ({ returnValues }) => {
 
                     {/* Search Options Content */}
                     <h1 className="tw-text-lg tw-font-bold tw-font-under">Search Options</h1>
-                    <ul className={Styles.formUl} style={{ paddingBottom: '0.5vw' }}>
+                    <ul className={Styles.formUl} s tyle={{ paddingBottom: '0.5vw' }}>
                         <li className={Styles.entry}>
                             <SearchForm 
                             label='busNumberSearchValue' 

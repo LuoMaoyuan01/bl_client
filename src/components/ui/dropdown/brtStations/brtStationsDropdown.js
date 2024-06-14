@@ -28,10 +28,13 @@ const BrtStationsDropdown = forwardRef((props, ref) => {
     useImperativeHandle(ref, () => ({
         // Returns '0' if no Brt Stations Selected
         getSelectedBrtStation: () => {
-            if (selectedBrtStation === 'Brt Routes') {
-                return '0';
-            } else {
+            if(selectedBrtStation !== 'Brt Routes'){
                 return selectedBrtStation;
+            }
+            else if (props.brtRouteValue !== '0') {
+                return props.brtRouteValue;
+            } else {
+                return '0';
             }
         },
     }));
@@ -45,7 +48,7 @@ const BrtStationsDropdown = forwardRef((props, ref) => {
     
             <Dropdown.Menu style={{minWidth: '10.85vw'}}>
                 {Object.keys(brtRouteInfo).map((brtRoute, index) => (
-                    <Dropdown.Item eventKey={index} key={index} active={selectedBrtStation === brtRoute}>
+                    <Dropdown.Item eventKey={index} key={index} active={props.brtRouteValue === brtStationName}>
                         {brtRoute}
                     </Dropdown.Item>
                 ))}
