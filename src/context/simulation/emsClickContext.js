@@ -49,6 +49,7 @@ export const EmsClickProvider = ({ children }) => {
                 
                 // Run Popup window Animation Video of EMS passing BRT
                 setModalOpen(true);
+
             }
         }
 
@@ -59,7 +60,7 @@ export const EmsClickProvider = ({ children }) => {
         <EmsClickContext.Provider value={{ handleClick }}>
             {children}
             {showEmsAlertPopup && <EMSAlertPopup onClose={handlePopupClose}/>}
-            {modalOpen && !showEmsAlertPopup && <EmsModal onClose={handleModalClose}/>}
+            {modalOpen && !showEmsAlertPopup && <EmsModal handleModalClose={handleModalClose}/>}
         </EmsClickContext.Provider>
     );
 };

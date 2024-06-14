@@ -77,10 +77,11 @@ const animateSymbols = (routePath, resolve) => {
         // Break loop once both icons offset same
         if(icons[0].offset === icons[1].offset){
             clearInterval(emsIntervalID);
+            routePath.setMap(null);
             resolve();
         }
     }, 20);
-    
+
     return;
 
 }
