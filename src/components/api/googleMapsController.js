@@ -1,7 +1,5 @@
 // Import required library and functions
 import React, { useEffect, useRef, useState, useContext } from 'react';
-// import ReactDOM from 'react-dom';
-
 import loadGoogleMapsApi from './loadGoogleMapsApi';
 import busRoutesLoader from '../../utils/googlemaps/routes/bus/busRoutesController';
 // import brtRoutesLoader from '../../utils/googlemaps/routes/brt/brtRoutesController';
@@ -22,6 +20,9 @@ import BrtStationModal from '../ui/modal/brtStationModal';
 
 // Import required context
 import MapContext from '../../context/mapContext';
+
+// Import required styles
+import Styles from './googleMapsController.module.css';
 
 
 const MapComponent = ({ busStops, brtRoute, busNumber, checkBoxStatus}) => {
@@ -233,7 +234,7 @@ const MapComponent = ({ busStops, brtRoute, busNumber, checkBoxStatus}) => {
   // Returns the map component with its styling parameters
   return (
     <>
-      <div ref={mapRef} style={{ height: '100vh', width: '83%', zIndex: '1', position: 'relative'}} />
+      <div ref={mapRef} className={Styles.map} />
       {busStopData ? <BusStopsCard busStopData = {busStopData}/> : null}
       {brtMarkerClicked ? <BrtStationModal handleModalClose={handleBrtMarkerClick}/> : null}
     </>

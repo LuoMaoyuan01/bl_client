@@ -1,0 +1,30 @@
+.map {
+    /* { height: '100vh', width: '83%', zIndex: '1', position: 'relative'} */
+    height: 100%;
+    width: 83%;
+    z-index: 1;
+    position: relative;
+}
+
+/* Responsive screen design */
+
+/* Styles for Phone Screens */
+@media (min-width: 10px) and (max-width: 460px){
+    .map {
+        width: 75%;
+    }
+  }
+  
+  /* Styles for Tablets*/
+  @media (min-width: 461px) and (max-width: 1400px) {
+    .map {
+        width: 80%;
+    }
+  }
+  
+  /* Styles for Laptops (min-width: 1366px) */
+  @media (min-width: 1401px) {
+    .map {
+        width: 83%;
+    }
+  }

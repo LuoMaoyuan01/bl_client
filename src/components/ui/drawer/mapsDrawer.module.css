@@ -55,9 +55,10 @@
 /* Responsive screen design */
 
 /* Styles for Phone Screens */
-@media (min-width: 10px) and (max-width: 760px){
+@media (min-width: 10px) and (max-width: 460px){
     .drawer {
-      font-size: x-small; /* Small font for drawer*/
+        font-size: x-small; /* Small font for drawer*/
+        width: 25%;
     }
     .drawerHeader {
         font-size: small;
@@ -66,9 +67,10 @@
   }
   
   /* Styles for Tablets*/
-  @media (min-width: 761px) and (max-width: 1200px) {
+  @media (min-width: 461px) and (max-width: 1400px) {
     .drawer {
         font-size: small; /* Adjust width for tablet screens */
+        width: 20%;
     }
     .drawerHeader {
         font-size: medium;
@@ -77,9 +79,9 @@
   }
   
   /* Styles for Laptops (min-width: 1366px) */
-  @media (min-width: 1201px) {
+  @media (min-width: 1401px) {
     .drawer {
-      font-size: medium; /* Adjust width for larger screens */
+        font-size: medium; /* Adjust width for larger screens */
     }
     .drawerHeader {
         font-size: large;

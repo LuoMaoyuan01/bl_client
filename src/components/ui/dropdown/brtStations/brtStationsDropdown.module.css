@@ -14,7 +14,7 @@
 /* Responsive Screen Design */
 
 /* Styles for Phone Screens */
-@media (min-width: 10px) and (max-width: 760px){
+@media (min-width: 10px) and (max-width: 460px){
     .dropdownToggle {
       font-size: x-small;
       min-width: 3vw;
@@ -29,7 +29,7 @@
   }
   
   /* Styles for Tablets*/
-  @media (min-width: 761px) and (max-width: 1200px) {
+  @media (min-width: 461px) and (max-width: 1400px) {
     .dropdownToggle {
         font-size: small; /* Adjust width for tablet screens */
         max-width: 10vw;
@@ -42,7 +42,7 @@
   }
   
   /* Styles for Laptops (min-width: 1366px) */
-  @media (min-width: 1201px) {
+  @media (min-width: 1401px) {
     .dropdownToggle {
       font-size: medium; /* Adjust width for larger screens */
     }
