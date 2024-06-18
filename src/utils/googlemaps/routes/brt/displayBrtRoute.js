@@ -1,5 +1,5 @@
 
-const displayBrtRoute = (routesTime, routesPath, googleMaps, mapInstance) => {
+const displayBrtRoute = (routesTime, routesPath, routesColour, googleMaps, mapInstance) => {
     
     // Creating infoWindow component
     const infoWindow = new googleMaps.InfoWindow({
@@ -15,7 +15,7 @@ const displayBrtRoute = (routesTime, routesPath, googleMaps, mapInstance) => {
             path: googleMaps.geometry.encoding.decodePath(routesPath[i]),
             // path: routesPath[i],
             geodesic: true,
-            strokeColor: '#0096FF',
+            strokeColor: routesColour,
             strokeOpacity: 1,
             strokeWeight: 4,
             zIndex: 1,

@@ -7,6 +7,7 @@ import busRoutesLoader from '../../utils/googlemaps/routes/bus/busRoutesControll
 // import brtRoutesLoader from '../../utils/googlemaps/routes/brt/brtRoutesController';
 import obtainBusRoute from '../../utils/googlemaps/routes/bus/obtainBusRoute';
 // import obtainBrtRoute from '../../utils/googlemaps/routes/brt/obtainBrtRoute';
+// import obtainBrtRoutePolyline from '../../utils/googlemaps/misc/obtainBrtRoutePolyline';
 import displayBusRoute from '../../utils/googlemaps/routes/bus/displayBusRoute';
 import displayBrtRoute from '../../utils/googlemaps/routes/brt/displayBrtRoute';
 import displayBrtRouteWithTraffic from '../../utils/googlemaps/routes/brt/displayBrtRouteWithTraffic';
@@ -154,9 +155,10 @@ const MapComponent = ({ busStops, brtRoute, busNumber, checkBoxStatus}) => {
 
             let routesTime = (parseFloat(brtRouteInfo[brtRoute]['Duration'] / 60));
             let routesPath = brtRouteInfo[brtRoute]['Decoded Polyline'];
+            let routesColour = brtRouteInfo[brtRoute]['lineColour'];
 
             // Plot selected Brt Route on Maps
-            displayBrtRoute(routesTime, routesPath, googleMaps, mapInstance);
+            displayBrtRoute(routesTime, routesPath, routesColour, googleMaps, mapInstance);
 
             
 

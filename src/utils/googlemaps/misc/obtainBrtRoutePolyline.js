@@ -88,11 +88,11 @@ const obtainBrtRoutePolyline = async (googleMaps) => {
       try {
           const response = await axios.post(BaseUrl, requestBody, { headers })
           let responseData = response.data;
-          // console.log(response.data);
+          console.log(response.data);
 
           // Take the encoded path from console log and put into the static brtRouteInfo JSON 
           let EncodedPolyline = responseData['routes'][0]['polyline']['encodedPolyline'];
-          // console.log(EncodedPolyline);
+          console.log(EncodedPolyline);
 
           // Return route that is needed
           let route = responseData['routes'][0];

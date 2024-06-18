@@ -48,7 +48,7 @@ const BrtStationsDropdown = forwardRef((props, ref) => {
     
             <Dropdown.Menu style={{minWidth: '10.85vw'}}>
                 {Object.keys(brtRouteInfo).map((brtRoute, index) => (
-                    <Dropdown.Item eventKey={index} key={index} active={props.brtRouteValue === brtStationName}>
+                    <Dropdown.Item eventKey={index} key={index} >
                         {brtRoute}
                     </Dropdown.Item>
                 ))}
