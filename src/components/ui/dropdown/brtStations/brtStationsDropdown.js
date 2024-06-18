@@ -5,7 +5,7 @@ import brtRouteInformation from '../../../../data/brtRouteInfo';
 
 // Import required styles
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import Styles from './brtStationsDropdown.module.css';
+import Styles from './brtStationsDropdown.module.css';
 
 // Import required context
 
@@ -46,11 +46,11 @@ const BrtStationsDropdown = forwardRef((props, ref) => {
     return (
         <Dropdown onSelect={handleSelect}>
             {/* If no valid search value, dropdown is disabled*/}
-            <Dropdown.Toggle id="dropdown-custom-1" variant='light' style={{minWidth: '10.85vw'}}>
+            <Dropdown.Toggle id="dropdown-custom-1" variant='light' className={Styles.dropdownToggle}>
                 {brtStationName ? brtStationName : selectedBrtStation.slice(0, 22)}
             </Dropdown.Toggle>
     
-            <Dropdown.Menu style={{minWidth: '10.85vw'}}>
+            <Dropdown.Menu className={Styles.dropdownMenu}>
                 {Object.keys(brtRouteInfo).map((brtRoute, index) => (
                     <Dropdown.Item eventKey={index} key={index} >
                         {brtRoute}

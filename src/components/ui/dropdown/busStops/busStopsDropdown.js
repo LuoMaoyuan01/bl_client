@@ -22,14 +22,23 @@ const BusStopsDropdown = forwardRef((props, ref) => {
     const brtRouteInfo = brtRouteInformation();
 
     // Get a local value of the busStops array for manipulation
-    let localBusStops = busStops;
+    let localBusStops = [];
 
     const [selectedBusStopName, setSelectedBusStopName] = useState('Stations');
+
+    // if((props.busNumberSearchValue) > 0 && props.busStopsCheckbox)){
+    //     localBusStops = busStops;
+    // }
 
     // Perform checks that enables the dropDown menu if passed
     let validSearchValue = false;
     if((parseInt(props.busNumberSearchValue) > 0 && props.busStopsCheckbox) || ((props.brtRouteValue !== 'Brt Stations') && props.brtStationsCheckbox)){
         validSearchValue = true;
+    }
+    
+    // Push busStops into localBusStops if valid busNumber and bus stops checkbox checked
+    if((props.busNumberSearchValue) > 0 && props.busStopsCheckbox){
+        localBusStops = busStops;
     }
 
     // Push brtStations into busStops if Brt route selected and brt stations checkbox checked
@@ -51,11 +60,11 @@ const BusStopsDropdown = forwardRef((props, ref) => {
     return (
     <Dropdown onSelect={handleSelect}>
         {/* If no valid search value, dropdown is disabled*/}
-        <Dropdown.Toggle id="dropdown-custom-1" variant='light' disabled={!validSearchValue} style={{minWidth: '10.85vw'}}>
+        <Dropdown.Toggle id="dropdown-custom-1" variant='light' disabled={!validSearchValue} className={Styles.dropdownToggle}>
             {selectedBusStopName.slice(0, 22)}
         </Dropdown.Toggle>
 
-        <Dropdown.Menu as={DropdownSearchMenu} style={{maxWidth: '15vw'}}>
+        <Dropdown.Menu as={DropdownSearchMenu} className={Styles.dropdownMenu}>
             {localBusStops.map((busStop, index) => (
                 <Dropdown.Item eventKey={index} key={index} className={Styles.dropdownItemDivider} active={selectedBusStopName === busStop['Full Name']}>
                     {busStop['Full Name']}

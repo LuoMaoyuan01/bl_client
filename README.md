@@ -5,7 +5,7 @@ Develop a GIS function that loads all the routes associated with a Singapore bus
 ST Engineering BRT GIS prototype web application that aims to simulate the functions required to control and survey a BRT system based in Singapore.
 
 ## Developers:
-Management: Grishi Gupta <br/>
+Management : Grishi Gupta <br/>
 Development Team : Luo Maoyuan <br/>
 Design Team : <br/>
 
@@ -43,13 +43,15 @@ This client side code is developed with [React JS](https://react.dev/) and teste
     npm install
     ```
 
-5. Start the frontend development server:
+5. Start the backend server
+
+6. Start the frontend development server:
 
     ```bash
     npm start
     ```
 
-6. Open your web browser and go to [http://localhost:3000](http://localhost:3000) to view the application.
+7. Open your web browser and go to [http://localhost:3000](http://localhost:3000) to view the application.
 
 ## Docker Installation & Setup
 - docker build -t bl_client:v100 . (custom version number in sequence) <br/>

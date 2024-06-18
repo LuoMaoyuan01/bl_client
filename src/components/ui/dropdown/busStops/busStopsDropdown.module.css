@@ -1,10 +1,55 @@
-.dropdownItemDivider {
-    border-bottom: 1px solid #000000;
-    padding-bottom: 8px;
-    margin-bottom: 8px;
+.dropdownToggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 10.85vw;
+  overflow: auto;
+}
+
+.dropdownMenu {
+  max-width: 15vw;
+}
+
+/* Responsive Screen Design */
+
+/* Styles for Phone Screens */
+@media (min-width: 10px) and (max-width: 760px){
+  .dropdownToggle {
+    font-size: x-small;
+    min-width: 3vw;
+    max-width: 10vw;
+    justify-content: left;
+    align-items: left;
   }
-  
-  .dropdownItemDivider:last-child {
-    border-bottom: none; /* Remove the border from the last item */
-    margin-bottom: 0;
+
+  .dropdownMenu {
+      font-size: x-small;
+      min-width: 3vw;
+      max-width: 10vw;
   }
+}
+
+/* Styles for Tablets*/
+@media (min-width: 761px) and (max-width: 1200px) {
+  .dropdownToggle {
+      font-size: small; /* Adjust width for tablet screens */
+      max-width: 10.85vw;
+      justify-content: left;
+      align-items: left;
+  }
+
+  .dropdownMenu {
+      font-size: small; /* Adjust width for larger screens */
+    }
+}
+
+/* Styles for Laptops (min-width: 1366px) */
+@media (min-width: 1201px) {
+  .dropdownToggle {
+    font-size: medium; /* Adjust width for larger screens */
+  }
+
+  .dropdownMenu {
+      font-size: medium; /* Adjust width for larger screens */
+    }
+}

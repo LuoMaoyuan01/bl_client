@@ -25,17 +25,17 @@ const DropdownSearchMenu = React.forwardRef(
             className={className}
             aria-labelledby={labeledBy}
             >
-            <Form.Control
-                autoFocus
-                className="mx-3 my-2 w-auto"
-                placeholder="Type to filter..."
-                onChange={(e) => setValue(e.target.value)}
-                value={value}
-            />
-            {/* <ul className={`list-unstyled ${Styles.dropdownMenuScroll}`}> */}
-            <ul className={`list-unstyled ${Styles.dropdownMenuScroll}`}>
-                {filteredChildren}
-            </ul>
+              <Form.Control
+                  autoFocus
+                  className={`mx-3 my-2 w-auto ${Styles.dropdownSearchMenu}`}
+                  placeholder="Filter..."
+                  onChange={(e) => setValue(e.target.value)}
+                  value={value}
+              />
+              {/* <ul className={`list-unstyled ${Styles.dropdownMenuScroll}`}> */}
+              <ul className={`list-unstyled ${Styles.dropdownMenuScroll}`}>
+                  {filteredChildren}
+              </ul>
             </div>
         );
     },

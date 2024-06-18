@@ -125,8 +125,8 @@ const MapsDrawer = ({ returnValues }) => {
                     {/* List of content in Drawer component */}
 
                     {/* Search Options Content */}
-                    <h1 className="tw-text-lg tw-font-bold tw-font-under">Search Options</h1>
-                    <ul className={Styles.formUl} s tyle={{ paddingBottom: '0.5vw' }}>
+                    <h1 className={Styles.drawerHeader}>Search Options</h1>
+                    <ul className={Styles.formUl} style={{ paddingBottom: '0.5vw' }}>
                         <li className={Styles.entry}>
                             <SearchForm 
                             label='busNumberSearchValue' 
@@ -150,7 +150,7 @@ const MapsDrawer = ({ returnValues }) => {
                     </ul>
 
                     {/* Display Options Content */}
-                    <h1 className="tw-text-lg tw-font-bold">Display Options</h1>
+                    <h1 className={Styles.drawerHeader}>Display Options</h1>
                     <ul className={Styles.formUl} style={{ paddingBottom: '0.5vw' }}>
                         <li className={Styles.entry}>
                             <MapsCheckbox 
@@ -187,7 +187,7 @@ const MapsDrawer = ({ returnValues }) => {
                     </ul>
 
                     {/* Simulation Options Content */}
-                    <h1 className="tw-text-lg tw-font-bold">Simulation Options</h1>
+                    <h1 className={Styles.drawerHeader}>Simulation Options</h1>
                     <ul className={Styles.formUl} style={{ paddingBottom: '0.5vw' }}>
                         <li className={Styles.entry}>
                             {/* Renders EMS symbol & Bus Symbols on click, Provides a popup alert at RHS */}
@@ -195,11 +195,11 @@ const MapsDrawer = ({ returnValues }) => {
                         </li>
                     </ul>
 
-                    <ul style={{ paddingBottom: '1.5vw', border: 'none'}}>
+                    <ul style={{paddingBottom: '1.5vw', border: 'none'}}>
                         <li className={Styles.submitEntry} >
                             {/* Submit button in Drawer component that sends the data to parent googlemaps */}
                             <SubmitBtn handleSubmit={handleSubmit} onKeyDown={handleKeyDown}/>
-                            <RefreshBtn style={{ paddingBottom: '1.5vw' }}/>
+                            <RefreshBtn style={{ paddingBottom: '1.5vw'}}/>
                         </li>
                     </ul>
                 </div>

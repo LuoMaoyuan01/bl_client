@@ -3,3 +3,50 @@
     max-width: 18vw;
     overflow-y: auto; /* Enable vertical scrolling */
   }
+
+  .dropdownSearchMenu {
+
+    max-height: 7vh; /* Adjust the height as needed to show 4 items */
+    max-width: 10vw;
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+
+  /* Responsive Screen Design */
+
+/* Styles for Phone Screens */
+@media (min-width: 10px) and (max-width: 760px){
+  .dropdownMenuScroll {
+    font-size: x-small;
+    max-height: 15vh;
+    max-width: 10vw;
+
+  }
+
+  .dropdownSearchMenu {
+    font-size: x-small;
+    max-width: 10vw;
+    max-height: 5vh;
+  }
+}
+
+/* Styles for Tablets*/ 
+@media (min-width: 761px) and (max-width: 1200px) {
+  .dropdownMenuScroll {
+      font-size: small; /* Adjust width for tablet screens */
+  }
+
+  .dropdownSearchMenu {
+      font-size: small; /* Adjust width for larger screens */
+    }
+}
+
+/* Styles for Laptops (min-width: 1366px) */
+@media (min-width: 1201px) {
+  .dropdownMenuScroll {
+    font-size: medium; /* Adjust width for larger screens */
+  }
+
+  .dropdownSearchMenu {
+      font-size: medium; /* Adjust width for larger screens */
+    }
+}

@@ -12,6 +12,11 @@
     transition: transform 300ms ease-in-out;
 }
 
+.drawerHeader {
+    font-size: large;
+    font-weight: bold;
+}
+
 .drawerOpen {
     transform: translateX(0); /* Show drawer */
 }
@@ -44,4 +49,40 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    flex-wrap: wrap;
 }
+
+/* Responsive screen design */
+
+/* Styles for Phone Screens */
+@media (min-width: 10px) and (max-width: 760px){
+    .drawer {
+      font-size: x-small; /* Small font for drawer*/
+    }
+    .drawerHeader {
+        font-size: small;
+        font-weight: bold;
+    }
+  }
+  
+  /* Styles for Tablets*/
+  @media (min-width: 761px) and (max-width: 1200px) {
+    .drawer {
+        font-size: small; /* Adjust width for tablet screens */
+    }
+    .drawerHeader {
+        font-size: medium;
+        font-weight: bold;
+    }
+  }
+  
+  /* Styles for Laptops (min-width: 1366px) */
+  @media (min-width: 1201px) {
+    .drawer {
+      font-size: medium; /* Adjust width for larger screens */
+    }
+    .drawerHeader {
+        font-size: large;
+        font-weight: bold;
+    }
+  }

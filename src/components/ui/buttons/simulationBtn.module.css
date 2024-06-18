@@ -84,3 +84,26 @@
     }
   }
   
+  /* Responsive screen design */
+
+  /* Styles for Phone Screens */
+@media (min-width: 10px) and (max-width: 760px){
+  .button, .disabledBtn {
+    font-size: x-small; /* Small font for drawer*/
+    padding: 4px 14px;
+  }
+}
+
+/* Styles for Tablets*/
+@media (min-width: 761px) and (max-width: 1200px) {
+  .button, .disabledBtn {
+      font-size: x-small; /* Adjust width for tablet screens */
+  }
+}
+
+/* Styles for Laptops (min-width: 1366px) */
+@media (min-width: 1201px) {
+  .button, .disabledBtn {
+    font-size: small; /* Adjust width for larger screens */
+  }
+}
