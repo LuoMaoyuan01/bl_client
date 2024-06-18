@@ -8,11 +8,12 @@ import EmsClickContext from '../../../context/simulation/emsClickContext';
 import Styles from './simulationBtn.module.css';
 
 const SimulationBtn = ({BtnName, brtRouteValue}) => {
-    const {handleClick} = useContext(EmsClickContext);
+    const {handleClick, setBrtRouteValue} = useContext(EmsClickContext);
 
     const [isDisabled, setIsDisabled] = useState(true);
 
     if(brtRouteValue !== '0' && isDisabled !== false){
+        setBrtRouteValue(brtRouteValue);
         setIsDisabled(false);
     }
     

@@ -1,6 +1,6 @@
 // Import required images
 
-const displayBrtAnimation = async (routesPath, googleMaps, mapInstance) => {
+const displayBrtAnimation = async (routesPath, routesColour, googleMaps, mapInstance) => {
     
     // Promise and resolve will ensure displayBrtAnimation will run all its components before the next function in emsClickContext can run
     return new Promise((resolve) => {
@@ -39,7 +39,7 @@ const displayBrtAnimation = async (routesPath, googleMaps, mapInstance) => {
                 }
             ],
             geodesic: true,
-            strokeColor: '#0096FF',
+            strokeColor: routesColour,
             strokeOpacity: 1,
             strokeWeight: 4,
             zIndex: 1,

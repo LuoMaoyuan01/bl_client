@@ -23,12 +23,14 @@ export const EmsClickProvider = ({ children }) => {
     const [showEmsAlertPopup, setShowEmsAlertPopup] = useState(false);
     const [popupClosed, setPopupClosed] = useState(false);
     const [modalOpen, setModalOpen] = useState(false)
+    const [brtRouteValue, setBrtRouteValue] = useState('Blue Route');
+
 
     // Obtain static brtRoute information stored
     const brtRouteInfo = brtRouteInformation();
 
     const handleClick = () => {
-        setViewPoint(brtRouteInfo['Blue Route']['View Point'], 17);
+        setViewPoint(brtRouteInfo[brtRouteValue]['View Point'], 17);
         setShowEmsAlertPopup(true);
     }
 
@@ -45,7 +47,7 @@ export const EmsClickProvider = ({ children }) => {
         const runAnimation = async () => {
             if (popupClosed) {
                 // Run Brt Google Maps Route Animation
-                await displayBrtAnimation(brtRouteInfo['Blue Route']['Decoded Polyline'], googleMaps, mapInstance);
+                await displayBrtAnimation(brtRouteInfo[brtRouteValue]['Decoded Polyline'], brtRouteInfo[brtRouteValue]['lineColour'], googleMaps, mapInstance);
                 setPopupClosed(false); // Reset the state
                 
                 setModalOpen(true); // Enable EmsModal to popup
@@ -57,7 +59,7 @@ export const EmsClickProvider = ({ children }) => {
     }, [popupClosed, brtRouteInfo, googleMaps, mapInstance]);
 
     return (
-        <EmsClickContext.Provider value={{ handleClick }}>
+        <EmsClickContext.Provider value={{ handleClick , setBrtRouteValue}}>
             {children}
             {showEmsAlertPopup && <EMSAlertPopup onClose={handlePopupClose}/>}
             {modalOpen && !showEmsAlertPopup && <EmsModal handleModalClose={handleModalClose}/>}
