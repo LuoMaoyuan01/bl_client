@@ -191,7 +191,7 @@ const MapsDrawer = ({ returnValues }) => {
                     <ul className={Styles.formUl} style={{ paddingBottom: '0.5vw' }}>
                         <li className={Styles.entry}>
                             {/* Renders EMS symbol & Bus Symbols on click, Provides a popup alert at RHS */}
-                            <SimulationBtn BtnName='EMS'/>
+                            <SimulationBtn BtnName='EMS' brtRouteValue={mapState.searchFormValue?.brtRouteValue || '0'}/>
                         </li>
                     </ul>
 
