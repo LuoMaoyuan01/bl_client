@@ -1,5 +1,5 @@
 // Import required libraries and functions
-import React, {useState} from 'react';
+import React from 'react';
 
 // Import required styles
 import Styles from './EMSAlertPopup.module.css';
