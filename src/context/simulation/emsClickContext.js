@@ -61,7 +61,7 @@ export const EmsClickProvider = ({ children }) => {
     return (
         <EmsClickContext.Provider value={{ handleClick , setBrtRouteValue}}>
             {children}
-            {showEmsAlertPopup && <EMSAlertPopup onClose={handlePopupClose}/>}
+            {showEmsAlertPopup && <EMSAlertPopup onClose={handlePopupClose} routesColour={brtRouteValue}/>}
             {modalOpen && !showEmsAlertPopup && <EmsModal handleModalClose={handleModalClose}/>}
         </EmsClickContext.Provider>
     );

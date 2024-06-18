@@ -8,9 +8,9 @@ import Styles from './EMSAlertPopup.module.css';
 import ErrorIcon from '../../../assets/images/errorIcon.png';
 
 
-const EMSAlertPopup = ({ onClose }) => {
+const EMSAlertPopup = ({ onClose, routesColour }) => {
 
-    const message = `EMS is requesting to use Blue Route!`;
+    const message = `EMS is requesting to use ${routesColour}!`;
     
     const handleClose = () => {
         // Logic to close the popup
