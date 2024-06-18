@@ -16,7 +16,10 @@ const BrtStationsDropdown = forwardRef((props, ref) => {
 
     // Retain the value of blue route in the dropdown display
     let brtStationName;
-    if(props.brtRouteValue !== '0'){
+    if(selectedBrtStation !== 'Brt Routes'){
+        brtStationName = selectedBrtStation;
+    }
+    else if(props.brtRouteValue !== '0'){
         brtStationName = props.brtRouteValue;
     }
 
