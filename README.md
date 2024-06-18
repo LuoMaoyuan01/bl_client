@@ -57,6 +57,20 @@ This client side code is developed with [React JS](https://react.dev/) and teste
 - docker build -t bl_client:v100 . (custom version number in sequence) <br/>
 - docker run -p 3000:3000 bl_client:v100 (custom version number in sequence) <br/>
 
+## Client Project Structure
+```
+├── BL_CLIENT
+|   ├── public
+|   ├── src
+|   |    ├── assets
+|   |    ├── components
+|   |    ├── context
+|   |    ├── data
+|   |    ├── hooks
+|   |    ├── pages
+|   |    ├── utils
+```
+
 ## Technology Stacks Used
 
 - [React.js](https://reactjs.org/) - A JavaScript library for building user interfaces. <br/>
