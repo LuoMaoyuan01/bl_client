@@ -16,15 +16,17 @@
 /* Styles for Phone Screens */
 @media (min-width: 10px) and (max-width: 460px){
     .dropdownToggle {
-      font-size: x-small;
+      font-size: xx-small;
       min-width: 3vw;
       max-width: 10vw;
+      overflow: hidden;
     }
 
     .dropdownMenu {
-        font-size: x-small;
+        font-size: xx-small;
         min-width: 3vw;
         max-width: 10vw;
+        overflow: hidden;
     }
   }
   

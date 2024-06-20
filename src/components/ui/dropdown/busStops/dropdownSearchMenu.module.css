@@ -2,6 +2,7 @@
     max-height: 20vh; /* Adjust the height as needed to show 4 items */
     max-width: 18vw;
     overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: auto;
   }
 
   .dropdownSearchMenu {
@@ -9,6 +10,7 @@
     max-height: 7vh; /* Adjust the height as needed to show 4 items */
     max-width: 10vw;
     overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: auto;
   }
 
   /* Responsive Screen Design */
@@ -16,16 +18,13 @@
 /* Styles for Phone Screens */
 @media (min-width: 10px) and (max-width: 460px){
   .dropdownMenuScroll {
-    font-size: x-small;
-    max-height: 15vh;
+    font-size: xx-small;
     max-width: 10vw;
-
   }
 
   .dropdownSearchMenu {
-    font-size: x-small;
-    max-width: 10vw;
-    max-height: 5vh;
+      font-size: xx-small;
+      max-width: 10vw;
   }
 }
 
