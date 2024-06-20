@@ -2,44 +2,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 10.85vw;
+    min-width: 12vw;
+    max-width: 12vw;
     overflow: auto;
 }
 
 .dropdownMenu {
-    min-width: 10.85vw;
+    min-width: 12vw;
+    max-width: 12vw;
     text-align: left;
 }
 
 /* Responsive Screen Design */
 
 /* Styles for Phone Screens */
-@media (min-width: 10px) and (max-width: 460px){
+@media (min-width: 10px) and (max-width: 660px){
     .dropdownToggle {
-      font-size: xx-small;
-      min-width: 3vw;
-      max-width: 10vw;
-      overflow: hidden;
+      font-size: x-small;
+      min-width: 20vw;
+      max-width: 20vw;
     }
 
     .dropdownMenu {
-        font-size: xx-small;
-        min-width: 3vw;
-        max-width: 10vw;
-        overflow: hidden;
+        font-size: x-small;
+        min-width: 20vw;
+        max-width: 20vw;
     }
   }
   
   /* Styles for Tablets*/
-  @media (min-width: 461px) and (max-width: 1400px) {
+  @media (min-width: 661px) and (max-width: 1400px) {
     .dropdownToggle {
         font-size: small; /* Adjust width for tablet screens */
-        max-width: 10vw;
+        width: 15vw;
     }
 
     .dropdownMenu {
         font-size: small; /* Adjust width for larger screens */
-        max-width: 10vw;
+        width: 15vw;
       }
   }
   

@@ -9,14 +9,14 @@
 /* Responsive screen design */
 
 /* Styles for Phone Screens */
-@media (min-width: 10px) and (max-width: 460px){
+@media (min-width: 10px) and (max-width: 660px){
     .map {
-        width: 75%;
+        width: 70%;
     }
   }
   
   /* Styles for Tablets*/
-  @media (min-width: 461px) and (max-width: 1400px) {
+  @media (min-width: 661px) and (max-width: 1400px) {
     .map {
         width: 80%;
     }

@@ -55,10 +55,10 @@
 /* Responsive screen design */
 
 /* Styles for Phone Screens */
-@media (min-width: 10px) and (max-width: 460px){
+@media (min-width: 10px) and (max-width: 660px){
     .drawer {
         font-size: x-small; /* Small font for drawer*/
-        width: 25%;
+        width: 30%;
     }
     .drawerHeader {
         font-size: small;
@@ -67,7 +67,7 @@
   }
   
   /* Styles for Tablets*/
-  @media (min-width: 461px) and (max-width: 1400px) {
+  @media (min-width: 661px) and (max-width: 1400px) {
     .drawer {
         font-size: small; /* Adjust width for tablet screens */
         width: 20%;

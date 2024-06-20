@@ -49,14 +49,14 @@
 /* Responsive adjustments using media queries */
 
 /* Styles for Phone Screens */
-@media (min-width: 10px) and (max-width: 461px){
+@media (min-width: 10px) and (max-width: 661px){
     .btn {
       font-size: xx-small; /* Small font for drawer*/
     }
   }
   
   /* Styles for Tablets*/
-  @media (min-width: 461px) and (max-width: 1400px) {
+  @media (min-width: 661px) and (max-width: 1400px) {
     .btn {
         font-size: x-small; /* Adjust width for tablet screens */
     }

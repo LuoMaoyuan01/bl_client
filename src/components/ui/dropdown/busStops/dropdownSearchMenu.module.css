@@ -1,41 +1,40 @@
 .dropdownMenuScroll {
     max-height: 20vh; /* Adjust the height as needed to show 4 items */
-    max-width: 18vw;
+    max-width: 20vw;
     overflow-y: auto; /* Enable vertical scrolling */
-    overflow-x: auto;
   }
 
   .dropdownSearchMenu {
-
     max-height: 7vh; /* Adjust the height as needed to show 4 items */
-    max-width: 10vw;
+    max-width: 13vw;
     overflow-y: auto; /* Enable vertical scrolling */
-    overflow-x: auto;
   }
 
   /* Responsive Screen Design */
 
 /* Styles for Phone Screens */
-@media (min-width: 10px) and (max-width: 460px){
+@media (min-width: 10px) and (max-width: 660px){
   .dropdownMenuScroll {
-    font-size: xx-small;
-    max-width: 10vw;
+    font-size: x-small;
+    max-width: 30vw;
   }
 
   .dropdownSearchMenu {
-      font-size: xx-small;
-      max-width: 10vw;
+    font-size: x-small;
+    max-width: 23vw;
   }
-}
+} 
 
 /* Styles for Tablets*/ 
-@media (min-width: 461px) and (max-width: 1400px) {
+@media (min-width: 661px) and (max-width: 1400px) {
   .dropdownMenuScroll {
       font-size: small; /* Adjust width for tablet screens */
+      max-width: 20vw;
   }
 
   .dropdownSearchMenu {
       font-size: small; /* Adjust width for larger screens */
+      max-width: 13vw;
     }
 }
 

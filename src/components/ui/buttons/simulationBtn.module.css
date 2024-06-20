@@ -87,7 +87,7 @@
   /* Responsive screen design */
 
   /* Styles for Phone Screens */
-@media (min-width: 10px) and (max-width: 460px){
+@media (min-width: 10px) and (max-width: 660px){
   .button, .disabledBtn {
     font-size: x-small; /* Small font for drawer*/
     padding: 4px 14px;
@@ -95,7 +95,7 @@
 }
 
 /* Styles for Tablets*/
-@media (min-width: 461px) and (max-width: 1400px) {
+@media (min-width: 661px) and (max-width: 1400px) {
   .button, .disabledBtn {
       font-size: x-small; /* Adjust width for tablet screens */
   }

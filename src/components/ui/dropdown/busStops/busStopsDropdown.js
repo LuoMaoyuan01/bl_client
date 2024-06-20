@@ -61,7 +61,7 @@ const BusStopsDropdown = forwardRef((props, ref) => {
     <Dropdown onSelect={handleSelect}>
         {/* If no valid search value, dropdown is disabled*/}
         <Dropdown.Toggle id="dropdown-custom-1" variant='light' disabled={!validSearchValue} className={Styles.dropdownToggle}>
-            {selectedBusStopName.slice(0, 22)}
+            <div className={Styles.dropdownFonts}>{selectedBusStopName.slice(0, 22)}</div>
         </Dropdown.Toggle>
 
         <Dropdown.Menu as={DropdownSearchMenu} className={Styles.dropdownMenu}>

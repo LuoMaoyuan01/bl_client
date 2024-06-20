@@ -27,7 +27,7 @@ const DropdownSearchMenu = React.forwardRef(
             >
               <Form.Control
                   autoFocus
-                  className={`mx-3 my-2 w-auto ${Styles.dropdownSearchMenu}`}
+                  className={`mx-3 my-2 ${Styles.dropdownSearchMenu}`}
                   placeholder="Filter..."
                   onChange={(e) => setValue(e.target.value)}
                   value={value}
