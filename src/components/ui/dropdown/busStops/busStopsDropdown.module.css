@@ -4,12 +4,13 @@
   align-items: center;
   min-width: 12vw;
   max-width: 12vw;
-  overflow: auto;
+  height: 40px;
+  overflow: hidden;
 }
 
 .dropdownMenu {
   max-width: 15vw;
-  overflow: auto;
+  overflow-x: visible;
 }
 .dropdownFonts{
   font-size: medium;
@@ -23,6 +24,7 @@
   .dropdownToggle {
     font-size: x-small;
     min-width: 20vw;
+    height: 30px;
   }
 
   .dropdownMenu {
@@ -39,6 +41,7 @@
   .dropdownToggle {
       font-size: small; /* Adjust width for tablet screens */
       width: 15vw;
+      height: 35px;
   }
 
   .dropdownMenu {
