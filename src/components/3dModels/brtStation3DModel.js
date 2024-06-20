@@ -3,7 +3,7 @@ import React, { Suspense, useRef, useState } from 'react';
 import { useLoader, useFrame, useThree } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF, Bounds } from '@react-three/drei';
+import { OrbitControls, useGLTF, Bounds, Environment } from '@react-three/drei';
 import { Box } from '@react-three/drei';
 
 // Import required components
@@ -34,8 +34,8 @@ function BrtStation3DModel({ url }) {
   return (
     <Canvas camera={{ fov: 10, near: 1, far: 1000, position: [55.25372931026002, 500.5840093168648, -1087.3203438255905] }}>
       {/* <OrbitControls target={[-2.7391754518680993, 0.0038174597273677043, 3.139967774695881]}/> */}
-      <ambientLight intensity={1} />
-      <directionalLight position={[10, 10, 5]} intensity={1.5} />
+      <DefaultLights/>
+      <Environment preset="sunset" />
       <OrbitControls />
       <Suspense fallback={<Box args={[5, 5, 5]} />}>
         <Bounds fit clip observe margin={1}>
@@ -59,3 +59,14 @@ function CameraLogger() {
 }
 
 export default BrtStation3DModel;
+
+function DefaultLights() {
+  return (
+    <>
+      <ambientLight intensity={0.3} />
+      <directionalLight position={[10, 10, 5]} intensity={1.5} />
+      <pointLight position={[-10, -10, -10]} intensity={0.5} />
+      <pointLight position={[10, -10, 10]} intensity={0.5} />
+    </>
+  );
+}

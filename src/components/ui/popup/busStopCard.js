@@ -10,7 +10,7 @@ import Draggable from 'react-draggable';
 const BusStopsCard = ({busStopData}) => {
 
     const [isVisible, setIsVisible] = useState(true);
-
+    console.log(busStopData);
     useEffect(() => {
         setIsVisible(true);
 

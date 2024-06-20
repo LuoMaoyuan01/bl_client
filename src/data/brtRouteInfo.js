@@ -60,7 +60,12 @@ const brtRouteInformation = () => {
                     'lng': '103.846173',
                     'EMS Type': 'Ambulance',
                 },
-            ]
+            ],
+            'BrtArrivalData': [{
+                'serviceNo' : 'Brt 001',
+                'eta' : '6 Min',
+                'eta2' : '18 Min',
+            }],
         },
         'Yellow Route': {
             // 4 Stations Per Brt Route
@@ -118,7 +123,12 @@ const brtRouteInformation = () => {
                     'lng': '103.846173',
                     'EMS Type': 'Ambulance',
                 },
-            ]
+            ],
+            'BrtArrivalData': [{
+                'serviceNo' : 'Brt 001',
+                'eta' : '6 Min',
+                'eta2' : '18 Min',
+            }],
         }
     }
 

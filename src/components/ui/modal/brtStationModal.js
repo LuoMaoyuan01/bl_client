@@ -1,5 +1,6 @@
 // Import required libraries and functions
 import React from 'react';
+import brtRouteInformation from '../../../data/brtRouteInfo';
 
 // import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -12,7 +13,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // Import required 3D Model
 import BrtStation3DModel from '../../3dModels/brtStation3DModel';
 
+// Import required components
+import BusStopsCard from '../popup/busStopCard';
+
 const BrtStationModal = ({handleModalClose}) => {
+
+    const brtRouteInfo = brtRouteInformation();
 
     return (
         <div className="modal show" style={{ display: 'block', position: 'fixed', zIndex: '101'}}>
@@ -20,6 +26,8 @@ const BrtStationModal = ({handleModalClose}) => {
             <div style={{display: 'flex', justifyContent: 'flex-end', background: '#ECECEC'}}>
                 <CloseButton onClick={handleModalClose}/>
             </div>
+
+            <BusStopsCard busStopData = {brtRouteInfo['Blue Route']['BrtArrivalData']} style={{ position: 'absolute', left: '40vw', top: '0vh'}}/>
 
             <Modal.Body style={{background: '#ECECEC'}}>
                 <BrtStation3DModel url={'/BrtStation.glb'}/>
