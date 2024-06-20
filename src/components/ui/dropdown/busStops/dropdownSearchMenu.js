@@ -32,7 +32,6 @@ const DropdownSearchMenu = React.forwardRef(
                   onChange={(e) => setValue(e.target.value)}
                   value={value}
               />
-              {/* <ul className={`list-unstyled ${Styles.dropdownMenuScroll}`}> */}
               <ul className={`list-unstyled ${Styles.dropdownMenuScroll}`}>
                   {filteredChildren}
               </ul>

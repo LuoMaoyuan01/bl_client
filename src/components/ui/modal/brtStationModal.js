@@ -22,7 +22,7 @@ const BrtStationModal = ({handleModalClose}) => {
             </div>
 
             <Modal.Body style={{background: '#ECECEC'}}>
-                <BrtStation3DModel url={'/testBrtStation.glb'}/>
+                <BrtStation3DModel url={'/BrtStation.glb'}/>
             </Modal.Body>
           </Modal.Dialog>
         </div>

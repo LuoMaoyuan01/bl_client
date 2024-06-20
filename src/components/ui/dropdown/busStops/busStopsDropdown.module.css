@@ -2,15 +2,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: medium;
   min-width: 12vw;
   max-width: 12vw;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .dropdownMenu {
   max-width: 15vw;
+  overflow: auto;
 }
+.dropdownFonts{
+  font-size: medium;
+}
+
 
 /* Responsive Screen Design */
 
@@ -25,7 +29,7 @@
     font-size: x-small;
     width: 20vw;
   }
-  .dropdownFont {
+  .dropdownFonts {
     font-size: x-small;
   }
 }
@@ -41,6 +45,9 @@
       font-size: small; /* Adjust width for larger screens */
       width: 15vw;
     }
+  .dropdownFonts {
+    font-size: small;
+  }
 }
 
 /* Styles for Laptops (min-width: 1366px) */

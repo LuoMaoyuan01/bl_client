@@ -2,12 +2,14 @@
     max-height: 20vh; /* Adjust the height as needed to show 4 items */
     max-width: 20vw;
     overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: auto;
   }
 
   .dropdownSearchMenu {
     max-height: 7vh; /* Adjust the height as needed to show 4 items */
     max-width: 13vw;
     overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: auto;
   }
 
   /* Responsive Screen Design */
@@ -21,7 +23,7 @@
 
   .dropdownSearchMenu {
     font-size: x-small;
-    max-width: 23vw;
+    max-width: 25vw;
   }
 } 
 
