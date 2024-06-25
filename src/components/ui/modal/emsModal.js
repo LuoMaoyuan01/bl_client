@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 
 // Import required styles
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import Styles from './emsModal.module.css';
+import Styles from './emsModal.module.css';
 
 // Import required animations
 import busAnimationVideo from '../../../assets/videos/busAnimationVideo.mp4';
@@ -18,7 +18,7 @@ const EmsModal = ({handleModalClose}) => {
           className="modal show"
           style={{ display: 'block', position: 'fixed', zIndex: '101'}}
         >
-          <Modal.Dialog className='modal-fullscreen' style={{left: '17.03vw', height: '100vh', width: '82.9vw', border: '2px solid black'}}>
+          <Modal.Dialog className={`${Styles.modalDialog} modal-fullscreen`}>
             <Modal.Header closeButton onClick={handleModalClose}>
             </Modal.Header>
     

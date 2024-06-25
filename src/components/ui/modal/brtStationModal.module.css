@@ -1,28 +1,3 @@
-/* .modalHeader p{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-self: center;
-    justify-items: center;
-    align-items: center;
-} */
-
-/* FullScreenModal.css */
-/* .modal-fullscreen {
-    max-width: 30%;
-    margin: 0;
-    top: 0;
-    left: 0;
-    width: 30%;
-    height: 30%;
-    position: fixed;
-}
-
-.modal-fullscreen .modal-content {
-    height: 30%;
-    border: none;
-    border-radius: 0;
-} */
 
 /* Responsive screen design */
 .modalDialog {

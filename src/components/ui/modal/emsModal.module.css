@@ -1,25 +1,34 @@
-.modalHeader p{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-self: center;
-    justify-items: center;
-    align-items: center;
+
+.modalDialog {
+    width: 83%;
+    height: 100%;
+    border: 2px black solid;
+    left: 17%;
+
 }
 
-/* FullScreenModal.css */
-.modal-fullscreen {
-    max-width: 30%;
-    margin: 0;
-    top: 0;
-    left: 0;
-    width: 30%;
-    height: 30%;
-    position: fixed;
-}
+/* Responsive screen design */
 
-.modal-fullscreen .modal-content {
-    height: 30%;
-    border: none;
-    border-radius: 0;
-}
+/* Styles for Phone Screens */
+@media (min-width: 10px) and (max-width: 660px){
+    .modalDialog {
+        width: 70%;
+        left: 30%;
+    }
+  }
+  
+  /* Styles for Tablets*/
+  @media (min-width: 661px) and (max-width: 1400px) {
+    .modalDialog {
+        width: 80%;
+        left: 20%;
+    }
+  }
+  
+  /* Styles for Laptops (min-width: 1366px) */
+  @media (min-width: 1401px) {
+    .modalDialog {
+        width: 83%;
+        left: 17%
+    }
+  }

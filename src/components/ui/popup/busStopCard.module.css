@@ -81,8 +81,8 @@
   /* Styles for Phone Screens */
 @media (min-width: 10px) and (max-width: 660px){
   .card {
-      width: 25vw;
-      height: 25vh;
+      width: 35vw;
+      height: 15vh;
   }
   .card__content {
       font-size: x-small;
@@ -92,8 +92,8 @@
 /* Styles for Tablets*/
 @media (min-width: 661px) and (max-width: 1400px) {
   .card {
-      width: 25vw;
-      height: 25vh;
+      width: 30vw;
+      height: 20vh;
   }
   .card__content {
       font-size: small;

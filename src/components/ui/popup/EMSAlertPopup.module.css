@@ -22,8 +22,8 @@
   }
 
   .errorIcon {
-    width: 60px;
-    height: 60px;
+    width: 7vh;
+    height: 7vh;
   }
   
   #cookieSvg g path {
@@ -43,16 +43,6 @@
     color: rgb(99, 99, 99);
   }
   
-  .cookieDescription a {
-    --tw-text-opacity: 1;
-    color: rgb(59 130 246);
-  }
-  
-  .cookieDescription a:hover {
-    -webkit-text-decoration-line: underline;
-    text-decoration-line: underline;
-  }
-  
   .buttonContainer {
     display: flex;
     gap: 20px;
@@ -60,8 +50,8 @@
   }
   
   .acceptButton {
-    width: 80px;
-    height: 30px;
+    width: 6vw;
+    height: 3vh;
     background-color: #7b57ff;
     transition-duration: .2s;
     border: none;
@@ -73,28 +63,62 @@
     transition: all .6s ease;
   }
   
-  .declineButton {
-    width: 80px;
-    height: 30px;
-    background-color: #dadada;
-    transition-duration: .2s;
-    color: rgb(46, 46, 46);
-    border: none;
-    cursor: not-allowed;
-    font-weight: 600;
-    border-radius: 20px;
-    box-shadow: 0 4px 6px -1px #bebdbd, 0 2px 4px -1px #bebdbd;
-    transition: all .6s ease;
-  }
-  
-  .declineButton:hover {
-    background-color: #ebebeb;
-    box-shadow: 0 10px 15px -3px #bebdbd, 0 4px 6px -2px #bebdbd;
-    transition-duration: .2s;
-  }
-  
   .acceptButton:hover {
     background-color: #9173ff;
     box-shadow: 0 10px 15px -3px #977ef3, 0 4px 6px -2px #977ef3;
     transition-duration: .2s;
   }
+
+
+/* Responsive screen design */
+
+/* Styles for Phone Screens */
+@media (min-width: 10px) and (max-width: 660px){
+  .card {
+    width: 40vw;
+    height: 18vh;
+    left: 60vw;
+  }
+  .errorIcon {
+    height: 4.5vh;
+    width: 4.5vh;
+  }
+  .cookieHeading {
+    font-size: 0.75em;
+    margin: 0.5vh;
+  }
+  .cookieDescription {
+    font-size: 0.75em;
+    margin-bottom: 0.3vh;
+  }
+  .acceptButton {
+    width: 15vw;
+    height: 3vh;
+    font-size: 0.75em;
+    margin: 0;
+  }
+}
+
+/* Styles for Tablets*/
+@media (min-width: 661px) and (max-width: 1400px) {
+  .errorIcon {
+    height: 6.5vh;
+    width: 6.5vh;
+  }
+  .cookieHeading {
+    font-size: 0.8em;
+  }
+  .cookieDescription {
+    font-size: 0.8em;
+  }
+  .acceptButton {
+    width: 5vw;
+    height: 3vh;
+    font-size: 0.85em;
+  }
+}
+
+/* Styles for Laptops (min-width: 1366px) */
+@media (min-width: 1401px) {
+
+}

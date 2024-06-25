@@ -22,7 +22,7 @@
     height: var(--height-of-input);
     display: flex;
     align-items: center;
-    padding-inline: 0.8em;
+    padding-inline: 0.3em;
     margin-right: 0.5vw;
     border-radius: var(--border-radius);
     transition: border-radius 0.5s ease;
@@ -83,3 +83,32 @@
     width: 17px;
     margin-top: 3px;
   }
+
+    /* Responsive Screen Design */
+
+/* Styles for Phone Screens */
+@media (min-width: 10px) and (max-width: 660px){
+  .form {
+    --width-of-input: 9vw;
+    --height-of-input: 3.5vh;
+  }
+  .input {
+    font-size: 0.95em;
+  }
+  .form button{
+    display: none; /*Hides button once mobile display is rendered */
+  }
+} 
+
+/* Styles for Tablets*/ 
+@media (min-width: 661px) and (max-width: 1400px) {
+  .form {
+    --width-of-input: 6vw;
+    --height-of-input: 4.5vh;
+  }
+}
+
+/* Styles for Laptops (min-width: 1366px) */
+@media (min-width: 1401px) {
+
+}
