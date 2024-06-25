@@ -57,6 +57,26 @@ This client side code is developed with [React JS](https://react.dev/) and teste
 - docker build -t bl_client:v100 . (custom version number in sequence) <br/>
 - docker run -p 3000:3000 bl_client:v100 (custom version number in sequence) <br/>
 
+## Testing On Mobile Device
+- Create a free account at [Ngrok](https://ngrok.com/)
+- Install Ngrok at client side
+
+    ```bash
+    choco install ngrok
+    ```
+- Add personal authtoken to ngrok configuration file
+
+    ```bash
+    ngrok config add-authtoken <Your Auth Token Here>
+    ```
+- Run Ngrok command to place your client app into an ephemeral domain hosted by Ngrok
+
+    ```bash
+    ngrok http http://localhost:<Your Port>
+    ```
+
+- On your mobile device, go to the link provided by Ngrok
+
 ## Client Project Structure
 ```
 ├── BL_CLIENT
