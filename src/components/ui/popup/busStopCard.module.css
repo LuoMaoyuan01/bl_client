@@ -77,3 +77,33 @@
   .card:hover .cardsvg{
     scale: 0;
   }
+
+  /* Styles for Phone Screens */
+@media (min-width: 10px) and (max-width: 660px){
+  .card {
+      width: 25vw;
+      height: 25vh;
+  }
+  .card__content {
+      font-size: x-small;
+  }
+}
+
+/* Styles for Tablets*/
+@media (min-width: 661px) and (max-width: 1400px) {
+  .card {
+      width: 25vw;
+      height: 25vh;
+  }
+  .card__content {
+      font-size: small;
+  }
+}
+
+/* Styles for Laptops (min-width: 1366px) */
+@media (min-width: 1401px) {
+  .card {
+      width: 25vw;
+      height: 25vh;
+  }
+}

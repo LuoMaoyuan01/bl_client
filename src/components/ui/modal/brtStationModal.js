@@ -8,7 +8,7 @@ import CloseButton from 'react-bootstrap/CloseButton';
 
 // Import required styles
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import Styles from './emsModal.module.css';
+import Styles from './brtStationModal.module.css';
 
 // Import required 3D Model
 import BrtStation3DModel from '../../3dModels/brtStation3DModel';
@@ -22,7 +22,7 @@ const BrtStationModal = ({handleModalClose}) => {
 
     return (
         <div className="modal show" style={{ display: 'block', position: 'fixed', zIndex: '101'}}>
-          <Modal.Dialog className='modal-fullscreen' style={{left: '17.03vw', height: '100vh', width: '82.9vw', border: '2px solid black'}}>
+          <Modal.Dialog className={`${Styles.modalDialog} modal-fullscreen`}>
             <div style={{display: 'flex', justifyContent: 'flex-end', background: '#ECECEC'}}>
                 <CloseButton onClick={handleModalClose}/>
             </div>
