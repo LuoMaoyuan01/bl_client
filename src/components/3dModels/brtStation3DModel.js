@@ -1,10 +1,11 @@
 // Import required libraries and functions
-import React, { Suspense, useRef, useState } from 'react';
+import React, { Suspense, useState, useEffect, useRef } from 'react';
 import { useLoader, useFrame, useThree } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF, Bounds, Environment } from '@react-three/drei';
 import { Box } from '@react-three/drei';
+import { Vector3, Box3 } from 'three';
 
 // Import required components
 import Loader3D from '../ui/loaders/loader3D';
@@ -32,16 +33,17 @@ function BrtStation3DModel({ url }) {
   }
 
   return (
-    <Canvas camera={{ fov: 10, near: 1, far: 1000, position: [55.25372931026002, 500.5840093168648, -1087.3203438255905] }}>
+    <Canvas camera={{ fov: 10, near: 1, far: 1000 }}>
       {/* <OrbitControls target={[-2.7391754518680993, 0.0038174597273677043, 3.139967774695881]}/> */}
       <DefaultLights/>
       <Environment preset="sunset" />
-      <OrbitControls />
+      {/* <OrbitControls /> */}
       <Suspense fallback={<Box args={[5, 5, 5]} />}>
         <Bounds fit clip observe margin={1}>
-          <primitive object={gltf.scene} scale={[1, 1, 1]}/>
+          <CenteredModel object={gltf.scene} />
         </Bounds>
       </Suspense>
+      <CameraController/>
       {/* <CameraLogger/> */}
     </Canvas>
   );
@@ -58,7 +60,34 @@ function CameraLogger() {
   return null;
 }
 
+// Centers the model always
+function CenteredModel({ object }) {
+  const ref = useRef();
+
+  useEffect(() => {
+    if (ref.current) {
+      const box = new Box3().setFromObject(ref.current);
+      const center = box.getCenter(new Vector3());
+      ref.current.position.sub(center); // Center the model
+    }
+  }, [object]);
+
+  return <primitive ref={ref} object={object} />;
+}
+
 export default BrtStation3DModel;
+
+function CameraController() {
+  const { camera } = useThree();
+  const target = new Vector3(0, 0, 0); // Center of the scene
+
+  useEffect(() => {
+    camera.position.set(0, 0, 10); // Adjust as needed
+    camera.lookAt(target);
+  }, [camera]);
+
+  return <OrbitControls target={target} />;
+}
 
 function DefaultLights() {
   return (

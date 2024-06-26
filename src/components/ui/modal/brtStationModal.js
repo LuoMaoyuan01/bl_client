@@ -23,13 +23,13 @@ const BrtStationModal = ({handleModalClose}) => {
     return (
         <div className="modal show" style={{ display: 'block', position: 'fixed', zIndex: '101'}}>
           <Modal.Dialog className={`${Styles.modalDialog} modal-fullscreen`}>
-            <div style={{display: 'flex', justifyContent: 'flex-end', background: '#ECECEC'}}>
-                <CloseButton onClick={handleModalClose}/>
+            <div style={{display: 'flex', justifyContent: 'flex-end', background: 'black'}}>
+                <CloseButton onClick={handleModalClose} variant='white'/>
             </div>
 
             <BusStopsCard busStopData = {brtRouteInfo['Blue Route']['BrtArrivalData']} style={{ position: 'absolute', left: '40vw', top: '0vh'}}/>
 
-            <Modal.Body style={{background: '#ECECEC'}}>
+            <Modal.Body style={{background: 'black'}}>
                 <BrtStation3DModel url={'/BrtStation.glb'}/>
             </Modal.Body>
           </Modal.Dialog>
