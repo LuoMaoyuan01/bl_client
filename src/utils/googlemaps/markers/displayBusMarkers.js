@@ -32,7 +32,8 @@ const DisplayBusMarkers = async (busStops, googleMaps, mapInstance, handleMarker
 
         // Create an event listener for sending api call to lta datamall & displaying popup card
         googleMaps.event.addListener(googleMapsMarker, 'click', async function (e) {
-            await axios.get(`http://localhost:5000/scrape/${busStops[i]['Bus Stop Number']}`).then((response) => {
+            // Replace 192.168.9.111:5000 with desired IP address
+            await axios.get(`http://192.168.9.111:5000/scrape/${busStops[i]['Bus Stop Number']}`).then((response) => {
                 const responseData = response.data;
                 // Go back to Maps Controller to handle the click and display the DOM of Bus Stops Card
                 handleMarkerClick(responseData);

@@ -54,7 +54,8 @@ const Maps = () => {
             // Runs only if valid bus number & checkboxes are ticked
             if (busNumber !== '0' && (state.checkBoxStatusValue.busStopsCheckbox || state.checkBoxStatusValue.busNumberSearchCheckbox)) {
                 try {
-                    const response = await axios.get(`http://localhost:5000/scrape/${busNumber.toUpperCase()}/${busDirection.toString()}`);
+                    // Replace 192.168.9.111:5000 with desired IP address
+                    const response = await axios.get(`http://192.168.9.111:5000/scrape/${busNumber.toUpperCase()}/${busDirection.toString()}`);
 
                     // bus direction or bus number do not exist
                     if(response.data.length === 0){
