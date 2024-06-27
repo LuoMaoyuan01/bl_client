@@ -81,14 +81,27 @@ This client side code is developed with [React JS](https://react.dev/) and teste
 ```
 ├── BL_CLIENT
 |   ├── public
+|   |    |    ├── 3DModels
 |   ├── src
 |   |    ├── assets
+|   |    |    ├── fonts
+|   |    |    ├── images
+|   |    |    ├── styles
+|   |    |    ├── videos
 |   |    ├── components
+|   |    |    ├── 3dModels
+|   |    |    ├── api
+|   |    |    ├── ui
 |   |    ├── context
+|   |    |    ├── simulation
 |   |    ├── data
 |   |    ├── hooks
 |   |    ├── pages
+|   |    |    ├── Home
+|   |    |    ├── Map
 |   |    ├── utils
+|   |    |    ├── googlemaps
+|   |    |    ├── misc
 ```
 
 ## Technology Stacks Used

@@ -36,7 +36,7 @@ function BrtStation3DModel({ url }) {
     <Canvas camera={{ fov: 10, near: 1, far: 1000 }}>
       {/* <OrbitControls target={[-2.7391754518680993, 0.0038174597273677043, 3.139967774695881]}/> */}
       <DefaultLights/>
-      <Environment preset="sunset" />
+      <Environment preset="dawn" />
       {/* <OrbitControls /> */}
       <Suspense fallback={<Box args={[5, 5, 5]} />}>
         <Bounds fit clip observe margin={1}>
@@ -96,6 +96,7 @@ function DefaultLights() {
       <directionalLight position={[10, 10, 5]} intensity={1.5} />
       <pointLight position={[-10, -10, -10]} intensity={0.5} />
       <pointLight position={[10, -10, 10]} intensity={0.5} />
+      <pointLight position={[0, 10, 0]} intensity={1} />
     </>
   );
 }
