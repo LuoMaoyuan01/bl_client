@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 
 // import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import CloseButton from 'react-bootstrap/CloseButton';
 
 // Import required styles
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,10 +20,11 @@ const EmsModal = ({handleModalClose}) => {
           style={{ display: 'block', position: 'fixed', zIndex: '101'}}
         >
           <Modal.Dialog className={`${Styles.modalDialog} modal-fullscreen`}>
-            <Modal.Header closeButton onClick={handleModalClose}>
-            </Modal.Header>
+          <div style={{display: 'flex', justifyContent: 'flex-end', background: 'black'}}>
+                <CloseButton onClick={handleModalClose} variant='white'/>
+            </div>
     
-            <Modal.Body>
+            <Modal.Body style={{background: 'black'}}>
               {/* Video autoplays on modal opening & auto closes on modal closing */}
               <video width="100%" style={{display: 'flex', justifyContent: 'center'}} controls autoPlay onEnded={handleModalClose}>
                 <source src={busAnimationVideo} type="video/mp4" />
