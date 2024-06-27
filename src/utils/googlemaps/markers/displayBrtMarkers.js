@@ -7,6 +7,7 @@ import brtStationIcon from '../../../assets/images/brtStation.png';
 
 const DisplayBrtMarkers = async (brtStations, googleMaps, mapInstance, handleBrtMarkerClick) =>{
 
+    console.log(brtStations);
 
     // Loop through busStops array and for each bus stop entry's lat & lng coordinates, create a marker.
     for(let i = 0; i < brtStations.length; i++){
@@ -30,9 +31,10 @@ const DisplayBrtMarkers = async (brtStations, googleMaps, mapInstance, handleBrt
             content: brtIcon,
         });
 
+
         // Create an event listener to each BRT Marker that runs a function enabling display of bus stop animation
         googleMaps.event.addListener(brtMarker, 'click', function (e) {
-            handleBrtMarkerClick();
+            handleBrtMarkerClick(brtStations[i]);
         });
     }
 

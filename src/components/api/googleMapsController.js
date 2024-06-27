@@ -8,7 +8,7 @@ import obtainBusRoute from '../../utils/googlemaps/routes/bus/obtainBusRoute';
 // import obtainBrtRoutePolyline from '../../utils/googlemaps/misc/obtainBrtRoutePolyline';
 import displayBusRoute from '../../utils/googlemaps/routes/bus/displayBusRoute';
 import displayBrtRoute from '../../utils/googlemaps/routes/brt/displayBrtRoute';
-import displayBrtRouteWithTraffic from '../../utils/googlemaps/routes/brt/displayBrtRouteWithTraffic';
+// import displayBrtRouteWithTraffic from '../../utils/googlemaps/routes/brt/displayBrtRouteWithTraffic';
 import DisplayBusMarkers from '../../utils/googlemaps/markers/displayBusMarkers';
 import brtRouteInformation from '../../data/brtRouteInfo';
 import DisplayBrtMarkers from '../../utils/googlemaps/markers/displayBrtMarkers';
@@ -28,7 +28,7 @@ import Styles from './googleMapsController.module.css';
 const MapComponent = ({ busStops, brtRoute, busNumber, checkBoxStatus}) => {
   const mapRef = useRef(null);
   const [busStopData, setBusStopData] = useState(null);
-  const [brtMarkerClicked, setBrtMarkerClicked] = useState(false);
+  const [brtMarkerData, setBrtMarkerData] = useState(null);
 
   // Map instance context consumed
   const { setMapInstance, setGoogleMaps } = useContext(MapContext);
@@ -41,17 +41,29 @@ const MapComponent = ({ busStops, brtRoute, busNumber, checkBoxStatus}) => {
   const handleMarkerClick = async (busMarkerResponseData) => {
     try {
       setBusStopData(busMarkerResponseData);
-      // Toggles the busMarker 
+
     } catch (error) {
       console.error('Error fetching bus stop data:', error);
     }
   };
 
   // Handles the clicking on bus markers
-  const handleBrtMarkerClick = () => {
+  const handleBrtMarkerClick = async (brtRouteValue) => {
+    console.log(brtRouteValue);
     try {
       // Toggling of brtMarker status
-      setBrtMarkerClicked(!brtMarkerClicked);
+      setBrtMarkerData(brtRouteValue);
+
+    } catch (error) {
+      console.error('Error fetching bus stop data:', error);
+    }
+  };
+
+  // Handles the closing of brt markers
+  const handleBrtMarkerClose = () => {
+    try {
+      // Sets brtMarkerData to null, removing the modal display when component rerendered
+      setBrtMarkerData(null);
 
     } catch (error) {
       console.error('Error fetching bus stop data:', error);
@@ -236,7 +248,7 @@ const MapComponent = ({ busStops, brtRoute, busNumber, checkBoxStatus}) => {
     <>
       <div ref={mapRef} className={Styles.map} />
       {busStopData ? <BusStopsCard busStopData = {busStopData}/> : null}
-      {brtMarkerClicked ? <BrtStationModal handleModalClose={handleBrtMarkerClick}/> : null}
+      {brtMarkerData ? <BrtStationModal handleModalClose={handleBrtMarkerClose} brtRouteValue={brtMarkerData}/> : null}
     </>
   )
 };

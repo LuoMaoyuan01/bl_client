@@ -16,9 +16,10 @@ import BrtStation3DModel from '../../3dModels/brtStation3DModel';
 // Import required components
 import BusStopsCard from '../popup/busStopCard';
 
-const BrtStationModal = ({handleModalClose}) => {
+const BrtStationModal = ({handleModalClose, brtRouteValue}) => {
 
     const brtRouteInfo = brtRouteInformation();
+    console.log(brtRouteValue);
 
     return (
         <div className="modal show" style={{ display: 'block', position: 'fixed', zIndex: '101'}}>
@@ -30,7 +31,7 @@ const BrtStationModal = ({handleModalClose}) => {
             <BusStopsCard busStopData = {brtRouteInfo['Blue Route']['BrtArrivalData']} style={{ position: 'absolute', left: '40vw', top: '0vh'}}/>
 
             <Modal.Body style={{background: 'black'}}>
-                <BrtStation3DModel url={'/BrtStation.glb'}/>
+                <BrtStation3DModel url={brtRouteValue['Brt Station Model']}/>
             </Modal.Body>
           </Modal.Dialog>
         </div>

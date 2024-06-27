@@ -3,7 +3,7 @@ import React, { Suspense, useState, useEffect, useRef } from 'react';
 import { useLoader, useFrame, useThree } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF, Bounds, Environment } from '@react-three/drei';
+import { OrbitControls, Bounds, Environment } from '@react-three/drei';
 import { Box } from '@react-three/drei';
 import { Vector3, Box3 } from 'three';
 

@@ -1,9 +1,8 @@
-// emsClickContext.js
 
 // Import required libraries and functions
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import brtRouteInformation from '../../data/brtRouteInfo';
-import displayEmsSymbols from '../../utils/googlemaps/simulation/displayEmsSymbols';
+// import displayEmsSymbols from '../../utils/googlemaps/simulation/displayEmsSymbols';
 import displayBrtAnimation from '../../utils/googlemaps/simulation/displayBrtAnimation';
 
 // Import required context

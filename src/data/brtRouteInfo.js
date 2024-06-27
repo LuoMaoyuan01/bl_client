@@ -12,6 +12,7 @@ const brtRouteInformation = () => {
                     'lat': '1.288109',
                     'lng': '103.846664',
                     'Full Name': 'Clarke Quay MRT Station \nBrt Station 001',
+                    'Brt Station Model': '/3DModels/BrtStation_advanced.glb',
                 },
 
                 {
@@ -19,6 +20,7 @@ const brtRouteInformation = () => {
                     'lat': '1.338299',
                     'lng': '103.870444',
                     'Full Name': 'Woodleigh Station Exit B \nBrt Station Stop 002',
+                    'Brt Station Model': '/3DModels/BrtStation_novice.glb',
                 },
 
                 {
@@ -26,6 +28,7 @@ const brtRouteInformation = () => {
                     'lat': '1.359582',
                     'lng': '103.884182',
                     'Full Name': 'Kovan Mrt Station \nBrt Station 003',
+                    'Brt Station Model': '/3DModels/BrtStation_advanced.glb',
                 },
 
                 {
@@ -33,6 +36,7 @@ const brtRouteInformation = () => {
                     'lat': '1.412513',
                     'lng': '103.910743',
                     'Full Name': 'SIT - Singapore Institute of Technology (Punggol) \nBrt Station 004',
+                    'Brt Station Model': '/3DModels/BrtStation_novice.glb',
                 },
             ],
             'lineColour': 'Blue',
@@ -75,6 +79,7 @@ const brtRouteInformation = () => {
                     'lat': '1.340427',
                     'lng': '103.705937',
                     'Full Name': '1 Jurong West Central 2 \nBrt Station 005',
+                    'Brt Station Model': '/3DModels/BrtStation_advanced.glb',
                 },
 
                 {
@@ -82,6 +87,7 @@ const brtRouteInformation = () => {
                     'lat': '1.337969',
                     'lng': '103.755725',
                     'Full Name': '71 Bukit Batok Cres, Prestige Centre \nBrt Station Stop 006',
+                    'Brt Station Model': '/3DModels/BrtStation_novice.glb',
                 },
 
                 {
@@ -89,6 +95,7 @@ const brtRouteInformation = () => {
                     'lat': '1.322026',
                     'lng': '103.883847',
                     'Full Name': 'MacPherson Zone F Residents Committee \nBrt Station 007',
+                    'Brt Station Model': '/3DModels/BrtStation_advanced.glb',
                 },
 
                 {
@@ -96,6 +103,7 @@ const brtRouteInformation = () => {
                     'lat': '1.359043',
                     'lng': '103.990666',
                     'Full Name': 'T1 Coach Stand \nBrt Station 008',
+                    'Brt Station Model': '/3DModels/BrtStation_novice.glb',
                 },
             ],
             'lineColour': '#B09B12',
@@ -125,9 +133,9 @@ const brtRouteInformation = () => {
                 },
             ],
             'BrtArrivalData': [{
-                'serviceNo' : 'Brt 001',
-                'eta' : '6 Min',
-                'eta2' : '18 Min',
+                'serviceNo' : 'Brt 002',
+                'eta' : '3 Min',
+                'eta2' : '10 Min',
             }],
         }
     }
