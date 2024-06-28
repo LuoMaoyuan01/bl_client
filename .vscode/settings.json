@@ -1,3 +1,8 @@
 {
-    "editor.maxTokenizationLineLength": 40000000
+    "editor.maxTokenizationLineLength": 40000000,
+    "codesnap.target": "window",
+    "codesnap.transparentBackground": true,
+    "codesnap.boxShadow": "0",
+    "codesnap.containerPadding": "0",
+    "codesnap.backgroundColor": "black"
 }
