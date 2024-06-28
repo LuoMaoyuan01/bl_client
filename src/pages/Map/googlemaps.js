@@ -44,6 +44,7 @@ const Maps = () => {
     }, []);
 
     // Runs only when handleReturnValues functions run
+    // Function to obtain bus stops data from the backend server
     useEffect(() => {
         const fetchBusStops = async () => {
             setState(prevState => ({ ...prevState, isLoading: true }));
