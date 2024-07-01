@@ -6,13 +6,16 @@
 
 // webpack.config.js
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
-  entry: './src/App.js',
+  mode: 'development', // Use 'production' for production builds
+  entry: './src/index.js', // Single entry point
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -22,7 +25,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-react'],
+            presets: ['@babel/preset-react', '@babel/preset-env'],
           },
         },
       },
@@ -31,22 +34,22 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)$/,  // Add this rule to handle media files
+        test: /\.(png|jpg|gif|svg)$/,
         use: {
           loader: 'file-loader',
           options: {
             name: '[name].[hash].[ext]',
-            outputPath: 'media/',
+            outputPath: 'assets/images',
           },
         },
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,  // Optional: To handle image files
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)$/,
         use: {
           loader: 'file-loader',
           options: {
             name: '[name].[hash].[ext]',
-            outputPath: 'images/',
+            outputPath: 'assets/media',
           },
         },
       },
@@ -54,5 +57,16 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+  },
+  plugins: [
+    new CleanWebpackPlugin(), // This plugin cleans the output directory before each build
+    new HtmlWebpackPlugin({
+      template: './public/index.html', // Adjust this path based on your HTML template
+    }),
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    historyApiFallback: true,
+    port: 3000,
   },
 };

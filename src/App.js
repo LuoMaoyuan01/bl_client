@@ -5,7 +5,7 @@ import './App.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'; // Install components, router, route
-import reactToWebComponent from 'react-to-webcomponent';
+// import reactToWebComponent from 'react-to-webcomponent';
 
 // Import required pages and components
 import HomePage from "./pages/Home/homepage.js";
@@ -49,8 +49,8 @@ function App() {
 export default App;
 
 // Building of the custom react component bundle
-const BLClientComponent = reactToWebComponent(App, React, ReactDOM, { basePath: '/' });
-if (!customElements.get('bl-client-component')) {
-  customElements.define('bl-client-component', BLClientComponent);
-  console.log('Custom element defined: bl-client-component');
-}
+// const BLClientComponent = reactToWebComponent(App, React, ReactDOM, { basePath: '/' });
+// if (!customElements.get('bl-client-component')) {
+//   customElements.define('bl-client-component', BLClientComponent);
+//   console.log('Custom element defined: bl-client-component');
+// }
