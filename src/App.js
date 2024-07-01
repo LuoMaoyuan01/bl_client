@@ -3,7 +3,9 @@ import './App.css';
 
 // Import required libraries & functions
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'; // Install components, router, route
+import reactToWebComponent from 'react-to-webcomponent';
 
 // Import required pages and components
 import HomePage from "./pages/Home/homepage.js";
@@ -29,6 +31,7 @@ function App() {
                   <Route path="/">
                     <Route path = "" exact element={<Navigate to="googlemaps/0/1" />} />
                     <Route path = "home" exact element={<HomePage/>} />
+                    <Route path = "monitor/home" exact element={<Maps/>} />
                     <Route path = "googlemaps/" exact element={<Maps/>}>
                       <Route path=':busNumber/:direction' exact element={<Maps/>}/>
                     </Route>
@@ -44,3 +47,10 @@ function App() {
 }
 
 export default App;
+
+// Building of the custom react component bundle
+const BLClientComponent = reactToWebComponent(App, React, ReactDOM, { basePath: '/' });
+if (!customElements.get('bl-client-component')) {
+  customElements.define('bl-client-component', BLClientComponent);
+  console.log('Custom element defined: bl-client-component');
+}
